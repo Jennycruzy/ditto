@@ -46,7 +46,8 @@ export class JsonRpc implements Rpc {
   readonly usage = { requests: 0, calls: 0, estimatedCu: 0, cuMetered: false };
   constructor(readonly chain: Chain, private readonly options: RpcOptions = {}) {
     this.clock = options.now ?? (() => performance.now());
-    this.fetcher = options.fetch ?? fetch;
+    // Browsers reject fetch called as a method of another object ("Illegal invocation"); keep it unbound.
+    this.fetcher = options.fetch ?? ((input, init) => fetch(input, init));
     this.deadline = this.clock() + Math.min(6500, options.deadlineMs ?? 6500);
     this.usage.cuMetered = options.cost !== undefined;
     if (options.cuBudget !== undefined && !options.cost) throw new Error("CU budget requires a provider cost table");
