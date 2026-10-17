@@ -24,7 +24,8 @@ async function limited<T>(work: () => Promise<T>): Promise<T> {
 const meta = { version: 1, generatedAt: new Date(started).toISOString(), durationMs: 0, intervalMinutes: interval, cu: { estimated: 0, measured: null, budget: 12_000_000 }, counts: {} as Record<string, { sampled: number; recognised: number; rebuildable: number }>, failures: [] as { chain: Chain; reason: string }[] };
 // Base every run; one other chain per run in rotation, so each is refreshed every 3 hours at an hourly schedule.
 const hour = new Date(started).getUTCHours(), rotation: Chain[] = ["arbitrum", "optimism", "ethereum"];
-const selected = (process.env.ATLAS_CHAINS?.split(",") as Chain[] | undefined) ?? ["base", rotation[hour % 3]!];
+const requested = process.env.ATLAS_CHAINS?.split(",").map(c => c.trim()).filter(c => ["base", "arbitrum", "optimism", "ethereum"].includes(c)) as Chain[] | undefined;
+const selected = requested?.length ? requested : ["base", rotation[hour % 3]!];
 for (const chain of selected) {
   const client = () => new JsonRpc(chain, { headers: { authorization: `Bearer ${key}` }, maxRequests: 256 });
   const count = (method: string, n = 1) => { estimated += (cu[method] ?? 26) * n; };
