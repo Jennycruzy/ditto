@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  plugin:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: plugin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - run: npm install -g pnpm@11.11.0
+      - run: pnpm install --frozen-lockfile
+      - name: Typecheck, reproducible build, conformance
+        run: pnpm --silent test
+      - name: No secrets or source maps in the bundle
+        run: |
+          test ! -e dist/plugin.mjs.map
+          ! grep -E "alchemy\.com/v2/[A-Za-z0-9_-]{10,}|Bearer [A-Za-z0-9_-]{16,}" dist/plugin.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plugin.mjs
+          path: plugin/dist/plugin.mjs
