@@ -4,7 +4,7 @@
 
 Built for the MoonPay PayBox hackathon. Live on Base.
 
-[Watch the demo (1:32)](https://github.com/Jennycruzy/ditto/releases/download/demo-video/ditto-demo.mp4) · [Website](https://ditto-atlas.vercel.app) · [Today](https://ditto-atlas.vercel.app/today.html) · [Decode any transaction](https://ditto-atlas.vercel.app/tx.html) · [Proofs](https://ditto-atlas.vercel.app/proofs.html) · [For judges](https://ditto-atlas.vercel.app/judges.html) · [Safety](SECURITY.md) · [Build log](BUILDLOG.md)
+[Watch the demo on X](https://x.com/jennyoliver57/status/2111605427334963507) ([MP4](https://github.com/Jennycruzy/ditto/releases/download/demo-video/ditto-demo.mp4)) · [Website](https://ditto-atlas.vercel.app) · [Today](https://ditto-atlas.vercel.app/today.html) · [Decode any transaction](https://ditto-atlas.vercel.app/tx.html) · [Proofs](https://ditto-atlas.vercel.app/proofs.html) · [For judges](https://ditto-atlas.vercel.app/judges.html) · [Safety](SECURITY.md) · [Build log](BUILDLOG.md)
 
 ## How it works
 
