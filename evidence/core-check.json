@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-10-17T18:27:47.091Z",
+  "chain": "base",
+  "labels": [
+    "OBSERVED",
+    "SIMULATED"
+  ],
+  "block": "52736159",
+  "simulatedBlock": "52736160",
+  "checks": {
+    "balanceOverride": true,
+    "sequentialState": true,
+    "erc20Trace": true,
+    "nativeTrace": true,
+    "walletBalancesUnchanged": true
+  },
+  "wallet": "0x62cd77f1b851a1df9aaadcdcf49e107f887d4dd4",
+  "balances": {
+    "usdc": {
+      "atomic": "8199999",
+      "display": "8.199999"
+    },
+    "eth": {
+      "atomic": "457374473761236",
+      "display": "0.000457374473761236"
+    }
+  },
+  "simulatedCalls": [
+    {
+      "gasUsed": "30966",
+      "transfers": []
+    },
+    {
+      "gasUsed": "57143",
+      "transfers": [
+        {
+          "kind": "erc20",
+          "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+          "from": "0x000000000000000000000000000000000000d177",
+          "to": "0x000000000000000000000000000000000000d178",
+          "amount": "1000000"
+        }
+      ]
+    },
+    {
+      "gasUsed": "30966",
+      "transfers": []
+    },
+    {
+      "gasUsed": "21000",
+      "transfers": [
+        {
+          "kind": "native",
+          "token": "native",
+          "from": "0x000000000000000000000000000000000000d177",
+          "to": "0x000000000000000000000000000000000000d178",
+          "amount": "1"
+        }
+      ]
+    }
+  ],
+  "moneySpent": {
+    "atomic": "0",
+    "display": "0"
+  }
+}

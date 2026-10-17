@@ -1,0 +1,15 @@
+{
+  "name": "ditto-core",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.11.0",
+  "engines": { "node": "24.x" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --maxWorkers=1 --no-file-parallelism",
+    "build": "node scripts/build-core.mjs"
+  },
+  "dependencies": { "viem": "2.51.3", "zod": "4.4.3" },
+  "devDependencies": { "@types/node": "24.12.2", "esbuild": "0.28.2", "typescript": "5.9.3", "vitest": "4.0.18" },
+  "license": "MIT"
+}

@@ -17,10 +17,27 @@ jobs:
         with:
           node-version: 24.21.0
       - run: npm install -g pnpm@11.11.0
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        working-directory: .
+        run: pnpm install --frozen-lockfile
+      - name: Check core types and units
+        working-directory: .
+        run: |
+          pnpm typecheck
+          pnpm test
+      - name: Reproducible core build
+        working-directory: .
+        run: |
+          pnpm build
+          sha256sum dist/core.mjs dist/browser.mjs > /tmp/ditto-core.sha256
+          pnpm build
+          sha256sum -c /tmp/ditto-core.sha256
       - name: Typecheck, reproducible build, conformance
         run: pnpm --silent test
       - name: No secrets or source maps in the bundle
+        working-directory: .
+        run: node scripts/check-artifacts.mjs
+      - name: Check proposal bundle format
         run: |
           test ! -e dist/plugin.mjs.map
           ! grep -E "alchemy\.com/v2/[A-Za-z0-9_-]{10,}|Bearer [A-Za-z0-9_-]{16,}" dist/plugin.mjs
