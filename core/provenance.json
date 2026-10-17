@@ -1,39 +1,96 @@
 {
   "aave": {
     "source": "https://github.com/bgd-labs/aave-address-book/tree/main/src",
-    "base": { "provider": "0xe20fcbdbffc4dd138ce8b2e6fbb6cb49777ad64d", "pool": "0xa238dd80c259a72e81d7e4664a9801593f98d1c5" },
-    "arbitrum": { "provider": "0xa97684ead0e402dc232d5a977953df7ecbab3cdb", "pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad" },
-    "optimism": { "provider": "0xa97684ead0e402dc232d5a977953df7ecbab3cdb", "pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad" }
+    "base": {
+      "provider": "0xe20fcbdbffc4dd138ce8b2e6fbb6cb49777ad64d",
+      "pool": "0xa238dd80c259a72e81d7e4664a9801593f98d1c5"
+    },
+    "arbitrum": {
+      "provider": "0xa97684ead0e402dc232d5a977953df7ecbab3cdb",
+      "pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad"
+    },
+    "optimism": {
+      "provider": "0xa97684ead0e402dc232d5a977953df7ecbab3cdb",
+      "pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad"
+    }
   },
   "compound": {
     "source": "https://github.com/compound-finance/comet/tree/main/deployments",
-    "base": { "comet": "0xb125e6687d4313864e53df431d5425969c15eb2f", "configurator": "0x45939657d1ca34a8fa39a924b71d28fe8431e581" },
-    "arbitrum": { "comet": "0x9c4ec768c28520b50860ea7a15bd7213a9ff58bf", "configurator": "0xb21b06d71c75973babde35b49ffdac3f82ad3775" },
-    "optimism": { "comet": "0x2e44e174f7d53f0212823acc11c01a11d58c5bcb", "configurator": "0x84e93ec6170ed630f5ebd89a1aae72d4f63f2713" }
+    "base": {
+      "comet": "0xb125e6687d4313864e53df431d5425969c15eb2f",
+      "configurator": "0x45939657d1ca34a8fa39a924b71d28fe8431e581"
+    },
+    "arbitrum": {
+      "comet": "0x9c4ec768c28520b50860ea7a15bd7213a9ff58bf",
+      "configurator": "0xb21b06d71c75973babde35b49ffdac3f82ad3775"
+    },
+    "optimism": {
+      "comet": "0x2e44e174f7d53f0212823acc11c01a11d58c5bcb",
+      "configurator": "0x84e93ec6170ed630f5ebd89a1aae72d4f63f2713"
+    }
   },
   "moonwell": {
     "source": "https://docs.moonwell.fi/moonwell/protocol-information/contracts",
-    "base": { "comptroller": "0xfbb21d0380bee3312b33c4353c8936a0f13ef26c", "market": "0xedc817a28e8b93b03976fbd4a3ddbc9f7d176c22" },
-    "optimism": { "comptroller": "0xca889f40aae37fff165bccf69aef1e82b5c511b9", "market": "0x8e08617b0d66359d73aa11e11017834c29155525" }
+    "base": {
+      "comptroller": "0xfbb21d0380bee3312b33c4353c8936a0f13ef26c",
+      "market": "0xedc817a28e8b93b03976fbd4a3ddbc9f7d176c22"
+    },
+    "optimism": {
+      "comptroller": "0xca889f40aae37fff165bccf69aef1e82b5c511b9",
+      "market": "0x8e08617b0d66359d73aa11e11017834c29155525"
+    }
   },
   "morpho": {
     "source": "https://docs.morpho.org/developers/contracts/addresses/",
     "arbitrum": [
-      { "address": "0x878988f5f561081deea117717052164ea1ef0c82", "method": "isMetaMorpho" }
+      {
+        "address": "0x878988f5f561081deea117717052164ea1ef0c82",
+        "method": "isMetaMorpho"
+      }
     ],
     "optimism": [
-      { "address": "0x3bb6a6a0bc85b367efe0a5bac81c5e52c892839a", "method": "isMetaMorpho" }
+      {
+        "address": "0x3bb6a6a0bc85b367efe0a5bac81c5e52c892839a",
+        "method": "isMetaMorpho"
+      }
     ],
     "base": [
-      { "address": "0xa9c3d3a366466fa809d1ae982fb2c46e5fc41101", "method": "isMetaMorpho" },
-      { "address": "0xff62a7c278c62ed665133147129245053bbf5918", "method": "isMetaMorpho" },
-      { "address": "0x4501125508079a99ebbebce205dec9593c2b5857", "method": "isVaultV2" }
+      {
+        "address": "0xa9c3d3a366466fa809d1ae982fb2c46e5fc41101",
+        "method": "isMetaMorpho"
+      },
+      {
+        "address": "0xff62a7c278c62ed665133147129245053bbf5918",
+        "method": "isMetaMorpho"
+      },
+      {
+        "address": "0x4501125508079a99ebbebce205dec9593c2b5857",
+        "method": "isVaultV2"
+      }
     ]
   },
   "namedVaults": [
-    { "chain": "base", "address": "0x3128a0f7f0ea68e7b7c9b00afa7e41045828e858", "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913", "protocol": "Spark", "source": "https://github.com/sparkdotfi/spark-address-registry/blob/master/src/Base.sol" },
-    { "chain": "base", "address": "0xf42f5795d9ac7e9d757db633d693cd548cfd9169", "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913", "protocol": "Fluid", "source": "https://github.com/Instadapp/fluid-contracts-public/blob/main/deployments/base/fToken_fUSDC.json" },
-    { "chain": "arbitrum", "address": "0x940098b108fb7d0a7e374f6eded7760787464609", "asset": "0xaf88d065e77c8cc2239327c5edb3a432268e5831", "protocol": "Spark", "source": "https://github.com/sparkdotfi/spark-address-registry/blob/master/src/Arbitrum.sol" }
+    {
+      "chain": "base",
+      "address": "0x3128a0f7f0ea68e7b7c9b00afa7e41045828e858",
+      "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "protocol": "Spark",
+      "source": "https://github.com/sparkdotfi/spark-address-registry/blob/master/src/Base.sol"
+    },
+    {
+      "chain": "base",
+      "address": "0xf42f5795d9ac7e9d757db633d693cd548cfd9169",
+      "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "protocol": "Fluid",
+      "source": "https://github.com/Instadapp/fluid-contracts-public/blob/main/deployments/base/fToken_fUSDC.json"
+    },
+    {
+      "chain": "arbitrum",
+      "address": "0x940098b108fb7d0a7e374f6eded7760787464609",
+      "asset": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      "protocol": "Spark",
+      "source": "https://github.com/sparkdotfi/spark-address-registry/blob/master/src/Arbitrum.sol"
+    }
   ],
   "euler": {
     "source": "https://github.com/euler-xyz/euler-interfaces/tree/master/addresses",
@@ -47,7 +104,23 @@
     "queue": "0x889edc2edab5f40e902b864ad4d7ade8e412f9b1"
   },
   "lp": {
-    "uniswap": { "source": "https://docs.uniswap.org/contracts/v3/reference/deployments/base-deployments", "npm": "0x03a520b32c04bf3beef7beb72e919cf822ed34f1", "factory": "0x33128a8fc17869897dce68ed026d694621f6fdfd", "router": "0x2626664c2603336e57b271c5c0b26f421741e481", "quoter": "0x3d4e44eb1374240ce5f1b871ab261cd16335b76a" },
-    "aerodrome": { "source": "https://github.com/aerodrome-finance/slipstream#initial-deployment", "npm": "0x827922686190790b37229fd06084350e74485b72", "factory": "0x5e7bb104d84c7cb9b682aac2f3d509f5f406809a", "router": "0xbe6d8f0d05cc4be24d5167a3ef062215be6d18a5", "quoter": "0x254cf9e1e6e233aa1ac962cb9b05b2cfeaae15b0" }
+    "uniswap": {
+      "source": "https://docs.uniswap.org/contracts/v3/reference/deployments/base-deployments",
+      "npm": "0x03a520b32c04bf3beef7beb72e919cf822ed34f1",
+      "factory": "0x33128a8fc17869897dce68ed026d694621f6fdfd",
+      "router": "0x2626664c2603336e57b271c5c0b26f421741e481",
+      "quoter": "0x3d4e44eb1374240ce5f1b871ab261cd16335b76a"
+    },
+    "aerodrome": {
+      "source": "https://github.com/aerodrome-finance/slipstream#initial-deployment",
+      "npm": "0x827922686190790b37229fd06084350e74485b72",
+      "factory": "0x5e7bb104d84c7cb9b682aac2f3d509f5f406809a",
+      "router": "0xbe6d8f0d05cc4be24d5167a3ef062215be6d18a5",
+      "quoter": "0x254cf9e1e6e233aa1ac962cb9b05b2cfeaae15b0"
+    }
+  },
+  "routes": {
+    "source": "https://docs.morpho.org/get-started/resources/addresses/",
+    "morphoBase": "0x2b08a911f48de25a7e305d910afb5597abe8ea7b"
   }
 }

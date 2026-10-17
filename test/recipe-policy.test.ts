@@ -109,6 +109,7 @@ describe("market and queued exits", () => {
   });
   it("bounds ticks and keeps token math in integers", () => {
     expect(sqrtAtTick(0)).toBe(1n << 96n);
+    expect(centredRange(-193850, 50, 100)).toEqual({ lower: -193900, upper: -193800 });
     expect(centredRange(-1, 600, 10)).toEqual({ lower: -610, upper: 600 });
     expect(() => centredRange(0, 1, 10)).toThrow(); expect(() => sqrtAtTick(887273)).toThrow();
     const amounts = amountsForLiquidity(1n << 96n, -600, 600, 10n ** 12n); expect(amounts.amount0).toBeGreaterThan(0n); expect(amounts.amount1).toBeGreaterThan(0n);

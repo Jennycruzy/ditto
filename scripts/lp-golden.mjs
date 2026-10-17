@@ -3,7 +3,7 @@ import { homedir } from "node:os";
 import { resolve } from "node:path";
 import assert from "node:assert/strict";
 import { decodeAbiParameters, encodeFunctionData, erc20Abi, getAddress, parseAbi, toHex } from "viem";
-import { JsonRpc, dryRunOverrides, simulate, recipe, encodeStep, prepareLpEntry, prepareLpSwap, usdcAddress, entryAssertions, assertPassed } from "../dist/core.mjs";
+import { JsonRpc, dryRunOverrides, simulate, recipe, encodeStep, prepareLpEntry, prepareLpSwap, usdcAddress, entryAssertions, assertPassed, medianPositionWidth } from "../dist/core.mjs";
 import provenance from "../core/provenance.json" with { type: "json" };
 
 const env = await readFile(resolve(homedir(), "ditto-private/.env"), "utf8");
@@ -26,7 +26,10 @@ for (const protocol of process.argv.length > 2 ? process.argv.slice(2) : ["unisw
     const poolData = await rec.call("eth_call", [{ to: registry.factory, data }, block]);
     const pool = getAddress(`0x${poolData.slice(-40)}`), identity = await r.identify(pool, "base", rec, { block }); assert(identity);
     const timestampBlock = await rec.call("eth_getBlockByNumber", [block, false]), now = Number(BigInt(timestampBlock.timestamp)) * 1000;
-    const options = { block, now, acceptExit: "market", halfWidthTicks: 600 };
+    const ranges = JSON.parse(await readFile(new URL("../evidence/lp-ranges.json", import.meta.url), "utf8"));
+    const observed = medianPositionWidth(ranges.samples, "base", pool, now);
+    assert(observed, "Collect recent recognised positions in this pool before running the LP golden check");
+    const options = { block, now, acceptExit: "market", halfWidthTicks: observed.halfWidthTicks };
     const entry = await prepareLpEntry(identity, burner, "1000000", rec, options), overrides = dryRunOverrides(burner, usdc, 1_000_000n, 9n);
     const npm = getAddress(registry.npm), router = getAddress(registry.router);
     const preview = await simulate(rec, [...entry.steps.map(asCall), allowance(usdc, npm), allowance(weth, npm), allowance(usdc, router)], { block, stateOverrides: overrides });

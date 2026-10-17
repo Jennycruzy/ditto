@@ -1,0 +1,388 @@
+{
+  "generatedAt": "2026-10-17T19:46:06.642Z",
+  "labels": [
+    "OBSERVED"
+  ],
+  "cases": [
+    {
+      "name": "aave-arbitrum-direct",
+      "capturedAt": "2026-10-17T19:43:20.386Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 435.641573
+    },
+    {
+      "name": "aave-arbitrum-indirect",
+      "capturedAt": "2026-10-17T19:43:20.866Z",
+      "route": "router",
+      "actions": 2,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 567.9058430000001
+    },
+    {
+      "name": "aave-base-direct",
+      "capturedAt": "2026-10-17T19:43:21.469Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 211.74456799999984
+    },
+    {
+      "name": "aave-base-indirect",
+      "capturedAt": "2026-10-17T19:43:21.719Z",
+      "route": "router",
+      "actions": 2,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 455.2062189999999
+    },
+    {
+      "name": "aave-optimism-direct",
+      "capturedAt": "2026-10-17T19:43:22.212Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 248.24676999999997
+    },
+    {
+      "name": "aave-optimism-indirect",
+      "capturedAt": "2026-10-17T19:43:22.499Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 143.3456409999999
+    },
+    {
+      "name": "compound-arbitrum-direct",
+      "capturedAt": "2026-10-17T19:43:22.679Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 165.99578900000006
+    },
+    {
+      "name": "compound-arbitrum-indirect",
+      "capturedAt": "2026-10-17T19:43:22.884Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 314.70648900000015
+    },
+    {
+      "name": "compound-base-direct",
+      "capturedAt": "2026-10-17T19:43:23.266Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 116.91562699999986
+    },
+    {
+      "name": "compound-base-indirect",
+      "capturedAt": "2026-10-17T19:43:23.424Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 113.56575599999996
+    },
+    {
+      "name": "compound-optimism-direct",
+      "capturedAt": "2026-10-17T19:43:23.576Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 108.14337299999988
+    },
+    {
+      "name": "compound-optimism-indirect",
+      "capturedAt": "2026-10-17T19:43:23.753Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 128.74494099999993
+    },
+    {
+      "name": "fluid-base-direct",
+      "capturedAt": "2026-10-17T19:43:23.922Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 400.0179899999998
+    },
+    {
+      "name": "fluid-base-indirect",
+      "capturedAt": "2026-10-17T19:37:28.220Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 987.2206369999994
+    },
+    {
+      "name": "lido-ethereum-direct",
+      "capturedAt": "2026-10-17T19:37:29.243Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 133.13920300000063
+    },
+    {
+      "name": "lido-ethereum-indirect",
+      "capturedAt": "2026-10-17T19:37:29.443Z",
+      "route": "router",
+      "actions": 2,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 165.84367800000018
+    },
+    {
+      "name": "lp-aerodrome-base-direct",
+      "capturedAt": "2026-10-17T19:46:03.518Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 444.025147
+    },
+    {
+      "name": "lp-aerodrome-base-indirect",
+      "capturedAt": "2026-10-17T19:46:04.007Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 217.65947200000005
+    },
+    {
+      "name": "lp-aerodrome-recent-0",
+      "capturedAt": "2026-10-17T19:46:04.275Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 196.66567600000008
+    },
+    {
+      "name": "lp-aerodrome-recent-1",
+      "capturedAt": "2026-10-17T19:46:04.510Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 218.41158500000006
+    },
+    {
+      "name": "lp-uniswap-base-direct",
+      "capturedAt": "2026-10-17T19:46:04.767Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 193.61851500000012
+    },
+    {
+      "name": "lp-uniswap-base-indirect",
+      "capturedAt": "2026-10-17T19:46:04.997Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 199.24484200000006
+    },
+    {
+      "name": "lp-uniswap-recent-0",
+      "capturedAt": "2026-10-17T19:46:05.235Z",
+      "route": "router",
+      "actions": 2,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 443.71656900000016
+    },
+    {
+      "name": "lp-uniswap-recent-1",
+      "capturedAt": "2026-10-17T19:46:05.719Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "no",
+      "incomplete": true,
+      "durationMs": 239.1436359999998
+    },
+    {
+      "name": "lp-uniswap-recent-2",
+      "capturedAt": "2026-10-17T19:46:06.000Z",
+      "route": "router",
+      "actions": 2,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 282.544265
+    },
+    {
+      "name": "lp-uniswap-recent-3",
+      "capturedAt": "2026-10-17T19:46:06.326Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "no",
+      "incomplete": true,
+      "durationMs": 267.881265
+    },
+    {
+      "name": "moonwell-base-direct",
+      "capturedAt": "2026-10-17T19:37:30.575Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 121.84883099999934
+    },
+    {
+      "name": "moonwell-base-indirect",
+      "capturedAt": "2026-10-17T19:37:30.734Z",
+      "route": "erc4337",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 107.72832300000027
+    },
+    {
+      "name": "moonwell-optimism-direct",
+      "capturedAt": "2026-10-17T19:37:30.890Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 113.6482390000001
+    },
+    {
+      "name": "moonwell-optimism-indirect",
+      "capturedAt": "2026-10-17T19:37:31.079Z",
+      "route": "safe",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 111.09359300000051
+    },
+    {
+      "name": "spark-arbitrum-direct",
+      "capturedAt": "2026-10-17T19:37:31.252Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 713.5431250000001
+    },
+    {
+      "name": "spark-arbitrum-indirect",
+      "capturedAt": "2026-10-17T19:37:32.002Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 485.6576900000009
+    },
+    {
+      "name": "spark-base-direct",
+      "capturedAt": "2026-10-17T19:37:32.523Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 413.55615299999954
+    },
+    {
+      "name": "spark-base-indirect",
+      "capturedAt": "2026-10-17T19:37:32.975Z",
+      "route": "router",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 342.89440399999876
+    },
+    {
+      "name": "vault-base-indirect",
+      "capturedAt": "2026-10-17T19:37:33.359Z",
+      "route": "morpho-bundler",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 378.01909499999965
+    },
+    {
+      "name": "vault-optimism-direct",
+      "capturedAt": "2026-10-17T19:37:33.774Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "no",
+      "incomplete": false,
+      "durationMs": 812.7336059999998
+    },
+    {
+      "name": "vault-optimism-indirect",
+      "capturedAt": "2026-10-17T19:37:34.625Z",
+      "route": "direct",
+      "actions": 2,
+      "copyable": "no",
+      "incomplete": false,
+      "durationMs": 453.06185899999946
+    },
+    {
+      "name": "vault-second-base-indirect",
+      "capturedAt": "2026-10-17T19:43:27.921Z",
+      "route": "erc4337",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 390.13972300000023
+    },
+    {
+      "name": "vault-v1-base-direct",
+      "capturedAt": "2026-10-17T19:37:35.542Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 691.1503670000002
+    },
+    {
+      "name": "vault-v1-base-indirect",
+      "capturedAt": "2026-10-17T19:37:36.271Z",
+      "route": "erc4337",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 454.82643800000005
+    },
+    {
+      "name": "wsteth-ethereum-direct",
+      "capturedAt": "2026-10-17T19:37:36.762Z",
+      "route": "direct",
+      "actions": 1,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 178.58546000000024
+    },
+    {
+      "name": "wsteth-ethereum-indirect",
+      "capturedAt": "2026-10-17T19:37:36.976Z",
+      "route": "router",
+      "actions": 2,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 108.72688600000038
+    }
+  ],
+  "latestCaptureFailures": 0,
+  "moneySpent": "0"
+}

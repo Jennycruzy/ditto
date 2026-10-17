@@ -71,7 +71,8 @@ export const lpV3: Recipe = {
           const decoded = decodeEventLog({ abi: parseAbi([event] as readonly string[]), data: log.data as Hex, topics: log.topics as [Hex, ...Hex[]], strict: true });
           const a = decoded.args as unknown as Record<string, bigint | string>, id = String(a.tokenId);
           const position = ctx.lpPositions?.[`${log.address.toLowerCase()}:${id}`];
-          if (!position || !same(position.pool, i.contract)) continue;
+          const poolIdentity = position && ctx.identities.find(identity => identity.family === "lp-v3" && identity.chain === ctx.chain && same(identity.receiptToken, log.address) && same(identity.contract, position.pool));
+          if (!position || !poolIdentity) continue;
           const mint = transfers.find(t => t.kind === "erc721" && same(t.token, log.address) && t.tokenId === id && same(t.from, ZERO));
           if (kind === "enter" && !mint) continue;
           if (kind === "exit" && !receipt.logs.some(other => {
@@ -79,8 +80,8 @@ export const lpV3: Recipe = {
             try { const decrease = decodeEventLog({ abi: parseAbi([events.decrease]), topics: other.topics as [Hex, ...Hex[]], data: other.data as Hex }); return decrease.args.tokenId.toString() === id; } catch { return false; }
           })) continue;
           const actor = kind === "enter" ? mint!.to : addr(String(a.recipient));
-          const amount = same(position.token0, i.asset) ? String(a.amount0) : String(a.amount1);
-          out.push({ kind, family: "lp-v3", contract: i.contract, asset: i.asset, amount, actor, txHash: receipt.transactionHash, tokenId: id });
+          const amount = same(position.token0, poolIdentity.asset) ? String(a.amount0) : String(a.amount1);
+          out.push({ kind, family: "lp-v3", contract: poolIdentity.contract, asset: poolIdentity.asset, amount, actor, txHash: receipt.transactionHash, tokenId: id });
         } catch { /* Only complete position-manager events are recognised. */ }
       }
     }

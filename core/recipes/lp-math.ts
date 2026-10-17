@@ -14,7 +14,7 @@ export function sqrtAtTick(tick: number): bigint {
   return (result + (1n << 32n) - 1n) >> 32n;
 }
 export function centredRange(currentTick: number, halfWidth: number, spacing: number) {
-  if (![currentTick, halfWidth, spacing].every(Number.isInteger) || spacing <= 0 || halfWidth < spacing || halfWidth > 887272 || Math.abs(currentTick) > 887272) throw new Error("Invalid range");
+  if (![currentTick, halfWidth, spacing].every(Number.isInteger) || spacing <= 0 || halfWidth * 2 < spacing || halfWidth > 887272 || Math.abs(currentTick) > 887272) throw new Error("Invalid range");
   const lower = Math.max(Math.ceil(-887272 / spacing) * spacing, Math.floor((currentTick - halfWidth) / spacing) * spacing);
   const upper = Math.min(Math.floor(887272 / spacing) * spacing, Math.ceil((currentTick + halfWidth) / spacing) * spacing);
   if (lower >= currentTick || upper <= currentTick) throw new Error("Invalid range");

@@ -1,0 +1,207 @@
+{
+  "generatedAt": "2026-10-17T19:37:29.243Z",
+  "labels": [
+    "OBSERVED"
+  ],
+  "name": "lido-ethereum-direct",
+  "chain": "ethereum",
+  "input": {
+    "chain": "ethereum",
+    "tx": "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317"
+  },
+  "rpc": [
+    {
+      "method": "eth_getTransactionByHash",
+      "params": [
+        "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317"
+      ],
+      "result": {
+        "type": "0x2",
+        "chainId": "0x1",
+        "nonce": "0x6bbb",
+        "gas": "0x249f0",
+        "maxFeePerGas": "0x67af3c2",
+        "maxPriorityFeePerGas": "0x27e6",
+        "to": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+        "value": "0x34e068966ab3f000",
+        "accessList": [],
+        "input": "0xa1903eab0000000000000000000000004c49d4bd6a571827b4a556a0e1e3071da6231b9d",
+        "r": "0x22b33470a2bccb2a67281cab4b72a88920bde8ca57241595d48eb69a2e945cf2",
+        "s": "0x7125c85bfe8425f8742afcfa2da2c758495e1ae4921df61f810dafdb6d84bea6",
+        "yParity": "0x0",
+        "v": "0x0",
+        "hash": "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317",
+        "blockHash": "0xe77e12aa8ca067d1192bc2b0b85dcf32f025ed1d1ddaae319c93d2334262b768",
+        "blockNumber": "0x18ffec4",
+        "transactionIndex": "0x1f0",
+        "from": "0x4c49d4bd6a571827b4a556a0e1e3071da6231b9d",
+        "gasPrice": "0x2ec959a",
+        "blockTimestamp": "0x6ad3beef"
+      }
+    },
+    {
+      "method": "eth_getTransactionReceipt",
+      "params": [
+        "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317"
+      ],
+      "result": {
+        "type": "0x2",
+        "status": "0x1",
+        "cumulativeGasUsed": "0x35d0e69",
+        "logs": [
+          {
+            "address": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+            "topics": [
+              "0x96a25c8ce0baabc1fdefd93e9ed25d8e092a3332f3aa9a41722b5697231d1d1a",
+              "0x0000000000000000000000004c49d4bd6a571827b4a556a0e1e3071da6231b9d"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000034e068966ab3f0000000000000000000000000004c49d4bd6a571827b4a556a0e1e3071da6231b9d",
+            "blockHash": "0xe77e12aa8ca067d1192bc2b0b85dcf32f025ed1d1ddaae319c93d2334262b768",
+            "blockNumber": "0x18ffec4",
+            "blockTimestamp": "0x6ad3beef",
+            "transactionHash": "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317",
+            "transactionIndex": "0x1f0",
+            "logIndex": "0xf8f",
+            "removed": false
+          },
+          {
+            "address": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+            "topics": [
+              "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+              "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "0x0000000000000000000000004c49d4bd6a571827b4a556a0e1e3071da6231b9d"
+            ],
+            "data": "0x00000000000000000000000000000000000000000000000034e068966ab3efff",
+            "blockHash": "0xe77e12aa8ca067d1192bc2b0b85dcf32f025ed1d1ddaae319c93d2334262b768",
+            "blockNumber": "0x18ffec4",
+            "blockTimestamp": "0x6ad3beef",
+            "transactionHash": "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317",
+            "transactionIndex": "0x1f0",
+            "logIndex": "0xf90",
+            "removed": false
+          },
+          {
+            "address": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+            "topics": [
+              "0x9d9c909296d9c674451c0c24f02cb64981eb3b727f99865939192f880a755dcb",
+              "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "0x0000000000000000000000004c49d4bd6a571827b4a556a0e1e3071da6231b9d"
+            ],
+            "data": "0x0000000000000000000000000000000000000000000000002a6b24945d5b7a4a",
+            "blockHash": "0xe77e12aa8ca067d1192bc2b0b85dcf32f025ed1d1ddaae319c93d2334262b768",
+            "blockNumber": "0x18ffec4",
+            "blockTimestamp": "0x6ad3beef",
+            "transactionHash": "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317",
+            "transactionIndex": "0x1f0",
+            "logIndex": "0xf91",
+            "removed": false
+          }
+        ],
+        "logsBloom": "0x00000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000008000000000000000000000000000000000000002000000000020000000000008000200800000000000000000000000010000000000000000000000000000000000000000000000000000000800000000000000400000000000000000000000000000200000000000000000000000000040000000000000002000000000000000000000000000000000080002000000000000020000000000000000000000000000000000000000000020000000000000000000000",
+        "transactionHash": "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317",
+        "transactionIndex": "0x1f0",
+        "blockHash": "0xe77e12aa8ca067d1192bc2b0b85dcf32f025ed1d1ddaae319c93d2334262b768",
+        "blockNumber": "0x18ffec4",
+        "gasUsed": "0x12d77",
+        "effectiveGasPrice": "0x2ec959a",
+        "from": "0x4c49d4bd6a571827b4a556a0e1e3071da6231b9d",
+        "to": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+        "contractAddress": null
+      }
+    },
+    {
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+          "data": "0x1ea7ca89"
+        },
+        "0x18ffec4"
+      ],
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+          "data": "0x37cfdaca"
+        },
+        "0x18ffec4"
+      ],
+      "result": "0x000000000000000000000000000000000000000000080132c3f4679132f1d89d"
+    },
+    {
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+          "data": "0x7a28fb880000000000000000000000000000000000000000000000000de0b6b3a7640000"
+        },
+        "0x18ffec4"
+      ],
+      "result": "0x000000000000000000000000000000000000000000000000114c9deda9017345"
+    },
+    {
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+          "data": "0xb187bd26"
+        },
+        "0x18ffec4"
+      ],
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "listings": [],
+  "expected": {
+    "hash": "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317",
+    "block": "26214084",
+    "who": "0x4C49d4Bd6a571827B4A556a0e1e3071DA6231B9D",
+    "contract": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+    "selector": "0xa1903eab",
+    "function": "submit",
+    "route": "direct",
+    "status": "success",
+    "movements": [
+      {
+        "kind": "erc20",
+        "token": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x4C49d4Bd6a571827B4A556a0e1e3071DA6231B9D",
+        "amount": "3810160279999999999"
+      }
+    ],
+    "actions": [
+      {
+        "kind": "enter",
+        "family": "lst",
+        "contract": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+        "asset": "native",
+        "amount": "3810160280000000000",
+        "actor": "0x4C49d4Bd6a571827B4A556a0e1e3071DA6231B9D",
+        "txHash": "0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317",
+        "candidateId": "ethereum:lst:0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+        "copyable": "yes",
+        "reasons": [],
+        "warnings": []
+      }
+    ],
+    "copyable": "yes",
+    "reasons": [],
+    "text": "Transaction 0x6cc27559e02e3623f0553d02eacab33d9251011ae75fd64f91164da2640a1317 called submit via direct.\n0x4C49d4Bd6a571827B4A556a0e1e3071DA6231B9D: enter 3810160280000000000 atomic units of native at 0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84 (lst). Ditto can rebuild this action with a fresh plan; current checks will run again.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "ditto": {
+      "version": "0.1.0",
+      "chain": "ethereum",
+      "generatedAt": "2026-10-17T19:37:29.243Z",
+      "timingsMs": {
+        "total": 133.13920300000063
+      },
+      "labels": [
+        "LIVE"
+      ],
+      "incomplete": false
+    }
+  }
+}

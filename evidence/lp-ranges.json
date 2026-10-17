@@ -1,0 +1,122 @@
+{
+  "labels": [
+    "OBSERVED",
+    "HISTORICAL"
+  ],
+  "samples": [
+    {
+      "chain": "base",
+      "pool": "0xb2cc224c1c9feE385f8ad6a55b4d94E92359DC59",
+      "txHash": "0xb61c8aa1615b8d246378ae7331b2d823538f102150971c86b3515c8a5c179c02",
+      "tokenId": "21002869",
+      "tickLower": -193900,
+      "tickUpper": -193800,
+      "at": "2025-07-30T17:54:01.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0xb2cc224c1c9feE385f8ad6a55b4d94E92359DC59",
+      "txHash": "0xfe4dc3a6eff91b78af6fcb780b54c39c68567201a57bbfa2d61bde26e7ac26f6",
+      "tokenId": "21002992",
+      "tickLower": -193900,
+      "tickUpper": -193800,
+      "at": "2025-07-30T17:56:19.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0xb2cc224c1c9feE385f8ad6a55b4d94E92359DC59",
+      "txHash": "0xb1960696d551999db61520e99799c6ad91187c488fb1b66ad36fbbee5a74cd04",
+      "tokenId": "78652366",
+      "tickLower": -198500,
+      "tickUpper": -198400,
+      "at": "2026-10-17T19:43:15.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0xb2cc224c1c9feE385f8ad6a55b4d94E92359DC59",
+      "txHash": "0xd609f5e02175c16380ed1c982929cf86b939ed01f9c2ba14a6c76a50488e3e0f",
+      "tokenId": "78652364",
+      "tickLower": -198500,
+      "tickUpper": -198400,
+      "at": "2026-10-17T19:43:13.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0xd0b53D9277642d899DF5C87A3966A349A798F224",
+      "txHash": "0x5391da8e1c8d984774f4a9516fe3fa9fca16fb138bde44260a1648186cfa9f44",
+      "tokenId": "6293292",
+      "tickLower": -199480,
+      "tickUpper": -197480,
+      "at": "2026-10-17T18:50:13.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0xd0b53D9277642d899DF5C87A3966A349A798F224",
+      "txHash": "0xafe847e62092b8afc616bd2a96f63ffccce3a509a2e8cd06e3a68ec4919e48b0",
+      "tokenId": "6293298",
+      "tickLower": -198770,
+      "tickUpper": -198090,
+      "at": "2026-10-17T18:53:31.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
+      "txHash": "0x9459bcced1b97224805ca588b96b9cca944b588377214e05dc2b42647d15b833",
+      "tokenId": "6293423",
+      "tickLower": -198420,
+      "tickUpper": -197160,
+      "at": "2026-10-17T19:39:43.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
+      "txHash": "0x9d9028e08bc06a9e8c11210b2f1caa6bf60348cb53dff197fa24212ce4c07c27",
+      "tokenId": "6293419",
+      "tickLower": -199020,
+      "tickUpper": -197820,
+      "at": "2026-10-17T19:37:27.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
+      "txHash": "0x9887f39260f50bce2e6bcae923a1916e50a6828ffc4756474c05feb4dc1d54e4",
+      "tokenId": "6293415",
+      "tickLower": -198480,
+      "tickUpper": -198420,
+      "at": "2026-10-17T19:32:37.000Z"
+    },
+    {
+      "chain": "base",
+      "pool": "0xd0b53D9277642d899DF5C87A3966A349A798F224",
+      "txHash": "0xdbecd2f5bfb8627768a9ee77c381f00b34043e3548b4dc8abac83e13ecf61092",
+      "tokenId": "6293408",
+      "tickLower": -198430,
+      "tickUpper": -198380,
+      "at": "2026-10-17T19:30:17.000Z"
+    }
+  ],
+  "ranges": [
+    {
+      "chain": "base",
+      "pool": "0xb2cc224c1c9feE385f8ad6a55b4d94E92359DC59",
+      "asOf": "2026-10-17T19:43:15.000Z",
+      "halfWidthTicks": 50,
+      "samples": 2
+    },
+    {
+      "chain": "base",
+      "pool": "0xd0b53D9277642d899DF5C87A3966A349A798F224",
+      "asOf": "2026-10-17T19:30:17.000Z",
+      "halfWidthTicks": 340,
+      "samples": 3
+    },
+    {
+      "chain": "base",
+      "pool": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
+      "asOf": "2026-10-17T19:39:43.000Z",
+      "halfWidthTicks": 600,
+      "samples": 3
+    }
+  ],
+  "detail": "Receipt samples with their actual timestamps. Recompute the median inside a fresh window before building a current plan."
+}

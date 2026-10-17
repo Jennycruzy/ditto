@@ -61,14 +61,15 @@ export function parseEvents(receipt: Receipt, ctx: RecogniseContext, family: Ide
   const out: Recognised[] = [];
   for (const log of receipt.logs) {
     if (log.removed) continue;
-    const identity = ctx.identities.find(i => i.family === family && i.chain === ctx.chain && same(i.contract, log.address));
-    if (!identity) continue;
+    const identities = ctx.identities.filter(i => i.family === family && i.chain === ctx.chain && same(i.contract, log.address));
+    if (!identities.length) continue;
     for (const rule of rules) {
       try {
         const decoded = decodeEventLog({ abi: parseAbi([rule.event] as readonly string[]), data: log.data as Hex, topics: log.topics as [Hex, ...Hex[]], strict: true });
         const args = decoded.args as unknown as Record<string, unknown>;
+        const identity = rule.asset ? identities.find(i => same(i.asset, args[rule.asset!] as string)) : identities[0];
+        if (!identity) continue;
         const asset = rule.asset ? addr(args[rule.asset] as string) : identity.asset;
-        if (!same(asset, identity.asset)) continue;
         const amount = args[rule.amount] as bigint;
         out.push({ kind: rule.kind, family, contract: identity.contract, asset, actor: addr(args[rule.actor] as string), amount: amount.toString(), txHash: receipt.transactionHash, ...(rule.shares ? { receiptAmount: String(args[rule.shares]) } : {}) });
       } catch { /* Unrelated events stay data. */ }

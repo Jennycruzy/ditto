@@ -5,3 +5,5 @@ export * from "./schemas.js";
 export * from "./simulate.js";
 export * from "./text.js";
 export * from "./recipes/index.js";
+export * from "./recognise/index.js";
+export * from "./morpho.js";

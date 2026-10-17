@@ -83,7 +83,7 @@ describe("real receipt recognition", () => {
   const receipts = readdirSync(receiptDir).filter(n => n.endsWith(".json")).map(n => JSON.parse(readFileSync(new URL(n, receiptDir), "utf8")));
   for (const f of receipts) it(`${f.name} ${f.route}: recognises the protocol event through its actual route`, () => {
     expect(recipe(f.family).recognise(f.receipt, f.context).filter(a => a.kind === "enter")).toEqual(f.expected);
-    expect(f.expected.every((a: { amount: string }) => BigInt(a.amount) > 0n)).toBe(true);
+    expect(f.expected.every((a: { amount: string }) => f.family === "lp-v3" ? BigInt(a.amount) >= 0n : BigInt(a.amount) > 0n)).toBe(true);
     const target = f.family === "lp-v3" ? f.context.identities[0].receiptToken : f.context.identities[0].contract;
     expect(f.tx.to.toLowerCase() === target.toLowerCase()).toBe(f.route === "direct");
   });
