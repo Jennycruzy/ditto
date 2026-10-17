@@ -23,9 +23,12 @@ describe("read-only JSON-RPC", () => {
     const fetch = mock((p, n) => n === 0 ? new Response("private", { status }) : ok(p));
     expect(await new JsonRpc("base", { fetch }).call(call.method, [])).toBe("0x1"); expect(fetch).toHaveBeenCalledTimes(2);
   });
-  it("does not retry authentication errors or echo response bodies", async () => {
-    const fetch = mock(() => new Response("private-provider-string", { status: 401 }));
-    await expect(new JsonRpc("base", { fetch }).call(call.method, [])).rejects.toThrow("RPC_UNAVAILABLE"); expect(fetch).toHaveBeenCalledTimes(1);
+  it("never retries an authentication error on the same provider, falls back once to the public RPC, and never echoes bodies", async () => {
+    const urls: string[] = [];
+    const fetch = vi.fn<typeof globalThis.fetch>(async url => { urls.push(String(url)); return new Response("private-provider-string", { status: 401 }); });
+    const error = await new JsonRpc("base", { fetch }).call(call.method, []).catch(e => e as Error);
+    expect(String(error)).toContain("RPC_UNAVAILABLE"); expect(String(error)).not.toContain("private-provider-string");
+    expect(urls).toEqual(["https://base-mainnet.g.alchemy.com/v2", "https://mainnet.base.org"]);
   });
   it.each([
     (p: { id: number }[]) => [{ jsonrpc: "2.0", id: p[0]!.id + 1, result: "x" }],
@@ -119,5 +122,21 @@ describe("public RPC fallback", () => {
     const fetcher = (async (url: string) => { urls.push(url); return new Response("", { status: 429 }); }) as unknown as typeof fetch;
     await expect(new JsonRpc("base", { fetch: fetcher }).call("alchemy_getAssetTransfers", [{}])).rejects.toThrow();
     expect(urls.every(u => u.includes("alchemy"))).toBe(true);
+  });
+});
+describe("provider refusals", () => {
+  it("falls back to the public RPC when Alchemy refuses the key, and reports the reason when it cannot", async () => {
+    const urls: string[] = [];
+    const fetcher = (async (url: string, init: RequestInit) => { urls.push(url); const id = JSON.parse(String(init.body))[0].id;
+      return url.includes("alchemy") ? new Response(JSON.stringify([{ jsonrpc: "2.0", id, error: { code: -32600, message: "Must be authenticated!" } }]), { status: 200 }) : new Response(JSON.stringify([{ jsonrpc: "2.0", id, result: "0x2a" }]), { status: 200 }); }) as unknown as typeof fetch;
+    expect(await new JsonRpc("base", { fetch: fetcher }).call("eth_blockNumber", [])).toBe("0x2a");
+    expect(urls[1]).toBe("https://mainnet.base.org");
+    await expect(new JsonRpc("base", { fetch: fetcher }).call("alchemy_getAssetTransfers", [{}])).rejects.toThrow("Must be authenticated");
+  });
+  it("does not fall back on a contract revert", async () => {
+    const urls: string[] = [];
+    const fetcher = (async (url: string, init: RequestInit) => { urls.push(url); const id = JSON.parse(String(init.body))[0].id; return new Response(JSON.stringify([{ jsonrpc: "2.0", id, error: { code: 3, message: "execution reverted" } }]), { status: 200 }); }) as unknown as typeof fetch;
+    await expect(new JsonRpc("base", { fetch: fetcher }).call("eth_call", [{}, "latest"])).rejects.toThrow("execution reverted");
+    expect(urls.length).toBe(1);
   });
 });

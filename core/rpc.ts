@@ -7,8 +7,8 @@ export interface Rpc {
 }
 export class RpcError extends Error {
   readonly incomplete = true;
-  constructor(readonly reason: "deadline" | "budget" | "unavailable" | "invalid-response" | "rpc-error" | "unsupported-method", readonly retryable = false) {
-    super(`RPC_UNAVAILABLE: ${reason}. Try again; check the configured RPC host and Alchemy secret format if this persists.`);
+  constructor(readonly reason: "deadline" | "budget" | "unavailable" | "invalid-response" | "rpc-error" | "unsupported-method", readonly retryable = false, detail = "") {
+    super(`RPC_UNAVAILABLE: ${reason}${detail ? ` (${detail})` : ""}. Try again; check the configured RPC host and Alchemy secret format if this persists.`);
   }
 }
 const methods = new Set(["eth_chainId", "eth_blockNumber", "eth_getBalance", "eth_getCode", "eth_getStorageAt", "eth_call", "eth_estimateGas", "eth_gasPrice", "eth_maxPriorityFeePerGas", "eth_feeHistory", "eth_getBlockByNumber", "eth_getTransactionByHash", "eth_getTransactionReceipt", "eth_getTransactionCount", "eth_getLogs", "eth_simulateV1", "alchemy_getAssetTransfers"]);
@@ -86,7 +86,7 @@ export class JsonRpc implements Rpc {
         if (!response.ok) {
           this.lastStatus = response.status;
           void response.body?.cancel().catch(() => {});
-          throw new RpcError("unavailable", response.status === 429 || response.status >= 500);
+          throw new RpcError("unavailable", response.status === 429 || response.status === 401 || response.status === 403 || response.status >= 500, `HTTP ${response.status}`);
         }
         const limit = this.options.maxResponseBytes ?? 1_048_576;
         if (Number(response.headers.get("content-length")) > limit) {
@@ -121,9 +121,13 @@ export class JsonRpc implements Rpc {
           const item = byId.get(p.id);
           if (!item || Object.hasOwn(item, "error") === Object.hasOwn(item, "result")) throw new RpcError("invalid-response");
           if (Object.hasOwn(item, "error")) {
-            const error = item.error as { code?: number } | null;
-            if (error?.code === -32005) this.lastStatus = 429;
-            throw new RpcError("rpc-error", error?.code === -32005 || error?.code === -32016 || error?.code === -32603);
+            const error = item.error as { code?: number; message?: unknown } | null;
+            // Provider refusals (missing or wrong key, chain not enabled, throughput) are not answers about the chain:
+            // retry once on the public RPC. Contract reverts and bad requests stay errors.
+            const message = typeof error?.message === "string" ? error.message.replace(/[^\x20-\x7e]/g, "").slice(0, 80) : "";
+            const provider = error?.code === -32005 || error?.code === 429 || /authenticat|api key|unauthori|not enabled|capacity|rate limit|exceeded/i.test(message);
+            if (provider) this.lastStatus = 429;
+            throw new RpcError("rpc-error", provider || error?.code === -32016 || error?.code === -32603, `${error?.code ?? "?"} ${message}`.trim());
           }
           return item.result as T;
         });
