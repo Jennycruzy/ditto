@@ -20,10 +20,9 @@ AI coding tools (Claude Code and Codex) wrote the code. I chose what to build, s
 
 **What I decided it should have:**
 - A public page showing where real people are putting their money today.
-- A proper website anyone can use.
 - A way for Ditto to pay a few cents to a second source to double-check its numbers.
 
-**Design.** I asked for a website that looks good, with nice colours and some movement, and isn't boring.
+**Website.** I designed the website.
 
 **Four real tests with my money.** I approved four tests in four different savings apps: Steakhouse, Clearstar, Compound and Fluid. Each time 1 dollar went in and all of it came back out. The receipts are on the website's Proofs page.
 
