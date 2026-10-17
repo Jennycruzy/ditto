@@ -22,7 +22,6 @@ AI coding tools (Claude Code and Codex) wrote the code. I chose what to build, s
 - A public page showing where real people are putting their money today.
 - A proper website anyone can use.
 - A way for Ditto to pay a few cents to a second source to double-check its numbers.
-- A demo video made from the real thing, not mock-ups.
 
 **Design.** I asked for a website that looks good, with nice colours and some movement, and isn't boring.
 
