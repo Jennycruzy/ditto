@@ -18,8 +18,9 @@ export function runChecks(i: Identity, amount: bigint, e: Evidence | undefined, 
   add("C4", !entering || (fresh && options.now - Date.parse(e.firstSeen) >= 30 * 86_400_000), "A new entry requires at least 30 days of observed activity.", "TOO_NEW");
   const size = i.family === "lst" ? options.ethUsdMicros === undefined ? 0n : BigInt(i.totalAssets) * options.ethUsdMicros / 10n ** 18n : BigInt(i.totalAssets) * 1_000_000n / 10n ** BigInt(i.assetDecimals);
   add("C5", !entering || size >= 100_000_000_000n, "The live pool or vault must hold at least $100,000 equivalent.", "TOO_SMALL");
+  // Seven daily samples ending now; the oldest may be up to an hour short of 7 days because reads trail the clock.
   const prices = e?.sharePrices ?? [];
-  const history = prices.length === 8 && prices.every((p, n) => /^[1-9][0-9]*$/.test(p.value) && Number.isFinite(Date.parse(p.at)) && (n === 0 || Date.parse(p.at) > Date.parse(prices[n - 1]!.at))) && options.now - Date.parse(prices[0]!.at) >= 7 * 86_400_000 && options.now - Date.parse(prices.at(-1)!.at) < 7_200_000;
+  const history = prices.length === 8 && prices.every((p, n) => /^[1-9][0-9]*$/.test(p.value) && Number.isFinite(Date.parse(p.at)) && (n === 0 || Date.parse(p.at) > Date.parse(prices[n - 1]!.at))) && options.now - Date.parse(prices[0]!.at) >= 7 * 86_400_000 - 3_600_000 && options.now - Date.parse(prices.at(-1)!.at) < 7_200_000;
   const drop = prices.slice(1).some((p, n) => BigInt(p.value) * 10000n < BigInt(prices[n]!.value) * 9950n);
   add("C6", !entering || !["aave-v3", "erc4626"].includes(i.family) || (fresh && history && !drop), "Seven daily share-price or income-index samples must show no daily drop greater than 0.5%.", "SHARE_PRICE_DROP");
   add("C7", options.exitPass, "The exit must succeed in this block and meet its family tolerance.", "EXIT_FAILS");

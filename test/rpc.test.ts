@@ -101,3 +101,23 @@ describe("read-only JSON-RPC", () => {
   });
   it.each(["http://localhost", "https://user:password@example.com", "https://example.com/?key=value"])("rejects credential-bearing or insecure endpoint %s", endpoint => expect(() => new JsonRpc("base", { endpoint })).toThrow());
 });
+describe("public RPC fallback", () => {
+  it("retries a throttled standard call once on the chain's public RPC without the brokered header", async () => {
+    const seen: { url: string; auth: unknown }[] = [];
+    const fetcher = (async (url: string, init: RequestInit) => {
+      seen.push({ url, auth: (init.headers as Record<string, string>).authorization });
+      if (url.includes("alchemy")) return new Response("", { status: 429 });
+      return new Response(JSON.stringify([{ jsonrpc: "2.0", id: 1, result: "0x10" }]), { status: 200 });
+    }) as unknown as typeof fetch;
+    const rpc = new JsonRpc("base", { fetch: fetcher, headers: { authorization: "Bearer test" } });
+    expect(await rpc.call("eth_blockNumber", [])).toBe("0x10");
+    expect(seen.map(s => s.url)).toEqual(["https://base-mainnet.g.alchemy.com/v2", "https://mainnet.base.org"]);
+    expect(seen[1]!.auth).toBeUndefined();
+  });
+  it("never sends Alchemy-only methods to a public RPC", async () => {
+    const urls: string[] = [];
+    const fetcher = (async (url: string) => { urls.push(url); return new Response("", { status: 429 }); }) as unknown as typeof fetch;
+    await expect(new JsonRpc("base", { fetch: fetcher }).call("alchemy_getAssetTransfers", [{}])).rejects.toThrow();
+    expect(urls.every(u => u.includes("alchemy"))).toBe(true);
+  });
+});

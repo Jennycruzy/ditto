@@ -14,9 +14,8 @@ export async function readPositions(wallet: Address, identities: readonly Identi
     let offset = 0;
     const held = candidates.filter(i => i.family !== "lp-v3").filter(() => BigInt(raw[offset++] as string) > 0n);
     for (const p of spenders.filter(p => p.i.asset !== "native")) { const amount = BigInt(raw[offset++] as string); if (amount > 0n) permissions.push({ chain, token: p.i.asset as Address, spender: p.spender, amount: value(amount, p.i.assetDecimals), exitCandidateId: `${chain}:${p.i.family}:${p.i.contract}:revoke:${p.spender}` }); }
-    for (const i of [...held, ...candidates.filter(i => i.family === "lp-v3" && i.details.tokenId)]) {
-      try { positions.push(await recipes[i.family]!.position(i, wallet, rpc)); } catch { failures.push(`Could not read or simulate ${chain}:${i.contract}.`); }
-    }
+    const read = await Promise.all([...held, ...candidates.filter(i => i.family === "lp-v3" && i.details.tokenId)].map(i => recipes[i.family]!.position(i, wallet, rpc).catch(() => { failures.push(`Could not read or simulate ${chain}:${i.contract}.`); return null; })));
+    for (const p of read) if (p) positions.push(p);
   }
   return { positions, leftoverPermissions: permissions, incomplete: failures.length > 0, failures, text: `Found ${positions.length} positions and ${permissions.length} leftover token permissions. Amount in and change remain unknown unless supplied by verified plan receipts.` };
 }

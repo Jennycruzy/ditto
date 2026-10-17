@@ -139,7 +139,8 @@ export async function buildExitPlan(engine: ExecutionEngine, input: unknown) {
     const i = await engine.identity(a, a.wallet, block);
     if (a.tokenId) i.details.tokenId = a.tokenId;
     const position = await recipes[i.family]!.position(i, a.wallet, engine.rpc);
-    if (!position.exitPreview.pass) return { verdict: "refused", refusals: [refusal("EXIT_FAILS", "The current position cannot pass its exit simulation.")], text: planInstructions };
+    if (BigInt(position.balance.atomic) === 0n) { const r = refusal("INSUFFICIENT_BALANCE", "This wallet holds nothing in this market to exit.", "Check ditto_positions for what the wallet holds."); return { verdict: "refused", refusals: [r], text: `No exit plan was signed. ${r.reason} ${r.next}` }; }
+    if (!position.exitPreview.pass) { const r = refusal("EXIT_FAILS", "Taking this position out fails in a simulation of the current block.", "Try again shortly; if it keeps failing the market may be short of cash. Nothing was proposed."); return { verdict: "refused", refusals: [r], text: `No exit plan was signed. ${r.reason} ${r.next}` }; }
     const base = await engine.baseline(i, a.wallet, block), id = planHash({ ...a, block, now, nonce: randomBytes(16).toString("hex") });
     const exitClass = position.exitPreview.exitClass;
     if (exitClass !== "instant" && a.acceptExit !== exitClass) throw new Error("EXIT_NOT_ACCEPTED");

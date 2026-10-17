@@ -1,6 +1,6 @@
 import { toHex, type Hex } from "viem";
 import { recipes, normalizedIncomeFragment } from "../recipes/index.js";
-import { f, read, same, ZERO } from "../recipes/shared.js";
+import { call, f, read, same, ZERO } from "../recipes/shared.js";
 import { windowStart } from "../recognise/wallet.js";
 import { discoverReceipt } from "../recognise/discover.js";
 import { decodeReceipt } from "../recognise/decode.js";
@@ -27,22 +27,28 @@ export const liveEvidence: EvidenceSource = async (i, rpc, block, now) => {
         const tx = await rpc.call("eth_getTransactionByHash", [hash]), decoded = decodeReceipt(i.chain, tx, receipt, context, { now });
         ranges = decoded.actions.filter(a => a.kind === "enter" && a.copyable === "yes" && a.lpPosition && same(a.contract, i.contract)).map(a => ({ chain: i.chain, pool: i.contract, txHash: hash, tokenId: a.tokenId!, tickLower: a.lpPosition!.tickLower, tickUpper: a.lpPosition!.tickUpper, amount0: a.lpPosition!.amount0, amount1: a.lpPosition!.amount1, at: recent!.transfers.find(t => same(t.hash, hash))!.metadata.blockTimestamp }));
       }
-      return { actions, ranges };
-    } catch { e.incomplete = true; return { actions: [], ranges: [] }; }
+      const at = recent!.transfers.find(t => same(t.hash, hash))?.metadata?.blockTimestamp;
+      return { actions, ranges, hash, at, direct: same(receipt.to ?? ZERO, i.contract) };
+    } catch { e.incomplete = true; return { actions: [], ranges: [], hash, at: undefined, direct: false }; }
   }));
+  e.sampleTxs = []; e.directDeposits = 0;
   for (const row of rows) {
-    for (const a of row.actions) { e.deposits24h++; wallets.add(a.actor.toLowerCase()); e.volume24hUsd = (BigInt(e.volume24hUsd) + BigInt(a.amount)).toString(); }
+    for (const a of row.actions) { e.deposits24h++; wallets.add(a.actor.toLowerCase()); e.volume24hUsd = (BigInt(e.volume24hUsd) + BigInt(a.amount)).toString(); if (row.direct) e.directDeposits++; }
+    if (row.actions.length && e.sampleTxs.length < 3) e.sampleTxs.push(row.hash);
+    if (row.actions.length && row.at && (!e.lastSeen || row.at > e.lastSeen)) e.lastSeen = row.at;
     e.lpRanges.push(...row.ranges);
   }
   e.uniqueWallets24h = wallets.size;
   if (i.family === "erc4626" || i.family === "aave-v3") {
-    e.sharePrices = await Promise.all(Array.from({ length: 8 }, async (_, n) => {
-      const targetTime = endTime - BigInt(7 - n) * 86400n;
-      const b = n === 7 ? block : await windowStart(rpc, head, targetTime, i.chain);
-      const observation = await rpc.call<{ timestamp: Hex }>("eth_getBlockByNumber", [b, false]);
-      const price = await read(rpc, i.contract, i.family === "aave-v3" ? normalizedIncomeFragment : f.convert, [i.family === "aave-v3" ? i.asset : 10n ** BigInt(i.receiptDecimals)], b) as bigint;
-      return { at: new Date(Number(BigInt(observation.timestamp)) * 1000).toISOString(), value: price.toString() };
-    }));
+    // One exact lookup for 7 days ago, then daily blocks interpolated between it and now: two batched reads in total.
+    const first = BigInt(await windowStart(rpc, head, endTime - 7n * 86400n, i.chain)), last = BigInt(block);
+    const blocks = Array.from({ length: 8 }, (_, n) => toHex(n === 7 ? last : first + (last - first) * BigInt(n) / 7n));
+    const heads = await rpc.batch<{ number: Hex; timestamp: Hex }>(blocks.map(b => ({ method: "eth_getBlockByNumber", params: [b, false] })));
+    const prices = await rpc.batch<Hex>(blocks.map(b => call(i.contract, i.family === "aave-v3" ? normalizedIncomeFragment : f.convert, [i.family === "aave-v3" ? i.asset : 10n ** BigInt(i.receiptDecimals)], b)));
+    e.sharePrices = blocks.map((b, n) => {
+      if (BigInt(heads[n]!.number) !== BigInt(b)) throw new Error("RPC_UNAVAILABLE: wrong block returned");
+      return { at: new Date(Number(BigInt(heads[n]!.timestamp)) * 1000).toISOString(), value: BigInt(prices[n]!).toString() };
+    });
   }
   return e;
 };

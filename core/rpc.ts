@@ -1,4 +1,4 @@
-import { rpcUrl, type Chain } from "./chains.js";
+import { chainConfig, rpcUrl, type Chain } from "./chains.js";
 
 export interface RpcCall { method: string; params: readonly unknown[] }
 export interface Rpc {
@@ -42,6 +42,7 @@ export class JsonRpc implements Rpc {
   private readonly clock: () => number;
   private readonly fetcher: typeof fetch;
   readonly deadline: number;
+  private lastStatus: number | undefined;
   readonly usage = { requests: 0, calls: 0, estimatedCu: 0, cuMetered: false };
   constructor(readonly chain: Chain, private readonly options: RpcOptions = {}) {
     this.clock = options.now ?? (() => performance.now());
@@ -74,11 +75,15 @@ export class JsonRpc implements Rpc {
       const timeout = Math.max(1, Math.floor(Math.min(3500, this.options.timeoutMs ?? 3500, remaining)));
       const signal = AbortSignal.timeout(timeout);
       try {
-        const response = await bounded(this.fetcher(this.options.endpoint ?? rpcUrl(this.chain), {
-          method: "POST", redirect: "error", headers: { "Content-Type": "application/json", ...this.options.headers },
+        // A throttled or failing Alchemy request is retried once on the chain's public RPC, except for Alchemy-only
+        // methods. Public RPCs need no key, so the retry never carries the brokered header.
+        const fallback = attempt === 1 && this.lastStatus !== undefined && !this.options.endpoint && calls.every(c => !c.method.startsWith("alchemy_"));
+        const response = await bounded(this.fetcher(fallback ? chainConfig(this.chain).publicRpc : this.options.endpoint ?? rpcUrl(this.chain), {
+          method: "POST", redirect: "error", headers: fallback ? { "Content-Type": "application/json" } : { "Content-Type": "application/json", ...this.options.headers },
           body: JSON.stringify(payload), signal,
         }), signal);
         if (!response.ok) {
+          this.lastStatus = response.status;
           void response.body?.cancel().catch(() => {});
           throw new RpcError("unavailable", response.status === 429 || response.status >= 500);
         }
@@ -116,12 +121,14 @@ export class JsonRpc implements Rpc {
           if (!item || Object.hasOwn(item, "error") === Object.hasOwn(item, "result")) throw new RpcError("invalid-response");
           if (Object.hasOwn(item, "error")) {
             const error = item.error as { code?: number } | null;
+            if (error?.code === -32005) this.lastStatus = 429;
             throw new RpcError("rpc-error", error?.code === -32005 || error?.code === -32016 || error?.code === -32603);
           }
           return item.result as T;
         });
       } catch (error) {
         const failure = error instanceof RpcError ? error : new RpcError("unavailable", true);
+        if (!(error instanceof RpcError)) this.lastStatus = 0;
         if (this.clock() >= this.deadline) throw new RpcError("deadline");
         if (attempt === 1 || !failure.retryable) throw failure;
       }

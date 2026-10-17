@@ -8,6 +8,7 @@ import { refusalWords } from "./words.js";
 export type Evidence = {
   chain: Chain; contract: Address; generatedAt: string; deposits24h: number; uniqueWallets24h: number; firstSeen: string;
   sharePrices: { at: string; value: string }[]; lpRanges: RangeSample[]; volume24hUsd: string; incomplete: boolean;
+  sampleTxs?: string[]; lastSeen?: string; directDeposits?: number;
 };
 export type EvidenceSource = (identity: Identity, rpc: Rpc, block: Hex, now: number) => Promise<Evidence>;
 export type Target = { chain: Chain; family: Family; contract: Address };

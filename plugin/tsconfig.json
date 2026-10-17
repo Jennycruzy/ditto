@@ -6,6 +6,9 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noEmit": true,
+    "resolveJsonModule": true,
+    "lib": ["ES2023", "DOM"],
+    "skipLibCheck": true,
     "types": ["node"]
   },
   "include": ["src/**/*.ts"]

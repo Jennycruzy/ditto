@@ -34,10 +34,9 @@ export async function positionsTool(input: unknown, dependencies: { config: Conf
         if (!page.pageKey) break; if (n === 3) failures.push(`${chain}: additional incoming-token pages remain.`); pageKey = page.pageKey;
       } catch { failures.push(`${chain}: incoming-token discovery is incomplete.`); break; }
     }
-    for (const t of targets) {
-      try { const identity = await engine.identity(t, args.wallet, block); if (identity.provenance.verified && !identities.some(i => i.chain === chain && i.family === identity.family && same(i.contract, identity.contract))) identities.push(identity); }
-      catch { /* A transfer token that is not an identified vault is not a position candidate. */ }
-    }
+    // Identify candidates in parallel: one sequential pass over ~20 contracts does not fit the hosted time budget.
+    const found = await Promise.all(targets.map(t => engine.identity(t, args.wallet, block).catch(() => null)));
+    for (const identity of found) if (identity?.provenance.verified && !identities.some(i => i.chain === chain && i.family === identity.family && same(i.contract, identity.contract))) identities.push(identity);
     for (const { npm, id } of [...new Map(nftIds.map(n => [`${n.npm}:${n.id}`, n])).values()].slice(0, 32)) {
       try {
         const owner = await read(rpc, npm, "function ownerOf(uint256) view returns (address)", [id], block) as Address;
