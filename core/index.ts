@@ -9,3 +9,4 @@ export * from "./recognise/index.js";
 export * from "./morpho.js";
 
 export * from "./execution/index.js";
+export * from "./opinions.js";

@@ -8,3 +8,4 @@ export * from "./positions.js";
 export * from "./evidence.js";
 export * from "./prices.js";
 export * from "./positions-tool.js";
+export * from "./opinion-tools.js";

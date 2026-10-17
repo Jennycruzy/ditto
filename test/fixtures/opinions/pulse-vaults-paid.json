@@ -1,0 +1,153 @@
+{
+ "labels": [
+  "OBSERVED",
+  "PAID"
+ ],
+ "capturedAt": "2026-10-17T21:47:00Z",
+ "price": "20000",
+ "payment": {
+  "network": "base",
+  "scheme": "exact",
+  "status": "succeeded"
+ },
+ "body": {
+  "as_of_block": 52742092,
+  "chain": "base",
+  "numeraire_asset": "USDC",
+  "lending_markets": [
+   {
+    "protocol": "aave-v3",
+    "market": "USDC",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "supply_apy_pct": 4.0984,
+    "supply_apr_pct": 4.0166,
+    "method": "Pool.getReserveData().currentLiquidityRate \u2014 annual APR in RAY, APY = per-second compounding",
+    "address": "0xA238Dd80C259a72e81d7e4664a9801593F98d1c5"
+   },
+   {
+    "protocol": "compound-v3",
+    "market": "cUSDCv3",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "supply_apy_pct": 3.2716,
+    "supply_apr_pct": 3.2192,
+    "method": "Comet.getSupplyRate(getUtilization()) \u2014 per-second 1e18; APR simple, APY per-second compounding",
+    "address": "0xb125E6687d4313864e53df431d5425969c15Eb2F"
+   },
+   {
+    "protocol": "moonwell",
+    "market": "mUSDC",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "supply_apy_pct": 16.0686,
+    "supply_apr_pct": 14.9042,
+    "method": "mToken.supplyRatePerTimestamp() \u2014 per-second 1e18; APY = Compound daily-compounding convention",
+    "address": "0xEdc817A28E8B93B03976FBd4a3dDBc9f7D176c22"
+   },
+   {
+    "protocol": "euler-v2",
+    "market": "eUSDC-1",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "supply_apy_pct": 2.8402,
+    "supply_apr_pct": 2.7773,
+    "method": "EVault.interestRate() (per-second 1e27 borrow) \u00d7 utilization \u00d7 (1 \u2212 interestFee/1e4)",
+    "address": "0x0A1a3b5f2041F33522C4efc754a7D096f880eE16"
+   }
+  ],
+  "erc4626_vaults": [
+   {
+    "protocol": "morpho-metamorpho",
+    "vault": "0x7BfA7C4f149E7415b73bdeDfe609237e29CBF34A",
+    "name": "Spark USDC Vault (sparkUSDC)",
+    "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "share_price_underlying": 1.082803,
+    "total_assets_underlying": 480253480.5914,
+    "trailing_apy_pct": 4.23,
+    "window_days": 7,
+    "method": "convertToAssets share-price delta over 7d (archive eth_call), annualized \u2014 realized net yield"
+   },
+   {
+    "protocol": "morpho-metamorpho",
+    "vault": "0xc1256Ae5FF1cf2719D4937adb3bbCCab2E00A2Ca",
+    "name": "Moonwell Flagship USDC (mwUSDC)",
+    "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "share_price_underlying": 1.09159,
+    "total_assets_underlying": 3062934.4855,
+    "trailing_apy_pct": 4.0012,
+    "window_days": 7,
+    "method": "convertToAssets share-price delta over 7d (archive eth_call), annualized \u2014 realized net yield"
+   },
+   {
+    "protocol": "morpho-metamorpho",
+    "vault": "0xeE8F4eC5672F09119b96Ab6fB59C27E1b7e44b61",
+    "name": "Gauntlet USDC Prime (gtUSDCp)",
+    "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "share_price_underlying": 1.115704,
+    "total_assets_underlying": 413199227.5302,
+    "trailing_apy_pct": 4.7083,
+    "window_days": 7,
+    "method": "convertToAssets share-price delta over 7d (archive eth_call), annualized \u2014 realized net yield"
+   },
+   {
+    "protocol": "morpho-metamorpho",
+    "vault": "0x616a4E1db48e22028f6bbf20444Cd3b8e3273738",
+    "name": "Seamless USDC Vault (smUSDC)",
+    "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "share_price_underlying": 1.057683,
+    "total_assets_underlying": 703888.3143,
+    "trailing_apy_pct": 0,
+    "window_days": 7,
+    "method": "convertToAssets share-price delta over 7d (archive eth_call), annualized \u2014 realized net yield"
+   },
+   {
+    "protocol": "morpho-metamorpho",
+    "vault": "0xE1bA476304255353aEF290e6474A417D06e7b773",
+    "name": "Moonwell Ecosystem USDC (meUSDC)",
+    "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "share_price_underlying": 1.11165,
+    "total_assets_underlying": 14469.9964,
+    "trailing_apy_pct": 47.932,
+    "window_days": 7,
+    "method": "convertToAssets share-price delta over 7d (archive eth_call), annualized \u2014 realized net yield"
+   },
+   {
+    "protocol": "morpho-metamorpho",
+    "vault": "0x236919F11ff9eA9550A4287696C2FC9e18E6e890",
+    "name": "Gauntlet USDC Frontier (gtUSDCf)",
+    "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "share_price_underlying": 1.078633,
+    "total_assets_underlying": 65569.0803,
+    "trailing_apy_pct": 5.062,
+    "window_days": 7,
+    "method": "convertToAssets share-price delta over 7d (archive eth_call), annualized \u2014 realized net yield"
+   }
+  ],
+  "generated_at": "2026-10-17T21:45:31.985Z",
+  "methodology": "All figures computed from Base chain state via direct eth_call \u2014 protocol rate views for lending markets; annualized convertToAssets share-price deltas (archive reads) for ERC-4626 vaults. Realized vault APY is net of vault fees by construction. No third-party data vendors.",
+  "meta": {
+   "window_days": 7,
+   "scope": "all",
+   "custom_vault": null
+  },
+  "disclaimer": "For informational purposes only. Not investment advice. Rates are instantaneous or trailing-realized and change continuously.",
+  "network_referrals": [
+   {
+    "vertical": "CryptoPulse",
+    "url": "https://cryptopulse.theaslangroupllc.com/api/strategy",
+    "price": "$0.20",
+    "why": "DeFi yield on tokenized assets"
+   },
+   {
+    "vertical": "TaxPulse",
+    "url": "https://taxpulse.theaslangroupllc.com/api/tax/crypto",
+    "price": "$0.12",
+    "why": "Tax treatment of onchain assets"
+   },
+   {
+    "vertical": "AirdropPulse",
+    "url": "https://airdroppulse.theaslangroupllc.com/api/long/stock-backing",
+    "price": "$0.15",
+    "why": "How much real tokenized stock backs onchain meme markets"
+   }
+  ],
+  "terms": "https://onchainpulse.theaslangroupllc.com/terms.html"
+ }
+}

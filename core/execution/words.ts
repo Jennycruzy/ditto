@@ -32,6 +32,10 @@ export const refusalWords: Record<Refusal["code"], { reason: string; next: strin
   ALLOWANCE_LEFT: { reason: "A token permission from this plan is still above zero.", next: "Reset it with the revoke plan from ditto_positions." },
   SIGNER_MISMATCH: { reason: "A transaction for this plan was signed by a different wallet.", next: "Select the plan's wallet in PayBox and continue from ditto_step." },
   NOT_BOUND: { reason: "The approval or wallet-binding step for this plan is not confirmed yet.", next: "Finish the earlier step first; ditto_step proposes it." },
+  SOURCE_DOWN: { reason: "The independent source is not answering with a valid USDC-on-Base payment request right now.", next: "Nothing was paid. Try again later or use another source; Ditto's own onchain checks still apply." },
+  SOURCE_TOO_EXPENSIVE: { reason: "The independent source asks more than your limit (at most $0.05).", next: "Nothing was paid. Raise maxUsd up to 0.05 or skip the second opinion." },
+  SOURCE_NOT_COVERING: { reason: "No enabled independent source covers this exact contract.", next: "Nothing was paid. Ditto's own onchain checks still apply." },
+  SOURCE_FORMAT: { reason: "The paid response is not in the format Ditto verified for this source, so Ditto will not read it.", next: "Treat it as no second opinion; do not pay again for the same request." },
 };
 export const familyWords: Record<Plan["family"], string> = { "aave-v3": "Aave v3", erc4626: "the savings vault", "compound-v3": "Compound v3", moonwell: "Moonwell", lst: "Lido", "lp-v3": "the liquidity pool" };
 export const chainWords: Record<Chain, string> = { base: "Base", arbitrum: "Arbitrum", optimism: "Optimism", ethereum: "Ethereum" };

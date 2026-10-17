@@ -1,0 +1,18 @@
+{
+ "labels": [
+  "OBSERVED",
+  "PAYMENT_REJECTED"
+ ],
+ "capturedAt": "2026-10-17T21:47:00Z",
+ "error": "The paid resource rejected the payment proof with HTTP 402. Inspect body_preview before creating a new payment.",
+ "payment": {
+  "gateway": true,
+  "header_available": false,
+  "header_name": "PAYMENT-SIGNATURE",
+  "network": "eip155:8453",
+  "ok": false,
+  "proof_status": "created",
+  "scheme": "exact",
+  "status": "rejected"
+ }
+}

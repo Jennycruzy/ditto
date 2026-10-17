@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-10-17T21:55:00Z",
+  "labels": ["OBSERVED", "PAID"],
+  "moneySpent": "0.022 USDC (R10: mi-usdc 0.002, pulse-vaults 0.02); Otto x2 rejected PayBox's payment proof, nothing settled",
+  "sources": {
+    "mi-usdc": { "x402Version": 2, "price": "0.002", "paidVia": "PayBox gateway (use-service)", "status": "enabled" },
+    "pulse-vaults": { "x402Version": 1, "price": "0.02", "paidVia": "PayBox gateway (use-service)", "status": "enabled", "note": "A15: PayBox paid an x402 v1 challenge" },
+    "otto-markets": { "x402Version": 2, "price": "0.001", "status": "disabled", "reason": "payment proof rejected with HTTP 402" },
+    "otto-recs": { "x402Version": 2, "price": "0.001", "status": "disabled", "reason": "payment proof rejected with HTTP 402" }
+  },
+  "liveComparisons": [
+    { "contract": "Aave v3 Base pool", "source": "mi-usdc", "sourceApy": 4.11, "dittoApy": 4.14, "verdict": "agrees" },
+    { "contract": "Aave v3 Base pool", "source": "pulse-vaults", "sourceApy": 4.10, "dittoApy": 4.14, "verdict": "agrees" },
+    { "contract": "Compound v3 Base cUSDCv3", "source": "mi-usdc", "sourceApy": 5.13, "dittoApy": 3.27, "verdict": "disagrees", "note": "pulse-vaults and the chain both read 3.27%" },
+    { "contract": "Compound v3 Base cUSDCv3", "source": "pulse-vaults", "sourceApy": 3.27, "dittoApy": 3.27, "verdict": "agrees" },
+    { "contract": "Gauntlet USDC Prime (Base)", "source": "pulse-vaults", "sourceApy": 4.71, "dittoApy": 4.71, "verdict": "agrees" },
+    { "contract": "Steakhouse Prime USDC (Base)", "source": "pulse-vaults", "verdict": "not_listed" }
+  ]
+}
