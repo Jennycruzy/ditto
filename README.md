@@ -1,8 +1,24 @@
 # 〃 Ditto
 
-**Every DeFi move ever made is a working example.** Ditto is a PayBox plugin that lets your agent copy a real onchain move: state a goal, Ditto finds a real transaction that did it today, rebuilds it for *your* wallet with fresh calls, sends it through PayBox for your approval, then proves onchain that it landed, and that you can get out.
+**Ditto is a PayBox plugin that lets your AI assistant put your crypto to work by copying what real people did today, safely, with your approval, and with proof it worked.**
 
-[Site](https://jennycruzy.github.io/ditto-atlas/) · [Today's evidence](https://jennycruzy.github.io/ditto-atlas/today.html) · [Decode any transaction](https://jennycruzy.github.io/ditto-atlas/tx.html) · [Proofs](https://jennycruzy.github.io/ditto-atlas/proofs.html) · [For judges](https://jennycruzy.github.io/ditto-atlas/judges.html) · [Safety](SECURITY.md) · [Build log](BUILDLOG.md)
+Built for the MoonPay PayBox hackathon. Live on Base.
+
+[Watch the demo (1:32)](https://github.com/Jennycruzy/ditto/releases/download/demo-video/ditto-demo.mp4) · [Website](https://ditto-atlas.vercel.app) · [Today](https://ditto-atlas.vercel.app/today.html) · [Decode any transaction](https://ditto-atlas.vercel.app/tx.html) · [Proofs](https://ditto-atlas.vercel.app/proofs.html) · [For judges](https://ditto-atlas.vercel.app/judges.html) · [Safety](SECURITY.md) · [Build log](BUILDLOG.md)
+
+## How it works
+
+When an AI assistant wants to move your money, your wallet usually shows a wall of code like `0x617ba037…` and asks you to approve it. Ditto replaces that with something you can understand and check:
+
+1. You tell your assistant: "Put 1 USDC to work on Base."
+2. Ditto looks at where real people put USDC in the last 24 hours.
+3. It only offers places that pass every safety check: real people using it, real money in it, a known creator, no sudden drops, and a way out that works right now. Everything else is turned away, with the reason.
+4. Before anything moves, it shows the plan in plain words: what leaves your wallet, what you get back, and how you get out.
+5. PayBox asks you to approve each step. Permission is only ever for the exact amount, never unlimited.
+6. Afterwards, Ditto checks the blockchain and proves what happened: what left, what arrived, that nothing else moved, and that the permission went back to zero.
+7. "How's my money?" shows where it is. "Get me out" brings it back, with proof again.
+
+You can also paste any transaction you saw someone make. Ditto explains what it really did and builds a fresh, safe version for your wallet. Copying someone's transaction exactly as it was worked only 3 times out of 47 in testing, which is why Ditto rebuilds it instead.
 
 ## The 30-second story
 
