@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-17T18:54:33.264Z",
+  "labels": [
+    "OBSERVED"
+  ],
+  "name": "compound-optimism",
+  "family": "compound-v3",
+  "chain": "optimism",
+  "route": "direct",
+  "tx": {
+    "type": "0x2",
+    "chainId": "0xa",
+    "nonce": "0x1c3",
+    "gas": "0x5c2bc",
+    "maxFeePerGas": "0x3a3a9a",
+    "maxPriorityFeePerGas": "0x39e0aa",
+    "to": "0x2e44e174f7d53f0212823acc11c01a11d58c5bcb",
+    "value": "0x0",
+    "accessList": [],
+    "input": "0xf2b9fdb80000000000000000000000000b2c639c533813f4aa9d7837caf62653d097ff850000000000000000000000000000000000000000000000000000000006415f51",
+    "r": "0x8ecb183bcd6fe405762c9e2516d9ae07283fd212186db8a858320cc5718dc5e",
+    "s": "0x1320d7293013653886bc88cd4aa09ec042de23f6842c9c5894ffa3214cbcdd22",
+    "yParity": "0x0",
+    "v": "0x0",
+    "hash": "0xcc6c63ad4cc7f04a49fa12d47d4fa327bb56321d5ce7b35534c8db3a00e7f2e5",
+    "blockHash": "0xdd33c9395d1866e0f8aa8a83e7e09b13d173b8e9965e9408a6422046e91a9ea3",
+    "blockNumber": "0x96ff30f",
+    "transactionIndex": "0xb",
+    "blockTimestamp": "0x6ad3bfd7",
+    "from": "0x41e4855556c1229d12af47e364df447b103c8efc",
+    "gasPrice": "0x3a2300"
+  },
+  "receipt": {
+    "type": "0x2",
+    "status": "0x1",
+    "cumulativeGasUsed": "0x544649",
+    "logs": [
+      {
+        "address": "0x0b2c639c533813f4aa9d7837caf62653d097ff85",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x00000000000000000000000041e4855556c1229d12af47e364df447b103c8efc",
+          "0x0000000000000000000000002e44e174f7d53f0212823acc11c01a11d58c5bcb"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000000000006415f51",
+        "blockHash": "0xdd33c9395d1866e0f8aa8a83e7e09b13d173b8e9965e9408a6422046e91a9ea3",
+        "blockNumber": "0x96ff30f",
+        "blockTimestamp": "0x6ad3bfd7",
+        "transactionHash": "0xcc6c63ad4cc7f04a49fa12d47d4fa327bb56321d5ce7b35534c8db3a00e7f2e5",
+        "transactionIndex": "0xb",
+        "logIndex": "0xb7",
+        "removed": false
+      },
+      {
+        "address": "0x2e44e174f7d53f0212823acc11c01a11d58c5bcb",
+        "topics": [
+          "0xd1cf3d156d5f8f0d50f6c122ed609cec09d35c9b9fb3fff6ea0959134dae424e",
+          "0x00000000000000000000000041e4855556c1229d12af47e364df447b103c8efc",
+          "0x00000000000000000000000041e4855556c1229d12af47e364df447b103c8efc"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000000000006415f51",
+        "blockHash": "0xdd33c9395d1866e0f8aa8a83e7e09b13d173b8e9965e9408a6422046e91a9ea3",
+        "blockNumber": "0x96ff30f",
+        "blockTimestamp": "0x6ad3bfd7",
+        "transactionHash": "0xcc6c63ad4cc7f04a49fa12d47d4fa327bb56321d5ce7b35534c8db3a00e7f2e5",
+        "transactionIndex": "0xb",
+        "logIndex": "0xb8",
+        "removed": false
+      },
+      {
+        "address": "0x2e44e174f7d53f0212823acc11c01a11d58c5bcb",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000041e4855556c1229d12af47e364df447b103c8efc"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000000000006415f50",
+        "blockHash": "0xdd33c9395d1866e0f8aa8a83e7e09b13d173b8e9965e9408a6422046e91a9ea3",
+        "blockNumber": "0x96ff30f",
+        "blockTimestamp": "0x6ad3bfd7",
+        "transactionHash": "0xcc6c63ad4cc7f04a49fa12d47d4fa327bb56321d5ce7b35534c8db3a00e7f2e5",
+        "transactionIndex": "0xb",
+        "logIndex": "0xb9",
+        "removed": false
+      }
+    ],
+    "logsBloom": "0x00002800000000000000000000000000000000080000010000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000008000000000000000200000000000000000000000000000000020000000000000000000800000000000000000000100010000000000000000000000000000000000000000000000000000000000000000002800000000000000000000000000000000000002000000000800000000000000000000000000002000000001000010000000000000000000000000000000000000020000000000000000400000000000000000000000000000000000000010000000000",
+    "transactionHash": "0xcc6c63ad4cc7f04a49fa12d47d4fa327bb56321d5ce7b35534c8db3a00e7f2e5",
+    "transactionIndex": "0xb",
+    "blockHash": "0xdd33c9395d1866e0f8aa8a83e7e09b13d173b8e9965e9408a6422046e91a9ea3",
+    "blockNumber": "0x96ff30f",
+    "gasUsed": "0x17bef",
+    "effectiveGasPrice": "0x3a2300",
+    "blobGasUsed": "0x9c40",
+    "from": "0x41e4855556c1229d12af47e364df447b103c8efc",
+    "to": "0x2e44e174f7d53f0212823acc11c01a11d58c5bcb",
+    "contractAddress": null,
+    "l1GasPrice": "0x33f0693",
+    "l1GasUsed": "0x640",
+    "l1Fee": "0x2c75aa90",
+    "l1BaseFeeScalar": "0x146b",
+    "l1BlobBaseFee": "0x2bb1fe",
+    "l1BlobBaseFeeScalar": "0xf79c5",
+    "daFootprintGasScalar": "0x190"
+  },
+  "context": {
+    "chain": "optimism",
+    "identities": [
+      {
+        "family": "compound-v3",
+        "chain": "optimism",
+        "contract": "0x2e44e174f7D53F0212823acC11C01A11d58c5bCB",
+        "asset": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+        "receiptToken": "0x2e44e174f7D53F0212823acC11C01A11d58c5bCB",
+        "assetDecimals": 6,
+        "receiptDecimals": 6,
+        "totalAssets": "1551783853728",
+        "paused": false,
+        "cap": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "provenance": {
+          "verified": true,
+          "source": "https://github.com/compound-finance/comet/tree/main/deployments",
+          "registry": "0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713"
+        },
+        "details": {
+          "withdrawPaused": false
+        }
+      }
+    ]
+  },
+  "expected": [
+    {
+      "kind": "enter",
+      "family": "compound-v3",
+      "contract": "0x2e44e174f7D53F0212823acC11C01A11d58c5bCB",
+      "asset": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+      "actor": "0x41E4855556C1229d12aF47e364Df447B103c8eFc",
+      "amount": "104947537",
+      "txHash": "0xcc6c63ad4cc7f04a49fa12d47d4fa327bb56321d5ce7b35534c8db3a00e7f2e5"
+    }
+  ]
+}

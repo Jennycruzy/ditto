@@ -81,6 +81,10 @@ describe("read-only JSON-RPC", () => {
     const fetch = vi.fn<typeof globalThis.fetch>(() => new Promise(() => {}));
     await expect(new JsonRpc("base", { fetch, timeoutMs: 10 }).call(call.method, [])).rejects.toThrow("unavailable"); expect(fetch).toHaveBeenCalledTimes(2);
   });
+  it("rounds fractional remaining milliseconds for AbortSignal.timeout", async () => {
+    const fetch = mock(p => ok(p));
+    expect(await new JsonRpc("base", { fetch, deadlineMs: 123.75 }).call(call.method, [])).toBe("0x1");
+  });
   it("aborts a response body that never finishes", async () => {
     const fetch = mock(() => new Response(new ReadableStream({ start() {} })));
     await expect(new JsonRpc("base", { fetch, timeoutMs: 10 }).call(call.method, [])).rejects.toThrow("unavailable");

@@ -71,7 +71,7 @@ export class JsonRpc implements Rpc {
       if (remaining <= 0) throw new RpcError("deadline");
       if (this.usage.requests >= (this.options.maxRequests ?? 8) || this.usage.estimatedCu + cost > (this.options.cuBudget ?? Infinity)) throw new RpcError("budget");
       this.usage.requests++; this.usage.calls += calls.length; this.usage.estimatedCu += cost;
-      const timeout = Math.max(1, Math.min(3500, this.options.timeoutMs ?? 3500, remaining));
+      const timeout = Math.max(1, Math.floor(Math.min(3500, this.options.timeoutMs ?? 3500, remaining)));
       const signal = AbortSignal.timeout(timeout);
       try {
         const response = await bounded(this.fetcher(this.options.endpoint ?? rpcUrl(this.chain), {

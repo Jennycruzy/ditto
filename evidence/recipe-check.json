@@ -1,0 +1,151 @@
+{
+  "generatedAt": "2026-10-17T19:17:34.941032+00:00",
+  "labels": [
+    "OBSERVED",
+    "SIMULATED"
+  ],
+  "recipeCases": [
+    {
+      "name": "vault-base",
+      "family": "erc4626",
+      "chain": "base",
+      "block": "0x324b38c",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "aave-arbitrum",
+      "family": "aave-v3",
+      "chain": "arbitrum",
+      "block": "0x1ebdc18a",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "lp-uniswap-base",
+      "family": "lp-v3",
+      "chain": "base",
+      "block": "0x324b634",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "lp-aerodrome-base",
+      "family": "lp-v3",
+      "chain": "base",
+      "block": "0x324b634",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "aave-base",
+      "family": "aave-v3",
+      "chain": "base",
+      "block": "0x324b291",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "moonwell-optimism",
+      "family": "moonwell",
+      "chain": "optimism",
+      "block": "0x96ff446",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "wsteth-ethereum",
+      "family": "lst",
+      "chain": "ethereum",
+      "block": "0x18fff75",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "vault-v1-base",
+      "family": "erc4626",
+      "chain": "base",
+      "block": "0x324b2b0",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "compound-arbitrum",
+      "family": "compound-v3",
+      "chain": "arbitrum",
+      "block": "0x1ebdc18c",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "vault-second-base",
+      "family": "erc4626",
+      "chain": "base",
+      "block": "0x324b38c",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "vault-optimism",
+      "family": "erc4626",
+      "chain": "optimism",
+      "block": "0x96ff5f1",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "lido-ethereum",
+      "family": "lst",
+      "chain": "ethereum",
+      "block": "0x18fff06",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "compound-base",
+      "family": "compound-v3",
+      "chain": "base",
+      "block": "0x324b292",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "spark-base",
+      "family": "erc4626",
+      "chain": "base",
+      "block": "0x324b292",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "compound-optimism",
+      "family": "compound-v3",
+      "chain": "optimism",
+      "block": "0x96ff445",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "moonwell-base",
+      "family": "moonwell",
+      "chain": "base",
+      "block": "0x324b292",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "fluid-base",
+      "family": "erc4626",
+      "chain": "base",
+      "block": "0x324b292",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "spark-arbitrum",
+      "family": "erc4626",
+      "chain": "arbitrum",
+      "block": "0x1ebdc18d",
+      "entryAssertionsPassed": true
+    },
+    {
+      "name": "aave-optimism",
+      "family": "aave-v3",
+      "chain": "optimism",
+      "block": "0x96ff445",
+      "entryAssertionsPassed": true
+    }
+  ],
+  "realReceiptFixtures": 36,
+  "positionFixtures": 15,
+  "unitTests": 301,
+  "moneySpent": "0",
+  "limitations": [
+    "Simulations do not prove future liquidity or future execution.",
+    "Hosted full-tool timing and agent plan round-trip checks are pending.",
+    "Paid opinion adapters require approved paid captures before they can be enabled."
+  ]
+}

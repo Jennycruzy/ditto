@@ -1,0 +1,62 @@
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { homedir } from "node:os";
+import { resolve } from "node:path";
+import assert from "node:assert/strict";
+import { decodeAbiParameters, encodeFunctionData, erc20Abi, getAddress, parseAbi, toHex } from "viem";
+import { JsonRpc, dryRunOverrides, simulate, recipe, encodeStep, prepareLpEntry, prepareLpSwap, usdcAddress, entryAssertions, assertPassed } from "../dist/core.mjs";
+import provenance from "../core/provenance.json" with { type: "json" };
+
+const env = await readFile(resolve(homedir(), "ditto-private/.env"), "utf8");
+const key = env.match(/^ALCHEMY_API_KEY=(.+)$/m)?.[1]?.trim().replace(/^(['"])(.*)\1$/, "$2");
+if (!key) throw new Error("Missing local RPC credential");
+const headers = { authorization: `Bearer ${key}` }, burner = getAddress("0x000000000000000000000000000000000000d177");
+const usdc = usdcAddress("base"), weth = getAddress("0x4200000000000000000000000000000000000006");
+const fresh = () => new JsonRpc("base", { headers, maxRequests: 32 });
+const asCall = s => ({ ...encodeStep(s), from: burner, value: toHex(BigInt(s.value)) });
+const balance = token => ({ from: burner, to: token, data: encodeFunctionData({ abi: erc20Abi, functionName: "balanceOf", args: [burner] }) });
+const allowance = (token, spender) => ({ from: burner, to: token, data: encodeFunctionData({ abi: erc20Abi, functionName: "allowance", args: [burner, spender] }) });
+let failed = false;
+for (const protocol of process.argv.length > 2 ? process.argv.slice(2) : ["uniswap", "aerodrome"]) {
+  try {
+    const calls = [];
+    const rec = { call: async (method, params) => { const result = await fresh().call(method, params); calls.push({ method, params, result }); return result; }, batch: async inputs => { const results = await fresh().batch(inputs); inputs.forEach((input, i) => calls.push({ ...input, result: results[i] })); return results; } };
+    const registry = provenance.lp[protocol], r = recipe("lp-v3"), block = await rec.call("eth_blockNumber", []);
+    const parameter = protocol === "uniswap" ? 500 : 100;
+    const data = encodeFunctionData({ abi: parseAbi([`function getPool(address,address,${protocol === "uniswap" ? "uint24" : "int24"}) view returns (address)`]), functionName: "getPool", args: [usdc, weth, parameter] });
+    const poolData = await rec.call("eth_call", [{ to: registry.factory, data }, block]);
+    const pool = getAddress(`0x${poolData.slice(-40)}`), identity = await r.identify(pool, "base", rec, { block }); assert(identity);
+    const timestampBlock = await rec.call("eth_getBlockByNumber", [block, false]), now = Number(BigInt(timestampBlock.timestamp)) * 1000;
+    const options = { block, now, acceptExit: "market", halfWidthTicks: 600 };
+    const entry = await prepareLpEntry(identity, burner, "1000000", rec, options), overrides = dryRunOverrides(burner, usdc, 1_000_000n, 9n);
+    const npm = getAddress(registry.npm), router = getAddress(registry.router);
+    const preview = await simulate(rec, [...entry.steps.map(asCall), allowance(usdc, npm), allowance(weth, npm), allowance(usdc, router)], { block, stateOverrides: overrides });
+    const permissionReads = [{ token: usdc, spender: npm, amount: BigInt(preview.calls.at(-3).returnData).toString() }, { token: weth, spender: npm, amount: BigInt(preview.calls.at(-2).returnData).toString() }];
+    const assertions = entryAssertions(r, identity, burner, "1000000", preview, entry.steps.length, permissionReads);
+    assertions.push({ code: "SWAP_ALLOWANCE_ZERO", pass: BigInt(preview.calls.at(-1).returnData) === 0n, detail: "The router permission is consumed in full." });
+    assertPassed(assertions);
+    const mintIndex = entry.steps.findIndex(s => s.kind === "enter");
+    const [tokenId, liquidity, amount0, amount1] = decodeAbiParameters([{ type: "uint256" }, { type: "uint128" }, { type: "uint256" }, { type: "uint256" }], preview.calls[mintIndex].returnData);
+    assert(liquidity > 0n);
+    const exitOptions = { ...options, tokenId: tokenId.toString(), liquidity: liquidity.toString(), min0: (amount0 * 9950n / 10000n).toString(), min1: (amount1 * 9950n / 10000n).toString() };
+    const exit = r.buildExit(identity, burner, "all", exitOptions);
+    assert.equal(exit.length, 1);
+    const fullCalls = [...entry.steps.map(asCall), ...exit.map(asCall), allowance(usdc, npm), allowance(weth, npm), allowance(usdc, router), balance(usdc), balance(weth)];
+    const full = await simulate(rec, fullCalls, { block, stateOverrides: overrides });
+    for (const c of full.calls.slice(-5, -2)) assert.equal(BigInt(c.returnData), 0n);
+    const usdcBack = BigInt(full.calls.at(-2).returnData), wethBack = BigInt(full.calls.at(-1).returnData), price = BigInt(identity.details.sqrtPriceX96);
+    const valueBack = identity.details.token0.toLowerCase() === weth.toLowerCase() ? usdcBack + wethBack * price * price / (1n << 192n) : usdcBack + wethBack * (1n << 192n) / (price * price);
+    assert(valueBack >= 990_000n, "LP exit value below 99%");
+    assert.equal(preview.calls[mintIndex].transfers.filter(t => t.kind === "erc721" && t.to.toLowerCase() === burner.toLowerCase()).length, 1);
+    assertions.push({ code: "EXIT_VALUE", pass: true, detail: "The same-block exit returns at least 99% of the starting value." });
+    const swapBack = await prepareLpSwap(identity, burner, weth, wethBack.toString(), rec, { ...options, allowance: "0" });
+    const roundTrip = await simulate(rec, [...fullCalls, ...swapBack.steps.map(asCall), balance(usdc), balance(weth), allowance(weth, router)], { block, stateOverrides: overrides });
+    assert(BigInt(roundTrip.calls.at(-3).returnData) >= 990000n);
+    assert.equal(BigInt(roundTrip.calls.at(-2).returnData), 0n); assert.equal(BigInt(roundTrip.calls.at(-1).returnData), 0n);
+    assertions.push({ code: "SWAP_BACK", pass: true, detail: "The optional separate swap returns to USDC and consumes its exact permission." });
+    const fixture = { generatedAt: new Date().toISOString(), labels: ["OBSERVED", "SIMULATED"], name: `lp-${protocol}-base`, family: "lp-v3", chain: "base", block, wallet: burner, options, identity, amount: "1000000", entry, exit, exitOptions, minted: { tokenId: tokenId.toString(), liquidity: liquidity.toString(), amount0: amount0.toString(), amount1: amount1.toString() }, preview, full, swapBack, roundTrip, permissionReads, assertions, valueBack: valueBack.toString(), rpc: calls };
+    await mkdir(new URL("../test/fixtures/recipes/", import.meta.url), { recursive: true });
+    await writeFile(new URL(`../test/fixtures/recipes/lp-${protocol}-base.json`, import.meta.url), JSON.stringify(fixture, null, 2) + "\n");
+    console.log(JSON.stringify({ protocol, status: "passed", tokenId: tokenId.toString(), liquidity: liquidity.toString(), valueBack: valueBack.toString() }));
+  } catch (error) { failed = true; console.error(JSON.stringify({ protocol, status: "failed", reason: error.reason ?? error.message?.slice(0, 160) })); }
+}
+if (failed) process.exitCode = 1;

@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-10-17T19:15:14.960Z",
+  "labels": [
+    "OBSERVED"
+  ],
+  "records": [
+    {
+      "chain": "base",
+      "factory": "0xa9c3d3a366466fa809d1ae982fb2c46e5fc41101",
+      "method": "isMetaMorpho",
+      "vault": "0xee8f4ec5672f09119b96ab6fb59c27e1b7e44b61",
+      "block": "0x324b62f",
+      "verified": true,
+      "source": "https://docs.morpho.org/developers/contracts/addresses/"
+    },
+    {
+      "chain": "base",
+      "factory": "0xff62a7c278c62ed665133147129245053bbf5918",
+      "method": "isMetaMorpho",
+      "vault": "0xffedad42083e2eb8ca401f09c0038a9ded7ef8e5",
+      "block": "0x324b62f",
+      "verified": true,
+      "source": "https://docs.morpho.org/developers/contracts/addresses/"
+    },
+    {
+      "chain": "base",
+      "factory": "0x4501125508079a99ebbebce205dec9593c2b5857",
+      "method": "isVaultV2",
+      "vault": "0xbeef0e0834849acc03f0089f01f4f1eeb06873c9",
+      "block": "0x324b62f",
+      "verified": true,
+      "source": "https://docs.morpho.org/developers/contracts/addresses/"
+    },
+    {
+      "chain": "arbitrum",
+      "factory": "0x878988f5f561081deea117717052164ea1ef0c82",
+      "method": "isMetaMorpho",
+      "vault": "0xf9a4d875811682c225db58d9d0216709dcd6ebbb",
+      "block": "0x1ebdd925",
+      "verified": true,
+      "source": "https://docs.morpho.org/developers/contracts/addresses/"
+    },
+    {
+      "chain": "optimism",
+      "factory": "0x3bb6a6a0bc85b367efe0a5bac81c5e52c892839a",
+      "method": "isMetaMorpho",
+      "vault": "0xc30ce6a5758786e0f640cc5f881dd96e9a1c5c59",
+      "block": "0x96ff7c4",
+      "verified": true,
+      "source": "https://docs.morpho.org/developers/contracts/addresses/"
+    },
+    {
+      "chain": "base",
+      "factory": "0x7f321498a801a191a93c840750ed637149ddf8d0",
+      "method": "isProxy",
+      "vault": "0x859160DB5841E5cfB8D3f144C6b3381A85A4b410",
+      "asset": "0x4200000000000000000000000000000000000006",
+      "block": "0x324b62f",
+      "verified": true,
+      "source": "https://github.com/euler-xyz/euler-interfaces/tree/master/addresses"
+    },
+    {
+      "chain": "arbitrum",
+      "factory": "0x78df1cf5bf06a7f27f2acc580b934238c1b80d50",
+      "method": "isProxy",
+      "vault": "0xC2e9402E4bB2306e8e2015DE8f0A7356f455D86c",
+      "asset": "0x004626A008B1aCdC4c74ab51644093b155e59A23",
+      "block": "0x1ebdd926",
+      "verified": true,
+      "source": "https://github.com/euler-xyz/euler-interfaces/tree/master/addresses"
+    }
+  ],
+  "moneySpent": "0"
+}

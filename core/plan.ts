@@ -1,6 +1,7 @@
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { planSchema, unsignedPlanSchema, type Plan, type UnsignedPlan, type Json } from "./schemas.js";
 import { atomicAmount } from "./text.js";
+export { encodeStep, makeStep } from "./encoding.js";
 
 export class PlanError extends Error {
   constructor(readonly code: "NOT_CONFIGURED" | "PLAN_TAMPERED" | "PLAN_EXPIRED" | "AMOUNT_OVER_LIMIT" | "EXIT_NOT_ACCEPTED" | "WALLET_MISMATCH") { super(code); }

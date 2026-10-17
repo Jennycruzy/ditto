@@ -1,0 +1,73 @@
+{
+  "generatedAt": "2026-10-17T19:17:16.083Z",
+  "labels": [
+    "OBSERVED",
+    "SIMULATED",
+    "HISTORICAL"
+  ],
+  "name": "compound-base-indirect",
+  "now": 1792264636047,
+  "family": "compound-v3",
+  "chain": "base",
+  "identity": {
+    "family": "compound-v3",
+    "chain": "base",
+    "contract": "0xb125E6687d4313864e53df431d5425969c15Eb2F",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "receiptToken": "0xb125E6687d4313864e53df431d5425969c15Eb2F",
+    "assetDecimals": 6,
+    "receiptDecimals": 6,
+    "totalAssets": "9598538116252",
+    "paused": false,
+    "cap": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+    "provenance": {
+      "verified": true,
+      "source": "https://github.com/compound-finance/comet/tree/main/deployments",
+      "registry": "0x45939657d1CA34A8FA39A924B71D28Fe8431e581"
+    },
+    "details": {
+      "withdrawPaused": false
+    }
+  },
+  "wallet": "0x3ad64A3c36dFDf4B6E7C05ce1842d81BBaDA7e9C",
+  "block": "0x3249bba",
+  "position": {
+    "family": "compound-v3",
+    "chain": "base",
+    "contract": "0xb125E6687d4313864e53df431d5425969c15Eb2F",
+    "wallet": "0x3ad64A3c36dFDf4B6E7C05ce1842d81BBaDA7e9C",
+    "receiptToken": "0xb125E6687d4313864e53df431d5425969c15Eb2F",
+    "amountIn": null,
+    "balance": {
+      "atomic": "0",
+      "display": "0.000000"
+    },
+    "valueNow": {
+      "atomic": "0",
+      "display": "0.000000"
+    },
+    "change": null,
+    "exitPreview": {
+      "simulated": true,
+      "block": "0",
+      "exitClass": "instant",
+      "returns": [],
+      "pass": false,
+      "detail": "No position to exit."
+    },
+    "exitCandidateId": "base:compound-v3:0xb125E6687d4313864e53df431d5425969c15Eb2F"
+  },
+  "rpc": [
+    {
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0xb125E6687d4313864e53df431d5425969c15Eb2F",
+          "data": "0x70a082310000000000000000000000003ad64a3c36dfdf4b6e7c05ce1842d81bbada7e9c"
+        },
+        "latest"
+      ],
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}
