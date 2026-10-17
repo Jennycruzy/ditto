@@ -1,0 +1,391 @@
+{
+  "label": "r3-clearstar",
+  "family": "erc4626",
+  "chain": "base",
+  "contract": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+  "wallet": "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+  "generatedAt": "2026-10-17T22:23:18.466Z",
+  "labels": [
+    "OBSERVED",
+    "LIVE"
+  ],
+  "enter": {
+    "plan": {
+      "v": 1,
+      "id": "d91a05ef55ae10157d2e1e64aa03a9264bb4c2b2cd35754b6b3198780555c713",
+      "chain": "base",
+      "wallet": "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+      "family": "erc4626",
+      "contract": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "amount": {
+        "atomic": "1000000",
+        "display": "1.000000"
+      },
+      "minReceive": {
+        "atomic": "965654425602971274",
+        "display": "0.965654425602971274"
+      },
+      "exitClass": "instant",
+      "steps": [
+        {
+          "kind": "bind",
+          "to": "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+          "value": "0",
+          "selector": "0xd1770000",
+          "abiFragment": "bind",
+          "args": [
+            "d91a05ef55ae10157d2e1e64aa03a9264bb4c2b2cd35754b6b3198780555c713"
+          ],
+          "expect": []
+        },
+        {
+          "kind": "enter",
+          "to": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+          "value": "0",
+          "selector": "0x6e553f65",
+          "abiFragment": "function deposit(uint256 assets,address receiver) returns (uint256)",
+          "args": [
+            "1000000",
+            "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4"
+          ],
+          "expect": []
+        }
+      ],
+      "exit": {
+        "kind": "instant",
+        "steps": [
+          {
+            "kind": "exit",
+            "to": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+            "value": "0",
+            "selector": "0xba087652",
+            "abiFragment": "function redeem(uint256 shares,address receiver,address owner) returns (uint256)",
+            "args": [
+              "970506960404996256",
+              "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+              "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4"
+            ],
+            "expect": []
+          }
+        ],
+        "detail": "The exit works in this simulated block; future liquidity can change."
+      },
+      "execution": {
+        "mode": "enter",
+        "receiptToken": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+        "assetDecimals": 6,
+        "receiptDecimals": 18,
+        "slippageBps": 50,
+        "permissions": [
+          {
+            "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+            "spender": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+            "baseline": "1000000"
+          }
+        ],
+        "expectedApprovals": 2
+      },
+      "baseline": {
+        "block": "52743212",
+        "position": {
+          "atomic": "0",
+          "display": "0.000000000000000000"
+        },
+        "allowance": {
+          "atomic": "1000000",
+          "display": "1.000000"
+        },
+        "assetBalance": {
+          "atomic": "8177998",
+          "display": "8.177998"
+        }
+      },
+      "createdAt": "2026-10-17T22:22:51.176Z",
+      "createdAtBlock": "52743212",
+      "expiresAt": "2026-10-17T22:52:51.176Z",
+      "sig": "61d3b8fd308efeac3b4cb316267d479bbe1ea4affd6a8a9a6af22e28e997150e"
+    },
+    "hashes": [
+      "0x7ee9ec89657edc845e627522d47b5da559caef33a172b0b0e6f708ea864d1e09",
+      "0x39ca1babc6cb7fdf595a49a57c2067387c55e91525db6139553785be1dd50b2a"
+    ],
+    "proof": {
+      "planId": "d91a05ef55ae10157d2e1e64aa03a9264bb4c2b2cd35754b6b3198780555c713",
+      "chain": "base",
+      "wallet": "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+      "generatedAt": "2026-10-17T22:23:03.767Z",
+      "landed": true,
+      "txHashes": [
+        "0x7ee9ec89657edc845e627522d47b5da559caef33a172b0b0e6f708ea864d1e09",
+        "0x39ca1babc6cb7fdf595a49a57c2067387c55e91525db6139553785be1dd50b2a"
+      ],
+      "assertions": [
+        {
+          "code": "TRANSACTIONS",
+          "pass": true,
+          "detail": "Only this plan's confirmed, exact transactions count; positions already held do not count."
+        },
+        {
+          "code": "ASSET_OUT",
+          "pass": true,
+          "detail": "The wallet's outgoing asset amount matches the plan."
+        },
+        {
+          "code": "RECEIPT_IN",
+          "pass": true,
+          "detail": "The receipt amount meets the minimum computed for the receipt block."
+        },
+        {
+          "code": "POSITION_DELTA",
+          "pass": true,
+          "detail": "The current position increased by this plan's minimum, in addition to its baseline."
+        },
+        {
+          "code": "NO_OTHER_OUT",
+          "pass": true,
+          "detail": "No token outside the recipe left the wallet in these receipts."
+        },
+        {
+          "code": "ALLOWANCE_ZERO",
+          "pass": true,
+          "detail": "Every plan permission is currently zero."
+        },
+        {
+          "code": "EXIT_OPEN",
+          "pass": true,
+          "detail": "The exit of this plan's receipt amount was simulated now; future liquidity can change."
+        },
+        {
+          "code": "GAS_PAID",
+          "pass": true,
+          "detail": "Gas is read from receipts, including the L1 fee on OP-stack chains; unavailable fields are not invented."
+        }
+      ],
+      "movements": [
+        {
+          "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+          "amount": {
+            "atomic": "1000000",
+            "display": "1.000000"
+          }
+        },
+        {
+          "token": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+          "amount": {
+            "atomic": "970506950323924617",
+            "display": "0.970506950323924617"
+          }
+        }
+      ],
+      "allowanceAfter": {
+        "atomic": "0",
+        "display": "0.000000"
+      },
+      "gasPaid": {
+        "atomic": "2513655083564",
+        "display": "0.000002513655083564"
+      },
+      "exitPreview": {
+        "simulated": true,
+        "block": "52743218",
+        "exitClass": "instant",
+        "returns": [
+          {
+            "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+            "amount": {
+              "atomic": "1000000",
+              "display": "1.000000"
+            }
+          }
+        ],
+        "pass": true,
+        "detail": "The exit of this plan's receipt amount was simulated now; future liquidity can change."
+      },
+      "exitClass": "instant",
+      "refusals": []
+    },
+    "text": "Ditto proof · Base · plan d91a…\n✓ 2 confirmed transactions from 0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4 match this plan exactly\n✓ 1.000000 USDC left your wallet (tx 0x39ca…0b2a)\n✓ 0.970506950323924617 of the receipt token (0x91C0…3a3c) arrived (at least 0.965654425602971274 required)\n✓ Your position grew by this plan's amount, on top of what you held before\n✓ Nothing else left your wallet\n✓ Allowance back to 0\n✓ Exit open: taking it all out now returns 1.000000 USDC (simulated just now)\n✓ Gas read from the receipts\nGas: 0.000002513655083564 ETH\nhttps://basescan.org/tx/0x7ee9ec89657edc845e627522d47b5da559caef33a172b0b0e6f708ea864d1e09\nhttps://basescan.org/tx/0x39ca1babc6cb7fdf595a49a57c2067387c55e91525db6139553785be1dd50b2a\nLanded: every check passed onchain."
+  },
+  "exit": {
+    "plan": {
+      "v": 1,
+      "id": "8c0aca26ed594ed4657509f67a373a8789fb7aabdbaba1ca05efd2ea34f9be92",
+      "chain": "base",
+      "wallet": "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+      "family": "erc4626",
+      "contract": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "amount": {
+        "atomic": "1000000",
+        "display": "1.000000"
+      },
+      "minReceive": {
+        "atomic": "998998",
+        "display": "0.998998"
+      },
+      "exitClass": "instant",
+      "steps": [
+        {
+          "kind": "bind",
+          "to": "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+          "value": "0",
+          "selector": "0xd1770000",
+          "abiFragment": "bind",
+          "args": [
+            "8c0aca26ed594ed4657509f67a373a8789fb7aabdbaba1ca05efd2ea34f9be92"
+          ],
+          "expect": []
+        },
+        {
+          "kind": "exit",
+          "to": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+          "value": "0",
+          "selector": "0xba087652",
+          "abiFragment": "function redeem(uint256 shares,address receiver,address owner) returns (uint256)",
+          "args": [
+            "970506950323924617",
+            "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+            "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4"
+          ],
+          "expect": []
+        }
+      ],
+      "exit": {
+        "kind": "instant",
+        "steps": [
+          {
+            "kind": "exit",
+            "to": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+            "value": "0",
+            "selector": "0xba087652",
+            "abiFragment": "function redeem(uint256 shares,address receiver,address owner) returns (uint256)",
+            "args": [
+              "970506950323924617",
+              "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+              "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4"
+            ],
+            "expect": []
+          }
+        ],
+        "detail": "Exit simulated now; future liquidity can change."
+      },
+      "execution": {
+        "mode": "exit",
+        "receiptToken": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+        "assetDecimals": 6,
+        "receiptDecimals": 18,
+        "slippageBps": 50,
+        "permissions": [],
+        "shares": "970506950323924617",
+        "expectedApprovals": 2
+      },
+      "baseline": {
+        "block": "52743218",
+        "position": {
+          "atomic": "970506950323924617",
+          "display": "0.970506950323924617"
+        },
+        "allowance": {
+          "atomic": "0",
+          "display": "0.000000"
+        },
+        "assetBalance": {
+          "atomic": "7177998",
+          "display": "7.177998"
+        }
+      },
+      "createdAt": "2026-10-17T22:23:03.802Z",
+      "createdAtBlock": "52743218",
+      "expiresAt": "2026-10-17T22:53:03.802Z",
+      "sig": "859277541ed62a41e4f7626cce795b409d4ebee952c8bc7a2300b4f53708cbad"
+    },
+    "hashes": [
+      "0x626cde77926801da74905235f31f8b5bd2221f335586f2d59ef053dd6caf3470",
+      "0x6c8dc5b934aa75e73ab90ae68f30898e73464e2559aa645cf18aa4bfab43d8cf"
+    ],
+    "proof": {
+      "planId": "8c0aca26ed594ed4657509f67a373a8789fb7aabdbaba1ca05efd2ea34f9be92",
+      "chain": "base",
+      "wallet": "0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4",
+      "generatedAt": "2026-10-17T22:23:18.458Z",
+      "landed": true,
+      "txHashes": [
+        "0x626cde77926801da74905235f31f8b5bd2221f335586f2d59ef053dd6caf3470",
+        "0x6c8dc5b934aa75e73ab90ae68f30898e73464e2559aa645cf18aa4bfab43d8cf"
+      ],
+      "assertions": [
+        {
+          "code": "TRANSACTIONS",
+          "pass": true,
+          "detail": "Only this plan's confirmed, exact transactions count; positions already held do not count."
+        },
+        {
+          "code": "NO_OTHER_OUT",
+          "pass": true,
+          "detail": "No token outside the recipe left the wallet in these receipts."
+        },
+        {
+          "code": "ALLOWANCE_ZERO",
+          "pass": true,
+          "detail": "Every plan permission is currently zero."
+        },
+        {
+          "code": "EXIT_RECEIVED",
+          "pass": true,
+          "detail": "The confirmed exit honours its signed minimum and accepted exit class."
+        },
+        {
+          "code": "GAS_PAID",
+          "pass": true,
+          "detail": "Gas is read from receipts, including the L1 fee on OP-stack chains; unavailable fields are not invented."
+        }
+      ],
+      "movements": [
+        {
+          "token": "0x91C056B6d4311a743614FBc03ac32d4E6A2d3a3c",
+          "amount": {
+            "atomic": "970506950323924617",
+            "display": "0.970506950323924617"
+          }
+        },
+        {
+          "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+          "amount": {
+            "atomic": "1000000",
+            "display": "1.000000"
+          }
+        }
+      ],
+      "allowanceAfter": {
+        "atomic": "0",
+        "display": "0.000000"
+      },
+      "gasPaid": {
+        "atomic": "2205624187806",
+        "display": "0.000002205624187806"
+      },
+      "exitClass": "instant",
+      "refusals": []
+    },
+    "text": "Ditto proof · Base · plan 8c0a…\n✓ 2 confirmed transactions from 0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4 match this plan exactly\n✓ Nothing else left your wallet\n✓ Allowance back to 0\n✓ 1.000000 USDC came back to your wallet (at least 0.998998 required)\n✓ Gas read from the receipts\nGas: 0.000002205624187806 ETH\nhttps://basescan.org/tx/0x626cde77926801da74905235f31f8b5bd2221f335586f2d59ef053dd6caf3470\nhttps://basescan.org/tx/0x6c8dc5b934aa75e73ab90ae68f30898e73464e2559aa645cf18aa4bfab43d8cf\nLanded: every check passed onchain."
+  },
+  "log": [
+    "Plan: put 1.000000 USDC into the savings vault (0x91C0…3a3c) on Base for wallet 0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4. You get at least 0.965654425602971274 of the receipt token. Exit simulated just now at block 52743213: you'd get 0.999999 USDC back. The exit works in this simulated block; future liquidity can change. Expected PayBox approvals: up to 2 (bind, enter). Revokes are only proposed while a permission is above zero.",
+    "enter: Step 1 of 2: send a 0-value transaction from your wallet to itself. It proves this is the wallet signing the plan; nothing moves. Gas ≈ $0.001.",
+    "  signed: to 0x62cd77f1b851a1df9aaadcdcf49e107f887d4dd4 selector 0xd1770000 value 0 nonce 12 gas 34529 maxFee 11000000",
+    "  confirmed 0x7ee9ec89657edc845e627522d47b5da559caef33a172b0b0e6f708ea864d1e09 block 52743215 fee 135365714129 wei",
+    "enter: Step 2 of 2: put 1.000000 USDC into the savings vault (0x91C0…3a3c) on Base. Gas ≈ $0.006353.",
+    "  signed: to 0x91c056b6d4311a743614fbc03ac32d4e6a2d3a3c selector 0x6e553f65 value 0 nonce 13 gas 581596 maxFee 11000000",
+    "  confirmed 0x39ca1babc6cb7fdf595a49a57c2067387c55e91525db6139553785be1dd50b2a block 52743217 fee 2378716541782 wei",
+    "Ditto proof · Base · plan d91a…\n✓ 2 confirmed transactions from 0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4 match this plan exactly\n✓ 1.000000 USDC left your wallet (tx 0x39ca…0b2a)\n✓ 0.970506950323924617 of the receipt token (0x91C0…3a3c) arrived (at least 0.965654425602971274 required)\n✓ Your position grew by this plan's amount, on top of what you held before\n✓ Nothing else left your wallet\n✓ Allowance back to 0\n✓ Exit open: taking it all out now returns 1.000000 USDC (simulated just now)\n✓ Gas read from the receipts\nGas: 0.000002513655083564 ETH\nhttps://basescan.org/tx/0x7ee9ec89657edc845e627522d47b5da559caef33a172b0b0e6f708ea864d1e09\nhttps://basescan.org/tx/0x39ca1babc6cb7fdf595a49a57c2067387c55e91525db6139553785be1dd50b2a\nLanded: every check passed onchain.",
+    "Plan: take your position out of the savings vault (0x91C0…3a3c) on Base, paid to 0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4. Exit simulated now; future liquidity can change. Expected PayBox approvals: up to 2 (bind, exit). Revokes are only proposed while a permission is above zero.",
+    "exit: Step 1 of 2: send a 0-value transaction from your wallet to itself. It proves this is the wallet signing the plan; nothing moves. Gas ≈ $0.001.",
+    "  signed: to 0x62cd77f1b851a1df9aaadcdcf49e107f887d4dd4 selector 0xd1770000 value 0 nonce 14 gas 34529 maxFee 11000000",
+    "  confirmed 0x626cde77926801da74905235f31f8b5bd2221f335586f2d59ef053dd6caf3470 block 52743220 fee 134938541782 wei",
+    "exit: Step 2 of 2: take your position out of the savings vault (0x91C0…3a3c) on Base, paid to your wallet. Gas ≈ $0.005976.",
+    "  signed: to 0x91c056b6d4311a743614fbc03ac32d4e6a2d3a3c selector 0xba087652 value 0 nonce 15 gas 547409 maxFee 11000000",
+    "  confirmed 0x6c8dc5b934aa75e73ab90ae68f30898e73464e2559aa645cf18aa4bfab43d8cf block 52743225 fee 2071091480076 wei",
+    "Ditto proof · Base · plan 8c0a…\n✓ 2 confirmed transactions from 0x62CD77F1b851a1Df9aaaDcdcf49e107F887D4dd4 match this plan exactly\n✓ Nothing else left your wallet\n✓ Allowance back to 0\n✓ 1.000000 USDC came back to your wallet (at least 0.998998 required)\n✓ Gas read from the receipts\nGas: 0.000002205624187806 ETH\nhttps://basescan.org/tx/0x626cde77926801da74905235f31f8b5bd2221f335586f2d59ef053dd6caf3470\nhttps://basescan.org/tx/0x6c8dc5b934aa75e73ab90ae68f30898e73464e2559aa645cf18aa4bfab43d8cf\nLanded: every check passed onchain."
+  ]
+}

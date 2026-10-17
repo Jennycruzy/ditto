@@ -40,7 +40,7 @@ describe("adversarial refusals", () => {
   it("refuses RPC deadline failures and stale/incomplete evidence", async () => { const s = setup(); s.rpc.outage = true; expect(codes(await s.engine.enter(s.input))).toContain("RPC_UNAVAILABLE"); s.rpc.outage = false; s.config.evidence = async () => ({ ...s.rpc.evidence(), incomplete: true }); expect(codes(await s.engine.enter(s.input))).toContain("NOT_ENOUGH_USE"); });
   it("refuses expired plans before reading the chain", async () => { const { engine, rpc, p } = await planned(); rpc.now += 1800001; const count = rpc.calls.length; expect(codes(await engine.step({ plan: p, wallet: rpc.wallet }))).toContain("PLAN_EXPIRED"); expect(rpc.calls.length).toBe(count); });
   it("labels dry-run balances overridden and never signs or proposes", async () => { const s = setup(); s.config.planKey = ""; const r = await s.engine.dryRun(s.input); expect(r.verdict, JSON.stringify(r)).toBe("ok"); expect(r).not.toHaveProperty("plan"); expect(r).not.toHaveProperty("transaction"); expect((r as any).preview.balancesOverridden).toBe(true); });
-  it("does not propose if recovery hits its page budget", async () => { const { engine, rpc, p } = await planned(); rpc.pages = 9; const r = await engine.step({ plan: p, wallet: rpc.wallet }); expect(codes(r)).toContain("RPC_UNAVAILABLE"); expect(r).not.toHaveProperty("transaction"); });
+  it("does not propose if recovery hits its page budget", async () => { const { engine, rpc, p } = await planned(); rpc.pages = 9; rpc.block += 1n; const r = await engine.step({ plan: p, wallet: rpc.wallet }); expect(codes(r)).toContain("RPC_UNAVAILABLE"); expect(r).not.toHaveProperty("transaction"); });
 });
 describe("evidence and check boundaries", () => {
   it("falls back on stale, absent, and failed atlas reads", async () => { const s = setup(), i = s.rpc.fixture.identity; let calls = 0; for (const source of [async () => undefined, async () => ({ ...s.rpc.evidence(), generatedAt: new Date(s.rpc.now - 7200001).toISOString() }), async () => { throw new Error("offline"); }]) { const provider = evidenceWithFallback(source, async () => { calls++; return s.rpc.evidence(); }); expect((await provider(i, s.rpc, s.rpc.fixture.block, s.rpc.now)).deposits24h).toBe(10); } expect(calls).toBe(3); });
@@ -70,5 +70,17 @@ describe("input errors", () => {
   it("explains an invalid address instead of reporting a simulation failure", async () => {
     const s = setup(), r = await s.engine.enter({ ...s.input, contract: "0xbeeF0e0834849aCC03f0089F01f4F1Eeb06873C9" });
     expect(codes(r)).toEqual(["UNRECOGNISED"]); expect(r.text).toContain("contract: Invalid address"); expect(r.text).not.toContain("\"code\"");
+  });
+});
+describe("lagging nodes and long pauses", () => {
+  it("does not refuse step 1 when the log query is out of the free tier's 10-block range", async () => {
+    const { engine, rpc, p } = await planned(); rpc.block += 50n; const call = rpc.call.bind(rpc);
+    rpc.call = (async (m: string, params: readonly any[]) => { if (m === "eth_getLogs") throw new Error("RPC_UNAVAILABLE: rpc-error"); return call(m, params); }) as typeof rpc.call;
+    const r = await engine.step({ plan: p, wallet: rpc.wallet }); expect(r.refusals).toEqual([]); expect((r as any).step.kind).toBe("approve");
+  });
+  it("asks to retry instead of refusing when the node lags the confirmed approve", async () => {
+    const { engine, rpc, p } = await planned(); const a = rpc.confirm(p, 0); const call = rpc.call.bind(rpc); const lagging = rpc.block - 1n;
+    rpc.call = (async (m: string, params: readonly any[]) => m === "eth_blockNumber" ? `0x${lagging.toString(16)}` : call(m, params)) as typeof rpc.call;
+    const r = await engine.step({ plan: p, wallet: rpc.wallet, txHashes: [a] }); expect(codes(r)).toEqual(["WAIT_PENDING"]); expect(r).not.toHaveProperty("transaction");
   });
 });

@@ -29,7 +29,9 @@ function effect(step: Step, tx: Transaction, receipt: Executed["receipt"], p: Pl
 export async function reconcile(plan: Plan, hashes: readonly Hex[], identity: Identity, rpc: Rpc, options: { recover?: boolean; maxPages?: number } = {}): Promise<Progress> {
   const result: Progress = { matches: [], completed: [], pending: [], duplicateEnters: [], refusals: [], incomplete: false };
   const candidates = new Set(hashes.map(h => h.toLowerCase() as Hex));
-  if (options.recover !== false) {
+  // A node may lag the one that confirmed the last step; nothing after the plan's block exists there yet.
+  const head = options.recover === false ? 0n : BigInt(await rpc.call<Hex>("eth_blockNumber", []));
+  if (options.recover !== false && head > BigInt(plan.createdAtBlock)) {
     let pageKey: string | undefined; const seen = new Set<string>();
     for (let page = 0; page < (options.maxPages ?? 8); page++) {
       try {
@@ -41,16 +43,16 @@ export async function reconcile(plan: Plan, hashes: readonly Hex[], identity: Id
         seen.add(data.pageKey); pageKey = data.pageKey;
       } catch { result.incomplete = true; break; }
     }
-    // Approvals do not move tokens. Their wallet/spender-indexed logs provide a
-    // second recovery path when an asset-transfer index omits zero-value calls.
-    try {
+    // Approvals do not move tokens; the transfer index above lists them as zero-value external calls. Their
+    // Approval logs are a second path, only within the free tier's 10-block log range, and never blocking.
+    if (head - BigInt(plan.createdAtBlock) <= 9n) try {
       const topic = (a: Address) => `0x${a.slice(2).toLowerCase().padStart(64, "0")}`;
       const tokens = [...new Set(plan.steps.filter(s => ["approve", "approve-zero", "revoke"].includes(s.kind)).map(s => s.to))];
       if (tokens.length) {
         const logs = await rpc.call<{ transactionHash: Hex }[]>("eth_getLogs", [{ address: tokens, fromBlock: `0x${(BigInt(plan.createdAtBlock) + 1n).toString(16)}`, toBlock: "latest", topics: ["0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925", topic(plan.wallet)] }]);
         logs.forEach(l => candidates.add(l.transactionHash));
       }
-    } catch { if (!hashes.length) result.incomplete = true; }
+    } catch { /* The transfer index remains the primary recovery path. */ }
   }
   if (candidates.size > 100) { result.incomplete = true; }
   const confirmed: { hash: Hex; tx: Transaction; receipt: Executed["receipt"]; indices: { step: Step; index: number }[] }[] = [];

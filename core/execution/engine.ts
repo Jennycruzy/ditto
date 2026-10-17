@@ -93,7 +93,8 @@ export class ExecutionEngine {
     try {
       const a = stepInputSchema.parse(input), plan = verifyPlan(a.plan, this.config.planKey, this.now()); assertWallet(plan, a.wallet);
       if (!plan.execution) throw new Error("PLAN_TAMPERED");
-      const block = await this.rpc.call<Hex>("eth_blockNumber", []), i = await this.identity(plan, plan.wallet, block);
+      let block = await this.rpc.call<Hex>("eth_blockNumber", []);
+      const i = await this.identity(plan, plan.wallet, block);
       const progress = await reconcile(plan, a.txHashes as Hex[], i, this.rpc);
       if (progress.refusals.length) return { done: false, refusals: progress.refusals, progress, text: `Nothing was proposed. ${progress.refusals.map(r => `${r.reason} ${r.next}`).join(" ")}` };
       let index = -1;
@@ -107,6 +108,11 @@ export class ExecutionEngine {
       const next = plan.steps[index]!;
       const required = plan.steps.slice(0, index).map((s, n) => ({ s, n })).filter(({ s }) => ["bind", "approve", "approve-zero"].includes(s.kind));
       if (required.some(({ n }) => !progress.completed.includes(n))) return { done: false, refusals: [refusal("NOT_BOUND")], progress, text: `Nothing was proposed. ${refusal("NOT_BOUND").reason} ${refusal("NOT_BOUND").next}` };
+      // Simulate on top of this plan's latest confirmed step: a load-balanced node can lag the one that returned the
+      // receipt. Re-read the head once; if it is still behind, ask the agent to retry instead of refusing the plan.
+      const lastConfirmed = progress.matches.reduce((m, x) => BigInt(x.receipt.blockNumber) > m ? BigInt(x.receipt.blockNumber) : m, 0n);
+      if (lastConfirmed > BigInt(block)) block = await this.rpc.call<Hex>("eth_blockNumber", []);
+      if (lastConfirmed > BigInt(block)) { const r = refusal("WAIT_PENDING", "The chain view Ditto reads has not caught up with your last confirmed transaction yet.", "Ask for the next step again in a few seconds. Do not resend anything."); return { done: false, refusals: [r], progress, text: `Nothing was proposed. ${r.reason} ${r.next}` }; }
       if (plan.execution.mode === "enter" && !["bind", "revoke"].includes(next.kind)) {
         const fresh = await this.enterPreviewForRemaining(plan, i, progress, block);
         if (fresh.refusals.length) return { done: false, ...fresh, progress, text: `Nothing was proposed: current checks no longer pass. ${fresh.refusals.map(r => `${r.reason} ${r.next}`).join(" ")}` };
