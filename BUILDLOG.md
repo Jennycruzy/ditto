@@ -28,13 +28,23 @@ AI coding tools (Claude Code and Codex) wrote the code. I chose what to build, s
 
 **Four real tests with my money.** I approved four tests in four different savings apps: Steakhouse, Clearstar, Compound and Fluid. Each time 1 dollar went in and all of it came back out. The receipts are on the website's Proofs page.
 
-**Checking the work.** Each stage was checked before the next one started. The checks caught real mistakes before they reached anyone, for example:
-- one deposit got stuck halfway through;
-- good savings apps were wrongly turned away;
-- a page on the website didn't work at all.
+**Tests that failed, and how we fixed them.** Each stage was tested before the next one started. These are the tests that failed and what we changed to make them pass:
+
+- **Arbitrum history came back empty every time.** Ditto asked the data service for a kind of record it doesn't keep on Arbitrum. Fix: only ask for that record on Ethereum. Now real Arbitrum history loads, and a test uses it.
+- **Some liquidity moves were marked as only half done.** The person had closed their old position and opened a new one in the same move, so the old one was already gone when Ditto looked. Fix: look one block earlier, just before it closed.
+- **Explanations were unreadable.** They said things like "644830186 units of 0x8335…". Fix: they now say "644.83 USDC", give the app's name, and describe the route in words.
+- **Reading a wallet's history was too slow.** It took 53 requests for 5 transactions. Fix: smarter searching cut it to 17 requests, about 2 seconds.
+- **A one-unit shortfall on Optimism.** An Aave test on Optimism gave back 999,998 units when the rule asks for at least 999,999. We kept the rule as it was and didn't loosen it to make the test pass.
+- **The second step of a deposit was blocked.** After the first step (giving permission) went through, Ditto refused the second. Plans also failed if the permission was already exactly the right amount. Fix: every plan now remembers who it gave permission to and checks that.
+- **Closing a two-part liquidity position crashed.** Fix: each part is now closed and counted on its own.
+- **Errors were vague.** A failed exit just said "simulation failed". Fix: it now says plainly that the way out doesn't work, and wrong input says which field is wrong.
+- **36 checks failed after a code change** because the saved examples were out of date. Fix: we made the examples again and read every difference. Only the wording had changed, plus two moves that are now correctly refused.
+- **Steps were refused after a short wait.** The free data service was a few seconds behind. Fix: Ditto waits for it to catch up instead of refusing.
+- **Good savings apps were turned away.** A 7-day safety check came up a few seconds short of 7 days. Fix: it now counts days properly.
+- **The website's "what did this transaction do?" page never worked.** The browser blocked the way it sent requests. Fix: one-line change, and now it reads the chain live.
+- **Portal tests failed on the last night** when the data service refused the key. Fix: Ditto falls back to free public services, so it keeps working.
+- **The map of where people put money broke** when a chain name was blank. Fix: it now skips blank or unknown names.
 
 **Portal work.** I did the hackathon portal myself: uploading each version, filling in the settings and running the tests there.
 
 **Submitted.** I submitted Ditto on 17 October, after the portal test passed.
-
-**Demo video.** I chose to use a computer voice instead of my own. The video uses real recordings of the website and real numbers from my tests.
