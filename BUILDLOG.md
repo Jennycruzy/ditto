@@ -1,43 +1,40 @@
 # Build log
 
-Ditto was built for the MoonPay PayBox hackathon on 16 and 17 October 2026 by Jennycruzy.
+I built Ditto for the MoonPay PayBox hackathon on 16 and 17 October 2026.
 
-I used AI coding agents (Claude Code and Codex) to write the code. I decided what to build, set the rules, tested it with my own money and checked the work at each stage before the next stage started. This log is what I did and what I decided.
+AI coding tools (Claude Code and Codex) wrote the code. I chose what to build, set the rules, tested it with my own money, and checked the work at each stage before the next stage began. This is what I did and decided.
 
 ## 17 October 2026
 
-**The idea.** I wanted a plugin where you tell your agent a goal, like "put 1 USDC to work on Base", and it copies something real people already did onchain. It also had to do things PayBox couldn't already do: deposits, vaults, staking and liquidity, not only swaps. And it had to prove afterwards that the move really happened.
+**The idea.** You tell your AI assistant what you want, like "put 1 dollar of USDC to work". Ditto finds where real people put their money today, makes the same move for your wallet, asks you to approve it, and then checks that it really happened. It does more than swap one coin for another: it can put money into savings and lending apps too.
 
-**What I said no to.** I looked at other ideas first: phone top-ups, warranties, bots that wait for events, escrow and a chat front end for swaps. I dropped them because they were already common or not useful enough.
+**Ideas I dropped.** Before this I looked at phone top-ups, warranties, bots that wait for something to happen, holding money for two people, and a chat screen for swapping coins. I dropped them because lots of people were already building them or they weren't useful enough.
 
-**Money rules.** I put a small test budget on Base, $8 in USDC and $1 in ETH, and said there would be no more. Every test had to give the money back, and no single run could use more than 1 USDC.
+**Money rules.** I put a small test budget in my wallet: 8 dollars of USDC and 1 dollar of ETH for fees. I said there would be no more. Every test had to give the money back, and no test could use more than 1 dollar.
 
-**Test before planning.** Before writing any plan I made sure the hard parts worked with real money. I put $1 into Aave on Base and took it back out. That proved Ditto could build the transaction, PayBox could sign and send it, and Ditto could check the result.
+**I tested the hard part first.** Before any planning, I put 1 dollar into Aave (a lending app) and took it back out. That showed the whole thing could work: Ditto builds the move, PayBox asks me and sends it, and Ditto checks the result.
 
-**Name and pitch.** I named it Ditto and wrote the description used in the hackathon portal.
+**Name and pitch.** I named it Ditto and wrote the description in the hackathon portal.
 
-**Finish first, then submit.** I decided not to submit until the build was finished and tested.
+**Finish first.** I decided not to submit until it was built and tested.
 
-**Product decisions:**
-- Turn the research data into a public map of where real wallets are putting money today.
-- Build a proper website people can use, not just a page of data.
-- Let Ditto pay for a second opinion through x402, because x402 is part of the hackathon brief.
-- Make the demo video from the real plugin and real transactions.
+**What I decided it should have:**
+- A public page showing where real people are putting their money today.
+- A proper website anyone can use.
+- A way for Ditto to pay a few cents to a second source to double-check its numbers.
+- A demo video made from the real thing, not mock-ups.
 
-**Design.** I asked for a site that is well designed, with good colours and some animation, and not boring.
+**Design.** I asked for a website that looks good, with nice colours and some movement, and isn't boring.
 
-**Live runs with real money.** I approved four runs on Base: Steakhouse Prime USDC, Clearstar USDC, Compound v3 and Fluid. Each one put in 1 USDC and took all of it back out. The receipts are in `evidence/proofs` and on the site's Proofs page.
+**Four real tests with my money.** I approved four tests in four different savings apps: Steakhouse, Clearstar, Compound and Fluid. Each time 1 dollar went in and all of it came back out. The receipts are on the website's Proofs page.
 
-**Checking the work.** At each stage the work was reviewed before moving on. The reviews caught real problems before they shipped, for example:
-- Arbitrum history was being fetched in a way the provider doesn't support.
-- Some liquidity moves were wrongly marked as only half done.
-- The second step of a deposit was blocked even after the first step went through.
-- Steps were refused after a short wait on the free data plan.
-- Good vaults were refused because a 7-day check came up a few seconds short.
-- The website's transaction reader never sent its requests.
+**Checking the work.** Each stage was checked before the next one started. The checks caught real mistakes before they reached anyone, for example:
+- one deposit got stuck halfway through;
+- good savings apps were wrongly turned away;
+- a page on the website didn't work at all.
 
-**Portal work.** I did the hackathon portal work myself: uploading each version, adding the allowed websites, secrets and settings, and running the hosted tests.
+**Portal work.** I did the hackathon portal myself: uploading each version, filling in the settings and running the tests there.
 
-**Submitted.** I submitted Ditto on 17 October, before the 8pm EDT deadline, after the hosted plan test passed (4.4 seconds).
+**Submitted.** I submitted Ditto on 17 October, after the portal test passed.
 
-**Video.** I asked for a demo video with a computer voice and captions. The website parts are real screen recordings of the live site.
+**Demo video.** I chose to use a computer voice instead of my own. The video uses real recordings of the website and real numbers from my tests.
