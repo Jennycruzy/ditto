@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:38.094Z",
+  "generatedAt": "2026-10-17T21:41:07.517Z",
   "labels": [
     "OBSERVED"
   ],
@@ -432,7 +432,7 @@
           "v2": {
             "address": "0xbeef0e0834849aCC03f0089F01f4F1Eeb06873C9",
             "listed": true,
-            "totalAssetsUsd": 148159569.34564468,
+            "totalAssetsUsd": 148131136.23949587,
             "warnings": []
           }
         },
@@ -507,18 +507,18 @@
           "Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation.",
           "Morpho warnings were read as third-party data."
         ],
-        "description": "0xD9f1d9dAd6cd9212Acb74350380Cc0d2b6146e38 deposited 644.830186 USDC into \"Steakhouse Prime USDC\" and received 617.270960561351065062 \"steakUSDC\"."
+        "description": "0xD9f1d9dAd6cd9212Acb74350380Cc0d2b6146e38 deposited 644.830186 USDC into \"Steakhouse Prime USDC\" and received 617.270961 \"steakUSDC\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called vaultBundlesV1Deposit through a Morpho bundler.\n0xD9f1d9dAd6cd9212Acb74350380Cc0d2b6146e38 deposited 644.830186 USDC into \"Steakhouse Prime USDC\" and received 617.270960561351065062 \"steakUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called vaultBundlesV1Deposit through a Morpho bundler.\n0xD9f1d9dAd6cd9212Acb74350380Cc0d2b6146e38 deposited 644.830186 USDC into \"Steakhouse Prime USDC\" and received 617.270961 \"steakUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:04:38.094Z",
+      "generatedAt": "2026-10-17T21:41:07.517Z",
       "timingsMs": {
-        "total": 362.09610500000053
+        "total": 360.2703220000003
       },
       "labels": [
         "LIVE"

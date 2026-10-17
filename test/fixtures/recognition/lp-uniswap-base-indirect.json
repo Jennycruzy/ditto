@@ -7,10 +7,12 @@
       "tokenId": "6293298",
       "tickLower": -198770,
       "tickUpper": -198090,
+      "amount0": "450714978821252519",
+      "amount1": "1118422621",
       "at": "2026-10-17T18:53:31.000Z"
     }
   ],
-  "generatedAt": "2026-10-17T21:04:28.798Z",
+  "generatedAt": "2026-10-17T21:40:58.227Z",
   "labels": [
     "OBSERVED"
   ],
@@ -619,7 +621,7 @@
         "halfWidthTicks": 340,
         "warnings": [],
         "notes": [],
-        "description": "0xD3923BeCCb6e1DdB048ed00a0A9Bd602d16B7470 opened position NFT 6293298 in uniswap \"WETH\"/\"USDC\" pool, with 0.450714978821252519 \"WETH\" and 1118.422621 USDC, and received the position NFT.",
+        "description": "0xD3923BeCCb6e1DdB048ed00a0A9Bd602d16B7470 opened position NFT 6293298 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 0.450714978821252519 \"WETH\" and 1118.422621 USDC, and received the position NFT.",
         "lpPosition": {
           "token0": "0x4200000000000000000000000000000000000006",
           "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
@@ -632,13 +634,13 @@
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0xD3923BeCCb6e1DdB048ed00a0A9Bd602d16B7470 opened position NFT 6293298 in uniswap \"WETH\"/\"USDC\" pool, with 0.450714978821252519 \"WETH\" and 1118.422621 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 340 ticks; recenter on the current price.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0xD3923BeCCb6e1DdB048ed00a0A9Bd602d16B7470 opened position NFT 6293298 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 0.450714978821252519 \"WETH\" and 1118.422621 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 340 ticks; recenter on the current price.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:04:28.798Z",
+      "generatedAt": "2026-10-17T21:40:58.227Z",
       "timingsMs": {
-        "total": 293.8402879999994
+        "total": 235.60790500000076
       },
       "labels": [
         "LIVE"

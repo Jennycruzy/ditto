@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:43.710Z",
+  "generatedAt": "2026-10-17T21:41:12.314Z",
   "labels": [
     "OBSERVED"
   ],
@@ -451,7 +451,7 @@
             "address": "0xeE8F4eC5672F09119b96Ab6fB59C27E1b7e44b61",
             "listed": true,
             "state": {
-              "totalAssetsUsd": 413110290.9643354
+              "totalAssetsUsd": 413092562.23384315
             },
             "warnings": []
           }
@@ -513,18 +513,18 @@
           "Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation.",
           "Morpho warnings were read as third-party data."
         ],
-        "description": "0xf62361d0eD089828b371fCdd53BC95C4fb37F8b5 deposited 5.43 USDC into \"Gauntlet USDC Prime\" and received 4.866952694558416665 \"gtUSDCp\"."
+        "description": "0xf62361d0eD089828b371fCdd53BC95C4fb37F8b5 deposited 5.43 USDC into \"Gauntlet USDC Prime\" and received 4.866953 \"gtUSDCp\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called handleOps from a smart wallet via a bundler.\n0xf62361d0eD089828b371fCdd53BC95C4fb37F8b5 deposited 5.43 USDC into \"Gauntlet USDC Prime\" and received 4.866952694558416665 \"gtUSDCp\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called handleOps from a smart wallet via a bundler.\n0xf62361d0eD089828b371fCdd53BC95C4fb37F8b5 deposited 5.43 USDC into \"Gauntlet USDC Prime\" and received 4.866953 \"gtUSDCp\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:04:43.710Z",
+      "generatedAt": "2026-10-17T21:41:12.314Z",
       "timingsMs": {
-        "total": 768.3617859999977
+        "total": 656.1860420000012
       },
       "labels": [
         "LIVE"

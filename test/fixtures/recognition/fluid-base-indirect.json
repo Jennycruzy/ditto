@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:05:24.159Z",
+  "generatedAt": "2026-10-17T21:40:52.856Z",
   "labels": [
     "OBSERVED"
   ],
@@ -494,13 +494,13 @@
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE deposited 224.679665 USDC into \"Fluid USD Coin\" and received 197.50148 \"fUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Not a Morpho vault, so no Morpho warnings.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE deposited 224.679665 USDC into \"Fluid USD Coin\" and received 197.50148 \"fUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Not a Morpho vault, so no Morpho warnings.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:05:24.159Z",
+      "generatedAt": "2026-10-17T21:40:52.856Z",
       "timingsMs": {
-        "total": 277.2357280000015
+        "total": 197.37309099999948
       },
       "labels": [
         "LIVE"

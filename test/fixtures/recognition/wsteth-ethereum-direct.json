@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:44.935Z",
+  "generatedAt": "2026-10-17T21:41:13.466Z",
   "labels": [
     "OBSERVED"
   ],
@@ -279,18 +279,18 @@
         "reasons": [],
         "warnings": [],
         "notes": [],
-        "description": "0x5C4d735AAb94d848c4c77131F3F7307BDBC016fb deposited 0.2012 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.161406147128881187 \"wstETH\"."
+        "description": "0x5C4d735AAb94d848c4c77131F3F7307BDBC016fb deposited 0.2012 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.161406 \"wstETH\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called wrap directly.\n0x5C4d735AAb94d848c4c77131F3F7307BDBC016fb deposited 0.2012 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.161406147128881187 \"wstETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it\" with your chosen amount to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called wrap directly.\n0x5C4d735AAb94d848c4c77131F3F7307BDBC016fb deposited 0.2012 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.161406 \"wstETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it\" with your chosen amount to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "ethereum",
-      "generatedAt": "2026-10-17T21:04:44.935Z",
+      "generatedAt": "2026-10-17T21:41:13.466Z",
       "timingsMs": {
-        "total": 251.29058400000213
+        "total": 234.16764400000102
       },
       "labels": [
         "LIVE"

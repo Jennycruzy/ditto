@@ -7,10 +7,12 @@
       "tokenId": "6293415",
       "tickLower": -198480,
       "tickUpper": -198420,
+      "amount0": "73685209485015566",
+      "amount1": "217424205",
       "at": "2026-10-17T19:32:37.000Z"
     }
   ],
-  "generatedAt": "2026-10-17T21:04:31.037Z",
+  "generatedAt": "2026-10-17T21:41:00.400Z",
   "labels": [
     "OBSERVED"
   ],
@@ -1029,33 +1031,6 @@
     ],
     "actions": [
       {
-        "kind": "exit",
-        "family": "lp-v3",
-        "contract": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
-        "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-        "amount": "306237943",
-        "actor": "0xb4acbC082b5e7dEd571c98EE4257778a9D784B36",
-        "txHash": "0x9887f39260f50bce2e6bcae923a1916e50a6828ffc4756474c05feb4dc1d54e4",
-        "tokenId": "6293079",
-        "candidateId": "base:lp-v3:0x6c561B446416E1A00E8E93E221854d6eA4171372",
-        "copyable": "no",
-        "reasons": [
-          "This is an exit; use a fresh exit plan for your own position."
-        ],
-        "halfWidthTicks": 60,
-        "warnings": [],
-        "notes": [],
-        "description": "0xb4acbC082b5e7dEd571c98EE4257778a9D784B36 exited position NFT 6293079 in uniswap \"WETH\"/\"USDC\" pool, with 0.036902981419311435 \"WETH\" and 306.237943 USDC.",
-        "lpPosition": {
-          "token0": "0x4200000000000000000000000000000000000006",
-          "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-          "amount0": "36902981419311435",
-          "amount1": "306237943",
-          "tickLower": -198540,
-          "tickUpper": -198420
-        }
-      },
-      {
         "kind": "enter",
         "family": "lp-v3",
         "contract": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
@@ -1070,7 +1045,7 @@
         "halfWidthTicks": 30,
         "warnings": [],
         "notes": [],
-        "description": "0xb4acbC082b5e7dEd571c98EE4257778a9D784B36 opened position NFT 6293415 in uniswap \"WETH\"/\"USDC\" pool, with 0.073685209485015566 \"WETH\" and 217.424205 USDC, and received the position NFT.",
+        "description": "0xb4acbC082b5e7dEd571c98EE4257778a9D784B36 opened position NFT 6293415 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 0.073685209485015566 \"WETH\" and 217.424205 USDC, and received the position NFT.",
         "lpPosition": {
           "token0": "0x4200000000000000000000000000000000000006",
           "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
@@ -1079,17 +1054,46 @@
           "tickLower": -198480,
           "tickUpper": -198420
         }
+      },
+      {
+        "kind": "exit",
+        "family": "lp-v3",
+        "contract": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
+        "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        "amount": "306237943",
+        "actor": "0xb4acbC082b5e7dEd571c98EE4257778a9D784B36",
+        "txHash": "0x9887f39260f50bce2e6bcae923a1916e50a6828ffc4756474c05feb4dc1d54e4",
+        "amount0": "36902981419311435",
+        "amount1": "306237943",
+        "tokenId": "6293079",
+        "candidateId": "base:lp-v3:0x6c561B446416E1A00E8E93E221854d6eA4171372",
+        "copyable": "no",
+        "reasons": [
+          "This is an exit; use a fresh exit plan for your own position."
+        ],
+        "halfWidthTicks": 60,
+        "warnings": [],
+        "notes": [],
+        "description": "0xb4acbC082b5e7dEd571c98EE4257778a9D784B36 exited position NFT 6293079 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 0.036902981419311435 \"WETH\" and 306.237943 USDC.",
+        "lpPosition": {
+          "token0": "0x4200000000000000000000000000000000000006",
+          "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+          "amount0": "36902981419311435",
+          "amount1": "306237943",
+          "tickLower": -198540,
+          "tickUpper": -198420
+        }
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0xb4acbC082b5e7dEd571c98EE4257778a9D784B36 exited position NFT 6293079 in uniswap \"WETH\"/\"USDC\" pool, with 0.036902981419311435 \"WETH\" and 306.237943 USDC. This is an exit; use a fresh exit plan for your own position. Observed half-width: 60 ticks; recenter on the current price.\n0xb4acbC082b5e7dEd571c98EE4257778a9D784B36 opened position NFT 6293415 in uniswap \"WETH\"/\"USDC\" pool, with 0.073685209485015566 \"WETH\" and 217.424205 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 30 ticks; recenter on the current price.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0xb4acbC082b5e7dEd571c98EE4257778a9D784B36 opened position NFT 6293415 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 0.073685209485015566 \"WETH\" and 217.424205 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 30 ticks; recenter on the current price.\n0xb4acbC082b5e7dEd571c98EE4257778a9D784B36 exited position NFT 6293079 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 0.036902981419311435 \"WETH\" and 306.237943 USDC. This is an exit; use a fresh exit plan for your own position.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:04:31.037Z",
+      "generatedAt": "2026-10-17T21:41:00.400Z",
       "timingsMs": {
-        "total": 318.6308509999999
+        "total": 322.72992499999964
       },
       "labels": [
         "LIVE"

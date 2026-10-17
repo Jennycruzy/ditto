@@ -1,386 +1,386 @@
 {
-  "generatedAt": "2026-10-17T21:05:24.553Z",
+  "generatedAt": "2026-10-17T21:41:14.369Z",
   "labels": [
     "OBSERVED"
   ],
   "cases": [
     {
       "name": "aave-arbitrum-direct",
-      "capturedAt": "2026-10-17T21:05:14.155Z",
+      "capturedAt": "2026-10-17T21:40:43.129Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 474.63322300000004
+      "durationMs": 494.88428200000004
     },
     {
       "name": "aave-arbitrum-indirect",
-      "capturedAt": "2026-10-17T21:05:15.082Z",
+      "capturedAt": "2026-10-17T21:40:44.066Z",
       "route": "router",
       "actions": 2,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 741.182425
+      "durationMs": 621.6680120000001
     },
     {
       "name": "aave-base-direct",
-      "capturedAt": "2026-10-17T21:05:16.271Z",
+      "capturedAt": "2026-10-17T21:40:45.130Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 309.22910999999976
+      "durationMs": 351.5761809999999
     },
     {
       "name": "aave-base-indirect",
-      "capturedAt": "2026-10-17T21:05:17.023Z",
+      "capturedAt": "2026-10-17T21:40:45.924Z",
       "route": "router",
       "actions": 2,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 428.26348899999994
+      "durationMs": 502.77485499999966
     },
     {
       "name": "aave-optimism-direct",
-      "capturedAt": "2026-10-17T21:05:17.901Z",
+      "capturedAt": "2026-10-17T21:40:46.863Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 284.05307599999924
+      "durationMs": 256.7101190000003
     },
     {
       "name": "aave-optimism-indirect",
-      "capturedAt": "2026-10-17T21:05:18.647Z",
+      "capturedAt": "2026-10-17T21:40:47.565Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 231.11917100000028
+      "durationMs": 208.7619990000003
     },
     {
       "name": "compound-arbitrum-direct",
-      "capturedAt": "2026-10-17T21:05:19.319Z",
+      "capturedAt": "2026-10-17T21:40:48.210Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 271.406293
+      "durationMs": 332.94074699999965
     },
     {
       "name": "compound-arbitrum-indirect",
-      "capturedAt": "2026-10-17T21:05:20.035Z",
+      "capturedAt": "2026-10-17T21:40:48.979Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 330.1662210000004
+      "durationMs": 357.451814
     },
     {
       "name": "compound-base-direct",
-      "capturedAt": "2026-10-17T21:05:20.815Z",
+      "capturedAt": "2026-10-17T21:40:49.776Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 205.6952820000006
+      "durationMs": 146.96294699999999
     },
     {
       "name": "compound-base-indirect",
-      "capturedAt": "2026-10-17T21:05:21.474Z",
+      "capturedAt": "2026-10-17T21:40:50.364Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 191.43894400000045
+      "durationMs": 178.43614099999922
     },
     {
       "name": "compound-optimism-direct",
-      "capturedAt": "2026-10-17T21:05:22.109Z",
+      "capturedAt": "2026-10-17T21:40:50.983Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 184.1786059999995
+      "durationMs": 164.78888899999947
     },
     {
       "name": "compound-optimism-indirect",
-      "capturedAt": "2026-10-17T21:05:22.749Z",
+      "capturedAt": "2026-10-17T21:40:51.593Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 178.0785850000011
+      "durationMs": 162.9510709999995
     },
     {
       "name": "fluid-base-direct",
-      "capturedAt": "2026-10-17T21:05:23.389Z",
+      "capturedAt": "2026-10-17T21:40:52.198Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 313.59391099999993
+      "durationMs": 209.29602499999964
     },
     {
       "name": "fluid-base-indirect",
-      "capturedAt": "2026-10-17T21:05:24.159Z",
+      "capturedAt": "2026-10-17T21:40:52.856Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 277.2357280000015
+      "durationMs": 197.37309099999948
     },
     {
       "name": "lido-ethereum-direct",
-      "capturedAt": "2026-10-17T21:04:23.826Z",
+      "capturedAt": "2026-10-17T21:40:53.494Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 276.6057949999995
+      "durationMs": 176.90603200000078
     },
     {
       "name": "lido-ethereum-indirect",
-      "capturedAt": "2026-10-17T21:04:24.571Z",
+      "capturedAt": "2026-10-17T21:40:54.134Z",
       "route": "router",
       "actions": 2,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 265.8050669999993
+      "durationMs": 203.3722230000003
     },
     {
       "name": "lp-aerodrome-base-direct",
-      "capturedAt": "2026-10-17T21:04:25.284Z",
+      "capturedAt": "2026-10-17T21:40:54.775Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 276.88162100000045
+      "durationMs": 264.9028269999999
     },
     {
       "name": "lp-aerodrome-base-indirect",
-      "capturedAt": "2026-10-17T21:04:26.008Z",
+      "capturedAt": "2026-10-17T21:40:55.476Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 252.42748399999982
+      "durationMs": 263.63003799999933
     },
     {
       "name": "lp-aerodrome-recent-0",
-      "capturedAt": "2026-10-17T21:04:26.716Z",
+      "capturedAt": "2026-10-17T21:40:56.179Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 239.64840899999945
+      "durationMs": 245.37590500000078
     },
     {
       "name": "lp-aerodrome-recent-1",
-      "capturedAt": "2026-10-17T21:04:27.396Z",
+      "capturedAt": "2026-10-17T21:40:56.861Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 283.12586399999964
+      "durationMs": 230.56947299999956
     },
     {
       "name": "lp-uniswap-base-direct",
-      "capturedAt": "2026-10-17T21:04:28.121Z",
+      "capturedAt": "2026-10-17T21:40:57.528Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 234.2320299999992
+      "durationMs": 260.0198619999992
     },
     {
       "name": "lp-uniswap-base-indirect",
-      "capturedAt": "2026-10-17T21:04:28.798Z",
+      "capturedAt": "2026-10-17T21:40:58.227Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 293.8402879999994
+      "durationMs": 235.60790500000076
     },
     {
       "name": "lp-uniswap-recent-0",
-      "capturedAt": "2026-10-17T21:04:29.528Z",
+      "capturedAt": "2026-10-17T21:40:58.904Z",
       "route": "router",
       "actions": 2,
-      "copyable": "yes",
+      "copyable": "no",
       "incomplete": false,
-      "durationMs": 310.3538989999997
+      "durationMs": 317.669460000001
     },
     {
       "name": "lp-uniswap-recent-1",
-      "capturedAt": "2026-10-17T21:04:30.279Z",
-      "route": "router",
-      "actions": 3,
-      "copyable": "yes",
-      "incomplete": false,
-      "durationMs": 318.44211800000085
-    },
-    {
-      "name": "lp-uniswap-recent-2",
-      "capturedAt": "2026-10-17T21:04:31.037Z",
+      "capturedAt": "2026-10-17T21:40:59.659Z",
       "route": "router",
       "actions": 2,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 318.6308509999999
+      "durationMs": 303.631140999998
+    },
+    {
+      "name": "lp-uniswap-recent-2",
+      "capturedAt": "2026-10-17T21:41:00.400Z",
+      "route": "router",
+      "actions": 2,
+      "copyable": "yes",
+      "incomplete": false,
+      "durationMs": 322.72992499999964
     },
     {
       "name": "lp-uniswap-recent-3",
-      "capturedAt": "2026-10-17T21:04:31.793Z",
+      "capturedAt": "2026-10-17T21:41:01.161Z",
       "route": "router",
-      "actions": 3,
-      "copyable": "yes",
+      "actions": 2,
+      "copyable": "no",
       "incomplete": false,
-      "durationMs": 356.26268600000185
+      "durationMs": 366.3692379999993
     },
     {
       "name": "moonwell-base-direct",
-      "capturedAt": "2026-10-17T21:04:32.593Z",
+      "capturedAt": "2026-10-17T21:41:01.979Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 151.09923999999955
+      "durationMs": 208.5155900000027
     },
     {
       "name": "moonwell-base-indirect",
-      "capturedAt": "2026-10-17T21:04:33.181Z",
+      "capturedAt": "2026-10-17T21:41:02.636Z",
       "route": "erc4337",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 156.26868599999943
+      "durationMs": 250.17392499999914
     },
     {
       "name": "moonwell-optimism-direct",
-      "capturedAt": "2026-10-17T21:04:33.778Z",
+      "capturedAt": "2026-10-17T21:41:03.333Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 238.6721120000002
+      "durationMs": 210.6932799999995
     },
     {
       "name": "moonwell-optimism-indirect",
-      "capturedAt": "2026-10-17T21:04:34.462Z",
+      "capturedAt": "2026-10-17T21:41:03.990Z",
       "route": "safe",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 162.85963899999842
+      "durationMs": 164.00237500000003
     },
     {
       "name": "spark-arbitrum-direct",
-      "capturedAt": "2026-10-17T21:04:35.087Z",
+      "capturedAt": "2026-10-17T21:41:04.598Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 375.3310280000005
+      "durationMs": 381.29125900000145
     },
     {
       "name": "spark-arbitrum-indirect",
-      "capturedAt": "2026-10-17T21:04:35.901Z",
+      "capturedAt": "2026-10-17T21:41:05.418Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 450.28310599999895
+      "durationMs": 320.17752100000143
     },
     {
       "name": "spark-base-direct",
-      "capturedAt": "2026-10-17T21:04:36.791Z",
+      "capturedAt": "2026-10-17T21:41:06.174Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 204.24245299999893
+      "durationMs": 207.02762000000075
     },
     {
       "name": "spark-base-indirect",
-      "capturedAt": "2026-10-17T21:04:37.439Z",
+      "capturedAt": "2026-10-17T21:41:06.824Z",
       "route": "router",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 208.92783600000257
+      "durationMs": 239.84404200000063
     },
     {
       "name": "vault-base-indirect",
-      "capturedAt": "2026-10-17T21:04:38.094Z",
+      "capturedAt": "2026-10-17T21:41:07.517Z",
       "route": "morpho-bundler",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 362.09610500000053
+      "durationMs": 360.2703220000003
     },
     {
       "name": "vault-optimism-direct",
-      "capturedAt": "2026-10-17T21:04:38.893Z",
+      "capturedAt": "2026-10-17T21:41:08.319Z",
       "route": "direct",
       "actions": 1,
       "copyable": "no",
       "incomplete": false,
-      "durationMs": 485.2525289999976
+      "durationMs": 563.5955719999984
     },
     {
       "name": "vault-optimism-indirect",
-      "capturedAt": "2026-10-17T21:04:39.819Z",
+      "capturedAt": "2026-10-17T21:41:09.318Z",
       "route": "direct",
       "actions": 2,
       "copyable": "no",
       "incomplete": false,
-      "durationMs": 586.792594999999
+      "durationMs": 612.8545460000023
     },
     {
       "name": "vault-second-base-indirect",
-      "capturedAt": "2026-10-17T21:04:40.848Z",
+      "capturedAt": "2026-10-17T21:41:10.367Z",
       "route": "erc4337",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 901.930809999998
+      "durationMs": 375.39006999999765
     },
     {
       "name": "vault-v1-base-direct",
-      "capturedAt": "2026-10-17T21:04:42.190Z",
+      "capturedAt": "2026-10-17T21:41:11.178Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 1080.9398989999972
+      "durationMs": 700.2261020000005
     },
     {
       "name": "vault-v1-base-indirect",
-      "capturedAt": "2026-10-17T21:04:43.710Z",
+      "capturedAt": "2026-10-17T21:41:12.314Z",
       "route": "erc4337",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 768.3617859999977
+      "durationMs": 656.1860420000012
     },
     {
       "name": "wsteth-ethereum-direct",
-      "capturedAt": "2026-10-17T21:04:44.935Z",
+      "capturedAt": "2026-10-17T21:41:13.466Z",
       "route": "direct",
       "actions": 1,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 251.29058400000213
+      "durationMs": 234.16764400000102
     },
     {
       "name": "wsteth-ethereum-indirect",
-      "capturedAt": "2026-10-17T21:04:45.633Z",
+      "capturedAt": "2026-10-17T21:41:14.140Z",
       "route": "router",
       "actions": 2,
       "copyable": "yes",
       "incomplete": false,
-      "durationMs": 169.02024800000072
+      "durationMs": 173.6065290000006
     }
   ],
   "latestCaptureFailures": 0,

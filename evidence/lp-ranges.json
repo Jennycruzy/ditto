@@ -11,6 +11,8 @@
       "tokenId": "21002869",
       "tickLower": -193900,
       "tickUpper": -193800,
+      "amount0": "21324866342921742090",
+      "amount1": "34873833887",
       "at": "2025-07-30T17:54:01.000Z"
     },
     {
@@ -20,6 +22,8 @@
       "tokenId": "21002992",
       "tickLower": -193900,
       "tickUpper": -193800,
+      "amount0": "534454169309939105521",
+      "amount1": "875230251842",
       "at": "2025-07-30T17:56:19.000Z"
     },
     {
@@ -29,6 +33,8 @@
       "tokenId": "78652366",
       "tickLower": -198500,
       "tickUpper": -198400,
+      "amount0": "14399823062007176117",
+      "amount1": "208334326007",
       "at": "2026-10-17T19:43:15.000Z"
     },
     {
@@ -38,6 +44,8 @@
       "tokenId": "78652364",
       "tickLower": -198500,
       "tickUpper": -198400,
+      "amount0": "27698433903527821381",
+      "amount1": "400736490573",
       "at": "2026-10-17T19:43:13.000Z"
     },
     {
@@ -47,6 +55,8 @@
       "tokenId": "6293292",
       "tickLower": -199480,
       "tickUpper": -197480,
+      "amount0": "29381811448815536",
+      "amount1": "79000000",
       "at": "2026-10-17T18:50:13.000Z"
     },
     {
@@ -56,6 +66,8 @@
       "tokenId": "6293298",
       "tickLower": -198770,
       "tickUpper": -198090,
+      "amount0": "450714978821252519",
+      "amount1": "1118422621",
       "at": "2026-10-17T18:53:31.000Z"
     },
     {
@@ -65,6 +77,8 @@
       "tokenId": "6293423",
       "tickLower": -198420,
       "tickUpper": -197160,
+      "amount0": "27255195845518178779",
+      "amount1": "0",
       "at": "2026-10-17T19:39:43.000Z"
     },
     {
@@ -74,6 +88,8 @@
       "tokenId": "6293419",
       "tickLower": -199020,
       "tickUpper": -197820,
+      "amount0": "9567183109538227",
+      "amount1": "21100110",
       "at": "2026-10-17T19:37:27.000Z"
     },
     {
@@ -83,6 +99,8 @@
       "tokenId": "6293415",
       "tickLower": -198480,
       "tickUpper": -198420,
+      "amount0": "73685209485015566",
+      "amount1": "217424205",
       "at": "2026-10-17T19:32:37.000Z"
     },
     {
@@ -92,6 +110,8 @@
       "tokenId": "6293408",
       "tickLower": -198430,
       "tickUpper": -198380,
+      "amount0": "333788695014680202",
+      "amount1": "0",
       "at": "2026-10-17T19:30:17.000Z"
     }
   ],
@@ -107,15 +127,15 @@
       "chain": "base",
       "pool": "0xd0b53D9277642d899DF5C87A3966A349A798F224",
       "asOf": "2026-10-17T19:30:17.000Z",
-      "halfWidthTicks": 340,
-      "samples": 3
+      "halfWidthTicks": 670,
+      "samples": 2
     },
     {
       "chain": "base",
       "pool": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
       "asOf": "2026-10-17T19:39:43.000Z",
-      "halfWidthTicks": 600,
-      "samples": 3
+      "halfWidthTicks": 315,
+      "samples": 2
     }
   ],
   "detail": "Receipt samples with their actual timestamps. Recompute the median inside a fresh window before building a current plan."

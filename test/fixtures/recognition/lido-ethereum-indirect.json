@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:24.571Z",
+  "generatedAt": "2026-10-17T21:40:54.134Z",
   "labels": [
     "OBSERVED"
   ],
@@ -222,17 +222,6 @@
       "method": "eth_call",
       "params": [
         {
-          "to": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
-          "data": "0xc1fe3e48"
-        },
-        "0x18ffefa"
-      ],
-      "result": "0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84"
-    },
-    {
-      "method": "eth_call",
-      "params": [
-        {
           "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
           "data": "0x1ea7ca89"
         },
@@ -272,6 +261,17 @@
         "0x18ffefa"
       ],
       "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          "data": "0xc1fe3e48"
+        },
+        "0x18ffefa"
+      ],
+      "result": "0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84"
     },
     {
       "method": "eth_call",
@@ -339,7 +339,7 @@
         "reasons": [],
         "warnings": [],
         "notes": [],
-        "description": "0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.914 \"ETH\" into \"Liquid staked Ether 2.0\" and received 0.913999999999999998 \"stETH\"."
+        "description": "0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.914 \"ETH\" into \"Liquid staked Ether 2.0\" and received 0.914000 \"stETH\"."
       },
       {
         "kind": "enter",
@@ -355,18 +355,18 @@
         "reasons": [],
         "warnings": [],
         "notes": [],
-        "description": "0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.913999999999999999 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.73322673198706464 \"wstETH\"."
+        "description": "0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.913999999999999999 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.733227 \"wstETH\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.914 \"ETH\" into \"Liquid staked Ether 2.0\" and received 0.913999999999999998 \"stETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\n0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.913999999999999999 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.73322673198706464 \"wstETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it\" with your chosen amount to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.914 \"ETH\" into \"Liquid staked Ether 2.0\" and received 0.914000 \"stETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\n0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.913999999999999999 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.733227 \"wstETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it\" with your chosen amount to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "ethereum",
-      "generatedAt": "2026-10-17T21:04:24.571Z",
+      "generatedAt": "2026-10-17T21:40:54.134Z",
       "timingsMs": {
-        "total": 265.8050669999993
+        "total": 203.3722230000003
       },
       "labels": [
         "LIVE"

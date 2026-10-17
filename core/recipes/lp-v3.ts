@@ -81,11 +81,17 @@ export const lpV3: Recipe = {
           })) continue;
           const actor = kind === "enter" ? mint!.to : addr(String(a.recipient));
           const amount = same(position.token0, poolIdentity.asset) ? String(a.amount0) : String(a.amount1);
-          out.push({ kind, family: "lp-v3", contract: poolIdentity.contract, asset: poolIdentity.asset, amount, actor, txHash: receipt.transactionHash, tokenId: id });
+          out.push({ kind, family: "lp-v3", contract: poolIdentity.contract, asset: poolIdentity.asset, amount, actor, txHash: receipt.transactionHash, tokenId: id, ...(kind === "exit" ? { amount0: String(a.amount0), amount1: String(a.amount1) } : {}) });
         } catch { /* Only complete position-manager events are recognised. */ }
       }
     }
-    return out;
+    const exits = new Map<string, Recognised>();
+    for (const a of out.filter(a => a.kind === "exit")) {
+      const key = `${a.contract}:${a.tokenId}`, previous = exits.get(key);
+      if (previous) { previous.amount = (BigInt(previous.amount) + BigInt(a.amount)).toString(); previous.amount0 = (BigInt(previous.amount0!) + BigInt(a.amount0!)).toString(); previous.amount1 = (BigInt(previous.amount1!) + BigInt(a.amount1!)).toString(); }
+      else exits.set(key, { ...a });
+    }
+    return [...out.filter(a => a.kind !== "exit"), ...exits.values()];
   },
   async position(i, wallet, rpc) {
     const id = String(i.details.tokenId ?? "");

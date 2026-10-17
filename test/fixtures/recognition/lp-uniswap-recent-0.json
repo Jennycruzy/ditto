@@ -7,10 +7,12 @@
       "tokenId": "6293423",
       "tickLower": -198420,
       "tickUpper": -197160,
+      "amount0": "27255195845518178779",
+      "amount1": "0",
       "at": "2026-10-17T19:39:43.000Z"
     }
   ],
-  "generatedAt": "2026-10-17T21:04:29.528Z",
+  "generatedAt": "2026-10-17T21:40:58.904Z",
   "labels": [
     "OBSERVED"
   ],
@@ -662,33 +664,6 @@
     ],
     "actions": [
       {
-        "kind": "exit",
-        "family": "lp-v3",
-        "contract": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
-        "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-        "amount": "0",
-        "actor": "0x98eC492942090364AC0736Ef1A741AE6C92ec790",
-        "txHash": "0x9459bcced1b97224805ca588b96b9cca944b588377214e05dc2b42647d15b833",
-        "tokenId": "6123154",
-        "candidateId": "base:lp-v3:0x6c561B446416E1A00E8E93E221854d6eA4171372",
-        "copyable": "no",
-        "reasons": [
-          "This is an exit; use a fresh exit plan for your own position."
-        ],
-        "halfWidthTicks": 570,
-        "warnings": [],
-        "notes": [],
-        "description": "0x98eC492942090364AC0736Ef1A741AE6C92ec790 exited position NFT 6123154 in uniswap \"WETH\"/\"USDC\" pool, with 27.255195845518179254 \"WETH\" and 0 USDC.",
-        "lpPosition": {
-          "token0": "0x4200000000000000000000000000000000000006",
-          "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-          "amount0": "27255195845518179254",
-          "amount1": "0",
-          "tickLower": -198300,
-          "tickUpper": -197160
-        }
-      },
-      {
         "kind": "enter",
         "family": "lp-v3",
         "contract": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
@@ -698,12 +673,14 @@
         "txHash": "0x9459bcced1b97224805ca588b96b9cca944b588377214e05dc2b42647d15b833",
         "tokenId": "6293423",
         "candidateId": "base:lp-v3:0x6c561B446416E1A00E8E93E221854d6eA4171372",
-        "copyable": "yes",
-        "reasons": [],
+        "copyable": "no",
+        "reasons": [
+          "This one-token range order sits outside the current price. Ditto cannot copy it as a centred liquidity position."
+        ],
         "halfWidthTicks": 630,
         "warnings": [],
         "notes": [],
-        "description": "0x98eC492942090364AC0736Ef1A741AE6C92ec790 opened position NFT 6293423 in uniswap \"WETH\"/\"USDC\" pool, with 27.255195845518178779 \"WETH\" and 0 USDC, and received the position NFT.",
+        "description": "0x98eC492942090364AC0736Ef1A741AE6C92ec790 opened position NFT 6293423 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 27.255195845518178779 \"WETH\" and 0 USDC, and received the position NFT.",
         "lpPosition": {
           "token0": "0x4200000000000000000000000000000000000006",
           "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
@@ -712,17 +689,46 @@
           "tickLower": -198420,
           "tickUpper": -197160
         }
+      },
+      {
+        "kind": "exit",
+        "family": "lp-v3",
+        "contract": "0x6c561B446416E1A00E8E93E221854d6eA4171372",
+        "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        "amount": "0",
+        "actor": "0x98eC492942090364AC0736Ef1A741AE6C92ec790",
+        "txHash": "0x9459bcced1b97224805ca588b96b9cca944b588377214e05dc2b42647d15b833",
+        "amount0": "27255195845518179254",
+        "amount1": "0",
+        "tokenId": "6123154",
+        "candidateId": "base:lp-v3:0x6c561B446416E1A00E8E93E221854d6eA4171372",
+        "copyable": "no",
+        "reasons": [
+          "This is an exit; use a fresh exit plan for your own position."
+        ],
+        "halfWidthTicks": 570,
+        "warnings": [],
+        "notes": [],
+        "description": "0x98eC492942090364AC0736Ef1A741AE6C92ec790 exited position NFT 6123154 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 27.255195845518179254 \"WETH\" and 0 USDC.",
+        "lpPosition": {
+          "token0": "0x4200000000000000000000000000000000000006",
+          "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+          "amount0": "27255195845518179254",
+          "amount1": "0",
+          "tickLower": -198300,
+          "tickUpper": -197160
+        }
       }
     ],
-    "copyable": "yes",
+    "copyable": "no",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0x98eC492942090364AC0736Ef1A741AE6C92ec790 exited position NFT 6123154 in uniswap \"WETH\"/\"USDC\" pool, with 27.255195845518179254 \"WETH\" and 0 USDC. This is an exit; use a fresh exit plan for your own position. Observed half-width: 570 ticks; recenter on the current price.\n0x98eC492942090364AC0736Ef1A741AE6C92ec790 opened position NFT 6293423 in uniswap \"WETH\"/\"USDC\" pool, with 27.255195845518178779 \"WETH\" and 0 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 630 ticks; recenter on the current price.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0x98eC492942090364AC0736Ef1A741AE6C92ec790 opened position NFT 6293423 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 27.255195845518178779 \"WETH\" and 0 USDC, and received the position NFT. This one-token range order sits outside the current price. Ditto cannot copy it as a centred liquidity position. Observed half-width: 630 ticks; recenter on the current price.\n0x98eC492942090364AC0736Ef1A741AE6C92ec790 exited position NFT 6123154 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 27.255195845518179254 \"WETH\" and 0 USDC. This is an exit; use a fresh exit plan for your own position.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:04:29.528Z",
+      "generatedAt": "2026-10-17T21:40:58.904Z",
       "timingsMs": {
-        "total": 310.3538989999997
+        "total": 317.669460000001
       },
       "labels": [
         "LIVE"

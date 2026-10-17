@@ -64,7 +64,7 @@ describe("receipt explanations", () => {
   });
 });
 describe("observed LP width", () => {
-  const sample = (width: number, tokenId: string, at = now) => ({ chain: "base" as const, pool: wallet, txHash: tokenId, tokenId, tickLower: -width, tickUpper: width, at: new Date(at).toISOString() });
+  const sample = (width: number, tokenId: string, at = now) => ({ chain: "base" as const, pool: wallet, txHash: tokenId, tokenId, tickLower: -width, tickUpper: width, amount0: "1", amount1: "1", at: new Date(at).toISOString() });
   it("has no constant fallback and computes a pool-specific median", () => {
     expect(medianPositionWidth([], "base", wallet, now)).toBeNull();
     const samples = [sample(200, "1"), sample(600, "2"), sample(10000, "3"), sample(200, "1"), { ...sample(9000, "4"), pool: other }, sample(7000, "5", now - 86400001)];
@@ -127,9 +127,9 @@ describe("reviewed receipt presentation and burned positions", () => {
     const idWord = BigInt(burned).toString(16).padStart(64, "0");
     expect(f.rpc.some((c: any) => c.method === "eth_call" && c.params[1] === previous && c.params[0].data.endsWith(idWord))).toBe(true);
     expect(f.expected.ditto.incomplete).toBe(false);
-    expect(f.expected.copyable).toBe("yes");
+    expect(f.expected.copyable).toBe(name === "lp-uniswap-recent-3" ? "no" : "yes");
     expect(f.expected.actions.some((a: any) => a.kind === "exit" && a.tokenId === burned)).toBe(true);
-    expect(f.expected.actions.some((a: any) => a.kind === "enter" && a.copyable === "yes")).toBe(true);
+    expect(f.expected.actions.some((a: any) => a.kind === "enter" && a.copyable === (name === "lp-uniswap-recent-3" ? "no" : "yes"))).toBe(true);
   });
   it("shows readable USDC, receipt shares, a vault name, and the copy next step", () => {
     const f = fixture("vault-base-indirect");
@@ -170,5 +170,15 @@ describe("LP metadata fallback without a burn hint", () => {
     expect(attempts).toContain(`0x${(BigInt(raw.blockNumber) - 1n).toString(16)}`);
     expect(Object.keys(d.context.lpPositions).some(k => k.endsWith(`:${burned}`))).toBe(true);
     expect(d.incomplete).toBe(false);
+  });
+});
+describe("one action per LP position", () => {
+  it("never reports the same position's exit twice when the manager emits two Collect events", async () => {
+    const { readdirSync, readFileSync } = await import("node:fs");
+    for (const name of readdirSync(new URL("./fixtures/recognition/", import.meta.url))) {
+      const actions = JSON.parse(readFileSync(new URL(`./fixtures/recognition/${name}`, import.meta.url), "utf8")).expected.actions.filter((a: any) => a.tokenId);
+      const keys = actions.map((a: any) => `${a.kind}:${a.contract}:${a.tokenId}`);
+      expect(new Set(keys).size, name).toBe(keys.length);
+    }
   });
 });

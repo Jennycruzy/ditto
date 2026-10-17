@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:05:22.109Z",
+  "generatedAt": "2026-10-17T21:40:50.983Z",
   "labels": [
     "OBSERVED"
   ],
@@ -257,9 +257,9 @@
     "ditto": {
       "version": "0.1.0",
       "chain": "optimism",
-      "generatedAt": "2026-10-17T21:05:22.109Z",
+      "generatedAt": "2026-10-17T21:40:50.983Z",
       "timingsMs": {
-        "total": 184.1786059999995
+        "total": 164.78888899999947
       },
       "labels": [
         "LIVE"

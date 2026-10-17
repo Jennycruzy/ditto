@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:05:21.474Z",
+  "generatedAt": "2026-10-17T21:40:50.364Z",
   "labels": [
     "OBSERVED"
   ],
@@ -262,13 +262,13 @@
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0x3ad64A3c36dFDf4B6E7C05ce1842d81BBaDA7e9C deposited 1.330932 USDC into \"Compound USDC\"; no new receipt tokens were minted in this transaction. Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0x3ad64A3c36dFDf4B6E7C05ce1842d81BBaDA7e9C deposited 1.330932 USDC into \"Compound USDC\"; no new receipt tokens were minted in this transaction. Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:05:21.474Z",
+      "generatedAt": "2026-10-17T21:40:50.364Z",
       "timingsMs": {
-        "total": 191.43894400000045
+        "total": 178.43614099999922
       },
       "labels": [
         "LIVE"

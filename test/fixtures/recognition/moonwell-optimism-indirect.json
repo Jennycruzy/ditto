@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:34.462Z",
+  "generatedAt": "2026-10-17T21:41:03.990Z",
   "labels": [
     "OBSERVED"
   ],
@@ -362,18 +362,18 @@
         "reasons": [],
         "warnings": [],
         "notes": [],
-        "description": "0x914D85df06Ca420f8f906fEFa03339D389373bC0 deposited 24.993862 USDC into \"Moonwell USDC\" and received 1132.20358434 \"mUSDC\"."
+        "description": "0x914D85df06Ca420f8f906fEFa03339D389373bC0 deposited 24.993862 USDC into \"Moonwell USDC\" and received 1132.203584 \"mUSDC\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called execTransaction from a Safe smart wallet.\n0x914D85df06Ca420f8f906fEFa03339D389373bC0 deposited 24.993862 USDC into \"Moonwell USDC\" and received 1132.20358434 \"mUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called execTransaction from a Safe smart wallet.\n0x914D85df06Ca420f8f906fEFa03339D389373bC0 deposited 24.993862 USDC into \"Moonwell USDC\" and received 1132.203584 \"mUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "optimism",
-      "generatedAt": "2026-10-17T21:04:34.462Z",
+      "generatedAt": "2026-10-17T21:41:03.990Z",
       "timingsMs": {
-        "total": 162.85963899999842
+        "total": 164.00237500000003
       },
       "labels": [
         "LIVE"

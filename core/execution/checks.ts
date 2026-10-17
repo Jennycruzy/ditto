@@ -1,0 +1,36 @@
+import { type Address } from "viem";
+import { usdcAddress } from "../chains.js";
+import { type Identity } from "../recipes/types.js";
+import type { Check, Refusal } from "../schemas.js";
+import type { Evidence, Checked } from "./types.js";
+import { refusal } from "./types.js";
+import { same } from "../recipes/shared.js";
+import { quote } from "../text.js";
+export function runChecks(i: Identity, amount: bigint, e: Evidence | undefined, options: { now: number; exitPass: boolean; entryPass: boolean; allowanceZero: boolean; gasWei: bigint; ethBalance: bigint; ethUsdMicros?: bigint; entering?: boolean }): Checked {
+  const checks: Check[] = [], refusals: Refusal[] = [];
+  const add = (code: Check["code"], pass: boolean, detail: string, error: Refusal["code"], blocking = true) => { checks.push({ code, pass, detail, blocking }); if (!pass && blocking) refusals.push(refusal(error, detail)); };
+  const entering = options.entering !== false, age = e ? options.now - Date.parse(e.generatedAt) : Infinity;
+  const fresh = !!e && e.chain === i.chain && same(e.contract, i.contract) && age >= 0 && age < 7_200_000 && !e.incomplete;
+  add("C1", true, "The contract re-identified under an enabled recipe.", "FAMILY_DISABLED");
+  const canonical = i.family === "lst" ? i.chain === "ethereum" : i.chain !== "ethereum" && same(i.asset, usdcAddress(i.chain));
+  add("C2", canonical, "The underlying must be the canonical asset for this recipe and chain.", "ASSET_MISMATCH");
+  add("C3", !entering || (fresh && e.deposits24h >= 5 && e.uniqueWallets24h >= 3 && (i.family !== "lp-v3" || BigInt(e.volume24hUsd) > 0n)), "Execution requires fresh evidence of at least five deposits by three wallets in 24 hours.", "NOT_ENOUGH_USE");
+  add("C4", !entering || (fresh && options.now - Date.parse(e.firstSeen) >= 30 * 86_400_000), "A new entry requires at least 30 days of observed activity.", "TOO_NEW");
+  const size = i.family === "lst" ? options.ethUsdMicros === undefined ? 0n : BigInt(i.totalAssets) * options.ethUsdMicros / 10n ** 18n : BigInt(i.totalAssets) * 1_000_000n / 10n ** BigInt(i.assetDecimals);
+  add("C5", !entering || size >= 100_000_000_000n, "The live pool or vault must hold at least $100,000 equivalent.", "TOO_SMALL");
+  const prices = e?.sharePrices ?? [];
+  const history = prices.length === 8 && prices.every((p, n) => /^[1-9][0-9]*$/.test(p.value) && Number.isFinite(Date.parse(p.at)) && (n === 0 || Date.parse(p.at) > Date.parse(prices[n - 1]!.at))) && options.now - Date.parse(prices[0]!.at) >= 7 * 86_400_000 && options.now - Date.parse(prices.at(-1)!.at) < 7_200_000;
+  const drop = prices.slice(1).some((p, n) => BigInt(p.value) * 10000n < BigInt(prices[n]!.value) * 9950n);
+  add("C6", !entering || !["aave-v3", "erc4626"].includes(i.family) || (fresh && history && !drop), "Seven daily share-price or income-index samples must show no daily drop greater than 0.5%.", "SHARE_PRICE_DROP");
+  add("C7", options.exitPass, "The exit must succeed in this block and meet its family tolerance.", "EXIT_FAILS");
+  add("C8", !entering || (!i.paused && (i.family !== "erc4626" || options.entryPass)), i.family === "erc4626" ? "ERC-4626 has no standard pause flag: a fresh deposit and exit round trip is required." : "Protocol pause and freeze flags must permit this operation.", "PAUSED");
+  add("C9", !entering || (i.family === "erc4626" && i.details.capMode === "simulated-round-trip" ? options.entryPass && options.exitPass : amount <= BigInt(i.cap)), "The live cap must admit the amount; factory-verified Vault V2 uses its simulated round trip.", "CAP_REACHED");
+  add("C10", options.entryPass, "The simulation must match the declared token amounts and reject transfer fees or unexpected outgoing tokens.", "FEE_ON_TRANSFER");
+  add("C11", options.allowanceZero, "Every planned recipe permission must end at zero.", "ALLOWANCE_LEFT");
+  add("C12", i.provenance.listed === true || i.provenance.named === true, "Listing data is separate from the blocking provenance, size, and execution checks.", "UNKNOWN_PROVENANCE", false);
+  for (const warning of Array.isArray(i.details.warnings) ? i.details.warnings : []) if (typeof warning === "string") checks.push({ code: "C12", pass: false, blocking: false, detail: `Third-party warning (untrusted): ${quote(warning).text}` });
+  add("C14", i.provenance.verified && (i.family !== "erc4626" || i.provenance.listed === true || i.provenance.named === true), "The live factory or named deployment and required vault listing must be verified.", "UNKNOWN_PROVENANCE");
+  add("C13", options.gasWei <= options.ethBalance, "The wallet must hold enough ETH for the simulated gas, including headroom.", "INSUFFICIENT_GAS");
+  if (options.ethUsdMicros && options.gasWei * options.ethUsdMicros / 10n ** 18n * 100n > (i.family === "lst" ? amount * options.ethUsdMicros / 10n ** 18n : amount * 1_000_000n / 10n ** BigInt(i.assetDecimals))) checks.push({ code: "C13", pass: false, blocking: false, detail: "Estimated gas exceeds 1% of the amount." });
+  return { checks, refusals, verdict: refusals.length ? "refused" : "ok" };
+}

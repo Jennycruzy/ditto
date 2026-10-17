@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:33.778Z",
+  "generatedAt": "2026-10-17T21:41:03.333Z",
   "labels": [
     "OBSERVED"
   ],
@@ -334,18 +334,18 @@
         "reasons": [],
         "warnings": [],
         "notes": [],
-        "description": "0xB350832FDE1c851647A2C10bbD96C0632A523F86 deposited 18.772162 USDC into \"Moonwell USDC\" and received 850.11109029 \"mUSDC\"."
+        "description": "0xB350832FDE1c851647A2C10bbD96C0632A523F86 deposited 18.772162 USDC into \"Moonwell USDC\" and received 850.111090 \"mUSDC\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called mint directly.\n0xB350832FDE1c851647A2C10bbD96C0632A523F86 deposited 18.772162 USDC into \"Moonwell USDC\" and received 850.11109029 \"mUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called mint directly.\n0xB350832FDE1c851647A2C10bbD96C0632A523F86 deposited 18.772162 USDC into \"Moonwell USDC\" and received 850.111090 \"mUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "optimism",
-      "generatedAt": "2026-10-17T21:04:33.778Z",
+      "generatedAt": "2026-10-17T21:41:03.333Z",
       "timingsMs": {
-        "total": 238.6721120000002
+        "total": 210.6932799999995
       },
       "labels": [
         "LIVE"

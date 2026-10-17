@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:38.893Z",
+  "generatedAt": "2026-10-17T21:41:08.319Z",
   "labels": [
     "OBSERVED"
   ],
@@ -368,7 +368,7 @@
             "address": "0xC30ce6A5758786e0F640cC5f881Dd96e9a1C5C59",
             "listed": true,
             "state": {
-              "totalAssetsUsd": 545749.4154835169
+              "totalAssetsUsd": 545739.687388527
             },
             "warnings": []
           }
@@ -432,18 +432,18 @@
           "Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation.",
           "Morpho warnings were read as third-party data."
         ],
-        "description": "0xB47f11484e19f1914D32fd393b17671221C10F1F deposited 5 USDC into \"Gauntlet USDC Prime\" and received 5 \"gtusdcp\"."
+        "description": "0xB47f11484e19f1914D32fd393b17671221C10F1F deposited 5 USDC into \"Gauntlet USDC Prime\" and received 5.000000 \"gtusdcp\"."
       }
     ],
     "copyable": "no",
     "reasons": [],
-    "text": "This transaction called deposit directly.\n0xB47f11484e19f1914D32fd393b17671221C10F1F deposited 5 USDC into \"Gauntlet USDC Prime\" and received 5 \"gtusdcp\". TOO_SMALL: execution checks must pass before this vault can be copied. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called deposit directly.\n0xB47f11484e19f1914D32fd393b17671221C10F1F deposited 5 USDC into \"Gauntlet USDC Prime\" and received 5.000000 \"gtusdcp\". TOO_SMALL: execution checks must pass before this vault can be copied. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "optimism",
-      "generatedAt": "2026-10-17T21:04:38.893Z",
+      "generatedAt": "2026-10-17T21:41:08.319Z",
       "timingsMs": {
-        "total": 485.2525289999976
+        "total": 563.5955719999984
       },
       "labels": [
         "LIVE"

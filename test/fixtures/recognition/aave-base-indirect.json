@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:05:17.023Z",
+  "generatedAt": "2026-10-17T21:40:45.924Z",
   "labels": [
     "OBSERVED"
   ],
@@ -536,13 +536,13 @@
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0xcFf32C4990f3BB94DDAb6929B5f9d54c9215e044 deposited 2.387445 USDC into Aave v3 \"USDC\" pool and received 2.387445 \"aBasUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again.\n0x837AD3cFe67eb33D61128164bE72fc02Be66b136 deposited 2.387445 USDC into vault 0xcFf32C4990f3BB94DDAb6929B5f9d54c9215e044 and received 2.379001 receipt shares. UNKNOWN_PROVENANCE: this contract is explain-only. UNKNOWN_PROVENANCE: execution checks must pass before this vault can be copied. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings unavailable.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0xcFf32C4990f3BB94DDAb6929B5f9d54c9215e044 deposited 2.387445 USDC into Aave v3 \"USDC\" pool and received 2.387445 \"aBasUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again.\n0x837AD3cFe67eb33D61128164bE72fc02Be66b136 deposited 2.387445 USDC into vault 0xcFf32C4990f3BB94DDAb6929B5f9d54c9215e044 and received 2.379001 receipt shares. UNKNOWN_PROVENANCE: this contract is explain-only. UNKNOWN_PROVENANCE: execution checks must pass before this vault can be copied. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings unavailable.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:05:17.023Z",
+      "generatedAt": "2026-10-17T21:40:45.924Z",
       "timingsMs": {
-        "total": 428.26348899999994
+        "total": 502.77485499999966
       },
       "labels": [
         "LIVE"

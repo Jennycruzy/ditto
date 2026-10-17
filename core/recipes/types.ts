@@ -12,7 +12,7 @@ export type Identity = {
   details: Record<string, Json>;
 };
 export type Receipt = { transactionHash: Hex; from: Address; to: Address | null; blockNumber: Hex; status: Hex; logs: Log[] };
-export type Recognised = { kind: "enter" | "exit" | "other"; family: Family; contract: Address; asset: Address | "native"; amount: string; actor: Address; txHash: Hex; receiptAmount?: string; tokenId?: string };
+export type Recognised = { kind: "enter" | "exit" | "other"; family: Family; contract: Address; asset: Address | "native"; amount: string; actor: Address; txHash: Hex; receiptAmount?: string; tokenId?: string; amount0?: string; amount1?: string };
 export type RecogniseContext = { chain: Chain; identities: readonly Identity[]; lpPositions?: Record<string, { pool: Address; token0: Address; token1: Address; tickLower: number; tickUpper: number }> };
 export type IdentifyOptions = { asset?: Address; wallet?: Address; block?: Hex | "latest"; now?: number; listing?: { address: Address; chain: Chain; listed: boolean; totalAssetsUsd: string; fetchedAt: string } };
 export type BuildOptions = { allowance?: string; zeroFirst?: boolean; slippageBps?: number; now?: number; acceptExit?: "queued" | "market"; tokenId?: string; liquidity?: string; shares?: boolean; positionBalance?: string; min0?: string; min1?: string; halfWidthTicks?: number; amount0?: string; amount1?: string };

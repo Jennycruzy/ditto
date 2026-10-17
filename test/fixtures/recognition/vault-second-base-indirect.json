@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:40.848Z",
+  "generatedAt": "2026-10-17T21:41:10.367Z",
   "labels": [
     "OBSERVED"
   ],
@@ -511,7 +511,7 @@
           "v2": {
             "address": "0xbeeff2490FEffa212faC2f6553682C219E6a8845",
             "listed": true,
-            "totalAssetsUsd": 466806405.2920269,
+            "totalAssetsUsd": 466813989.97332424,
             "warnings": []
           }
         },
@@ -593,18 +593,18 @@
           "Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation.",
           "Morpho warnings were read as third-party data."
         ],
-        "description": "0x82f3812E0A957FCC39Ad7E8563b26885ed13A567 deposited 3.684113 USDC into \"Steakhouse High Yield USDC Edition\" and received 3.635175140551952752 \"sirloinUSDC\"."
+        "description": "0x82f3812E0A957FCC39Ad7E8563b26885ed13A567 deposited 3.684113 USDC into \"Steakhouse High Yield USDC Edition\" and received 3.635175 \"sirloinUSDC\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called handleOps from a smart wallet via a bundler.\n0x82f3812E0A957FCC39Ad7E8563b26885ed13A567 deposited 3.684113 USDC into \"Steakhouse High Yield USDC Edition\" and received 3.635175140551952752 \"sirloinUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called handleOps from a smart wallet via a bundler.\n0x82f3812E0A957FCC39Ad7E8563b26885ed13A567 deposited 3.684113 USDC into \"Steakhouse High Yield USDC Edition\" and received 3.635175 \"sirloinUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:04:40.848Z",
+      "generatedAt": "2026-10-17T21:41:10.367Z",
       "timingsMs": {
-        "total": 901.930809999998
+        "total": 375.39006999999765
       },
       "labels": [
         "LIVE"

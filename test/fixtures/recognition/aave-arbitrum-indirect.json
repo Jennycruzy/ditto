@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:05:15.082Z",
+  "generatedAt": "2026-10-17T21:40:44.066Z",
   "labels": [
     "OBSERVED"
   ],
@@ -1348,7 +1348,7 @@
             "address": "0x5c0C306Aaa9F877de636f4d5822cA9F2E81563BA",
             "listed": true,
             "state": {
-              "totalAssetsUsd": 1543449.095333501
+              "totalAssetsUsd": 1543404.9177793758
             },
             "warnings": []
           }
@@ -1516,18 +1516,18 @@
           "Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation.",
           "Morpho warnings were read as third-party data."
         ],
-        "description": "0x3cc6FAE7b03746DBa56d04161a8b45738Bc43C05 deposited 0.310619 USDC into \"Steakhouse High Yield USDC\" and received 0.296239489253925116 \"bbqUSDC\"."
+        "description": "0x3cc6FAE7b03746DBa56d04161a8b45738Bc43C05 deposited 0.310619 USDC into \"Steakhouse High Yield USDC\" and received 0.296239 \"bbqUSDC\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0x3cc6FAE7b03746DBa56d04161a8b45738Bc43C05 deposited 0.466196 USDC into Aave v3 \"USDC\" pool and received 0.473129 \"aArbUSDCn\". Ditto can rebuild this action with a fresh plan; current checks will run again.\n0x3cc6FAE7b03746DBa56d04161a8b45738Bc43C05 deposited 0.310619 USDC into \"Steakhouse High Yield USDC\" and received 0.296239489253925116 \"bbqUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0x3cc6FAE7b03746DBa56d04161a8b45738Bc43C05 deposited 0.466196 USDC into Aave v3 \"USDC\" pool and received 0.473129 \"aArbUSDCn\". Ditto can rebuild this action with a fresh plan; current checks will run again.\n0x3cc6FAE7b03746DBa56d04161a8b45738Bc43C05 deposited 0.310619 USDC into \"Steakhouse High Yield USDC\" and received 0.296239 \"bbqUSDC\". Ditto can rebuild this action with a fresh plan; current checks will run again. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "arbitrum",
-      "generatedAt": "2026-10-17T21:05:15.082Z",
+      "generatedAt": "2026-10-17T21:40:44.066Z",
       "timingsMs": {
-        "total": 741.182425
+        "total": 621.6680120000001
       },
       "labels": [
         "LIVE"

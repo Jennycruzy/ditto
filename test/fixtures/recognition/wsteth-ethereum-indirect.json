@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:45.633Z",
+  "generatedAt": "2026-10-17T21:41:14.140Z",
   "labels": [
     "OBSERVED"
   ],
@@ -339,7 +339,7 @@
         "reasons": [],
         "warnings": [],
         "notes": [],
-        "description": "0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.914 \"ETH\" into \"Liquid staked Ether 2.0\" and received 0.913999999999999998 \"stETH\"."
+        "description": "0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.914 \"ETH\" into \"Liquid staked Ether 2.0\" and received 0.914000 \"stETH\"."
       },
       {
         "kind": "enter",
@@ -355,18 +355,18 @@
         "reasons": [],
         "warnings": [],
         "notes": [],
-        "description": "0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.913999999999999999 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.73322673198706464 \"wstETH\"."
+        "description": "0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.913999999999999999 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.733227 \"wstETH\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.914 \"ETH\" into \"Liquid staked Ether 2.0\" and received 0.913999999999999998 \"stETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\n0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.913999999999999999 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.73322673198706464 \"wstETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it\" with your chosen amount to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.914 \"ETH\" into \"Liquid staked Ether 2.0\" and received 0.914000 \"stETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\n0xa88f0329C2c4ce51ba3fc619BBf44efE7120Dd0d deposited 0.913999999999999999 \"stETH\" into \"Wrapped liquid staked Ether 2.0\" and received 0.733227 \"wstETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it\" with your chosen amount to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "ethereum",
-      "generatedAt": "2026-10-17T21:04:45.633Z",
+      "generatedAt": "2026-10-17T21:41:14.140Z",
       "timingsMs": {
-        "total": 169.02024800000072
+        "total": 173.6065290000006
       },
       "labels": [
         "LIVE"

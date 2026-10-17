@@ -7,10 +7,12 @@
       "tokenId": "78652366",
       "tickLower": -198500,
       "tickUpper": -198400,
+      "amount0": "14399823062007176117",
+      "amount1": "208334326007",
       "at": "2026-10-17T19:43:15.000Z"
     }
   ],
-  "generatedAt": "2026-10-17T21:04:26.716Z",
+  "generatedAt": "2026-10-17T21:40:56.179Z",
   "labels": [
     "OBSERVED"
   ],
@@ -522,7 +524,7 @@
         "halfWidthTicks": 50,
         "warnings": [],
         "notes": [],
-        "description": "0xb093da272A66D47b7445cA389CEbdc6d3Ac7753D opened position NFT 78652366 in aerodrome \"WETH\"/\"USDC\" pool, with 14.399823062007176117 \"WETH\" and 208334.326007 USDC, and received the position NFT.",
+        "description": "0xb093da272A66D47b7445cA389CEbdc6d3Ac7753D opened position NFT 78652366 in Aerodrome Slipstream \"WETH\"/\"USDC\" pool, with 14.399823062007176117 \"WETH\" and 208334.326007 USDC, and received the position NFT.",
         "lpPosition": {
           "token0": "0x4200000000000000000000000000000000000006",
           "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
@@ -535,13 +537,13 @@
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called unknown function through a router.\n0xb093da272A66D47b7445cA389CEbdc6d3Ac7753D opened position NFT 78652366 in aerodrome \"WETH\"/\"USDC\" pool, with 14.399823062007176117 \"WETH\" and 208334.326007 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 50 ticks; recenter on the current price.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called an unknown function through a router.\n0xb093da272A66D47b7445cA389CEbdc6d3Ac7753D opened position NFT 78652366 in Aerodrome Slipstream \"WETH\"/\"USDC\" pool, with 14.399823062007176117 \"WETH\" and 208334.326007 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 50 ticks; recenter on the current price.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:04:26.716Z",
+      "generatedAt": "2026-10-17T21:40:56.179Z",
       "timingsMs": {
-        "total": 239.64840899999945
+        "total": 245.37590500000078
       },
       "labels": [
         "LIVE"

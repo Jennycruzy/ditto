@@ -7,10 +7,12 @@
       "tokenId": "6293292",
       "tickLower": -199480,
       "tickUpper": -197480,
+      "amount0": "29381811448815536",
+      "amount1": "79000000",
       "at": "2026-10-17T18:50:13.000Z"
     }
   ],
-  "generatedAt": "2026-10-17T21:04:28.121Z",
+  "generatedAt": "2026-10-17T21:40:57.528Z",
   "labels": [
     "OBSERVED"
   ],
@@ -396,7 +398,7 @@
         "halfWidthTicks": 1000,
         "warnings": [],
         "notes": [],
-        "description": "0xeE6354Ee9E2bC4cfdeEC5918367B6fc32139903D opened position NFT 6293292 in uniswap \"WETH\"/\"USDC\" pool, with 0.029381811448815536 \"WETH\" and 79 USDC, and received the position NFT.",
+        "description": "0xeE6354Ee9E2bC4cfdeEC5918367B6fc32139903D opened position NFT 6293292 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 0.029381811448815536 \"WETH\" and 79 USDC, and received the position NFT.",
         "lpPosition": {
           "token0": "0x4200000000000000000000000000000000000006",
           "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
@@ -409,13 +411,13 @@
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called mint directly.\n0xeE6354Ee9E2bC4cfdeEC5918367B6fc32139903D opened position NFT 6293292 in uniswap \"WETH\"/\"USDC\" pool, with 0.029381811448815536 \"WETH\" and 79 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 1000 ticks; recenter on the current price.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called mint directly.\n0xeE6354Ee9E2bC4cfdeEC5918367B6fc32139903D opened position NFT 6293292 in Uniswap v3 \"WETH\"/\"USDC\" pool, with 0.029381811448815536 \"WETH\" and 79 USDC, and received the position NFT. Ditto can rebuild this action with a fresh plan; current checks will run again. Observed half-width: 1000 ticks; recenter on the current price.\nSay \"copy it with 1 USDC\" to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "base",
-      "generatedAt": "2026-10-17T21:04:28.121Z",
+      "generatedAt": "2026-10-17T21:40:57.528Z",
       "timingsMs": {
-        "total": 234.2320299999992
+        "total": 260.0198619999992
       },
       "labels": [
         "LIVE"

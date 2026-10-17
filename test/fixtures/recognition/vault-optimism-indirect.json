@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:39.819Z",
+  "generatedAt": "2026-10-17T21:41:09.318Z",
   "labels": [
     "OBSERVED"
   ],
@@ -412,17 +412,6 @@
       "method": "eth_call",
       "params": [
         {
-          "to": "0x3Bb6A6A0Bc85b367EFE0A5bAc81c5E52C892839a",
-          "data": "0x29b5352c000000000000000000000000c30ce6a5758786e0f640cc5f881dd96e9a1c5c59"
-        },
-        "0x881fbee"
-      ],
-      "result": "0x0000000000000000000000000000000000000000000000000000000000000001"
-    },
-    {
-      "method": "eth_call",
-      "params": [
-        {
           "to": "0xACe250188beb4eE8C11E8b429981c6B30C3B49bC",
           "data": "0x38d52e0f"
         },
@@ -451,6 +440,17 @@
         "0x881fbee"
       ],
       "result": "0x0000000000000000000000000000000000000000000000000000000000000012"
+    },
+    {
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x3Bb6A6A0Bc85b367EFE0A5bAc81c5E52C892839a",
+          "data": "0x29b5352c000000000000000000000000c30ce6a5758786e0f640cc5f881dd96e9a1c5c59"
+        },
+        "0x881fbee"
+      ],
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000001"
     },
     {
       "method": "eth_call",
@@ -572,7 +572,7 @@
             "address": "0xC30ce6A5758786e0F640cC5f881Dd96e9a1C5C59",
             "listed": true,
             "state": {
-              "totalAssetsUsd": 545749.4154835169
+              "totalAssetsUsd": 545739.687388527
             },
             "warnings": []
           }
@@ -676,7 +676,7 @@
           "Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation.",
           "Morpho warnings were read as third-party data."
         ],
-        "description": "0xACe250188beb4eE8C11E8b429981c6B30C3B49bC deposited 2 USDC into \"Gauntlet USDC Prime\" and received 1.998399473312337186 \"gtusdcp\"."
+        "description": "0xACe250188beb4eE8C11E8b429981c6B30C3B49bC deposited 2 USDC into \"Gauntlet USDC Prime\" and received 1.998399 \"gtusdcp\"."
       },
       {
         "kind": "enter",
@@ -698,18 +698,18 @@
           "Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation.",
           "Morpho warnings unavailable."
         ],
-        "description": "0xFe3B048e51bd46651b6639c0866b8C34745fdD55 deposited 0.000000000002 \"gtusdcp\" into \"Utila - Yield.xyz Gauntlet USDC Prime\" and received 1998399.473312337186 \"yie-utila-gUSDCp\"."
+        "description": "0xFe3B048e51bd46651b6639c0866b8C34745fdD55 deposited 0.000000000002 \"gtusdcp\" into \"Utila - Yield.xyz Gauntlet USDC Prime\" and received 1998399.473312 \"yie-utila-gUSDCp\"."
       }
     ],
     "copyable": "no",
     "reasons": [],
-    "text": "This transaction called deposit directly.\n0xACe250188beb4eE8C11E8b429981c6B30C3B49bC deposited 2 USDC into \"Gauntlet USDC Prime\" and received 1.998399473312337186 \"gtusdcp\". TOO_SMALL: execution checks must pass before this vault can be copied. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\n0xFe3B048e51bd46651b6639c0866b8C34745fdD55 deposited 0.000000000002 \"gtusdcp\" into \"Utila - Yield.xyz Gauntlet USDC Prime\" and received 1998399.473312337186 \"yie-utila-gUSDCp\". UNKNOWN_PROVENANCE: this contract is explain-only. UNKNOWN_PROVENANCE: execution checks must pass before this vault can be copied. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings unavailable.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called deposit directly.\n0xACe250188beb4eE8C11E8b429981c6B30C3B49bC deposited 2 USDC into \"Gauntlet USDC Prime\" and received 1.998399 \"gtusdcp\". TOO_SMALL: execution checks must pass before this vault can be copied. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings were read as third-party data.\n0xFe3B048e51bd46651b6639c0866b8C34745fdD55 deposited 0.000000000002 \"gtusdcp\" into \"Utila - Yield.xyz Gauntlet USDC Prime\" and received 1998399.473312 \"yie-utila-gUSDCp\". UNKNOWN_PROVENANCE: this contract is explain-only. UNKNOWN_PROVENANCE: execution checks must pass before this vault can be copied. Ditto: ERC-4626 has no standard pause getter; deposit and exit need a fresh simulation. Morpho warnings unavailable.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "optimism",
-      "generatedAt": "2026-10-17T21:04:39.819Z",
+      "generatedAt": "2026-10-17T21:41:09.318Z",
       "timingsMs": {
-        "total": 586.792594999999
+        "total": 612.8545460000023
       },
       "labels": [
         "LIVE"

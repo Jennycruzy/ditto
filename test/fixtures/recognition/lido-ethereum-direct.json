@@ -1,6 +1,6 @@
 {
   "rangeSamples": [],
-  "generatedAt": "2026-10-17T21:04:23.826Z",
+  "generatedAt": "2026-10-17T21:40:53.494Z",
   "labels": [
     "OBSERVED"
   ],
@@ -36,8 +36,7 @@
         "blockNumber": "0x18ffec4",
         "transactionIndex": "0x1f0",
         "from": "0x4c49d4bd6a571827b4a556a0e1e3071da6231b9d",
-        "gasPrice": "0x2ec959a",
-        "blockTimestamp": "0x6ad3beef"
+        "gasPrice": "0x2ec959a"
       }
     },
     {
@@ -199,18 +198,18 @@
         "reasons": [],
         "warnings": [],
         "notes": [],
-        "description": "0x4C49d4Bd6a571827B4A556a0e1e3071DA6231B9D deposited 3.81016028 \"ETH\" into \"Liquid staked Ether 2.0\" and received 3.810160279999999999 \"stETH\"."
+        "description": "0x4C49d4Bd6a571827B4A556a0e1e3071DA6231B9D deposited 3.81016028 \"ETH\" into \"Liquid staked Ether 2.0\" and received 3.810160 \"stETH\"."
       }
     ],
     "copyable": "yes",
     "reasons": [],
-    "text": "This transaction called submit directly.\n0x4C49d4Bd6a571827B4A556a0e1e3071DA6231B9D deposited 3.81016028 \"ETH\" into \"Liquid staked Ether 2.0\" and received 3.810160279999999999 \"stETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it\" with your chosen amount to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
+    "text": "This transaction called submit directly.\n0x4C49d4Bd6a571827B4A556a0e1e3071DA6231B9D deposited 3.81016028 \"ETH\" into \"Liquid staked Ether 2.0\" and received 3.810160 \"stETH\". Ditto can rebuild this action with a fresh plan; current checks will run again.\nSay \"copy it\" with your chosen amount to build your own plan.\nToken movements come from receipt Transfer logs; internal native ETH movements are not available from a receipt alone.",
     "ditto": {
       "version": "0.1.0",
       "chain": "ethereum",
-      "generatedAt": "2026-10-17T21:04:23.826Z",
+      "generatedAt": "2026-10-17T21:40:53.494Z",
       "timingsMs": {
-        "total": 276.6057949999995
+        "total": 176.90603200000078
       },
       "labels": [
         "LIVE"

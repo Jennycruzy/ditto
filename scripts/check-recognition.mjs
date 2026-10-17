@@ -38,7 +38,7 @@ for (const name of (await readdir(new URL("../test/fixtures/receipts/", import.m
     const block = await new JsonRpc(f.chain, { headers }).call("eth_getBlockByNumber", [f.receipt.blockNumber, false]);
     for (const a of output.actions.filter(a => a.family === "lp-v3" && a.kind === "enter")) {
       const position = Object.entries(f.context.lpPositions ?? {}).find(([key, p]) => key.endsWith(`:${a.tokenId}`) && p.pool.toLowerCase() === a.contract.toLowerCase())?.[1];
-      if (position) samples.push({ chain: f.chain, pool: a.contract, txHash: a.txHash, tokenId: a.tokenId, tickLower: position.tickLower, tickUpper: position.tickUpper, at: new Date(Number(BigInt(block.timestamp)) * 1000).toISOString() });
+      if (position) samples.push({ chain: f.chain, pool: a.contract, txHash: a.txHash, tokenId: a.tokenId, tickLower: position.tickLower, tickUpper: position.tickUpper, amount0: a.lpPosition.amount0, amount1: a.lpPosition.amount1, at: new Date(Number(BigInt(block.timestamp)) * 1000).toISOString() });
     }
     const result = { rangeSamples: samples.filter(s => s.txHash === f.tx.hash), generatedAt: new Date(now).toISOString(), labels: ["OBSERVED"], name: name.replace(".json", ""), chain: f.chain, input: { chain: f.chain, tx: f.tx.hash }, rpc: calls, listings, expected: output };
     await writeFile(new URL(name, dest), JSON.stringify(result, null, 2) + "\n");
