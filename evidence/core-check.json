@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-17T20:32:00.621Z",
+  "generatedAt": "2026-10-17T21:08:46.757Z",
   "chain": "base",
   "labels": [
     "OBSERVED",
     "SIMULATED"
   ],
-  "block": "52739886",
-  "simulatedBlock": "52739887",
+  "block": "52740989",
+  "simulatedBlock": "52740990",
   "checks": {
     "balanceOverride": true,
     "sequentialState": true,

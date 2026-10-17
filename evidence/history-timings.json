@@ -1,0 +1,30 @@
+{
+  "base": {
+    "generatedAt": "2026-10-17T21:05:25.236Z",
+    "labels": [
+      "OBSERVED"
+    ],
+    "requests": 17,
+    "logicalRequests": 17,
+    "blockTimestampReads": 2,
+    "pages": 2,
+    "moves": 2,
+    "durationMs": 2235.5762760000002,
+    "incomplete": true,
+    "moneySpent": "0"
+  },
+  "arbitrum": {
+    "generatedAt": "2026-10-17T21:05:27.803Z",
+    "labels": [
+      "OBSERVED"
+    ],
+    "requests": 27,
+    "logicalRequests": 27,
+    "blockTimestampReads": 4,
+    "pages": 2,
+    "moves": 2,
+    "durationMs": 1040.7735200000002,
+    "incomplete": true,
+    "moneySpent": "0"
+  }
+}

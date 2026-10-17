@@ -6,6 +6,7 @@ import { addr, read, same } from "../recipes/shared.js";
 import type { Family, IdentifyOptions, Identity, RecogniseContext } from "../recipes/types.js";
 import type { Rpc } from "../rpc.js";
 import type { Chain } from "../chains.js";
+import { parseTokenTransfers } from "../simulate.js";
 import { morphoListing } from "../morpho.js";
 import { receiptSchema } from "./schemas.js";
 
@@ -39,13 +40,14 @@ export async function discoverReceipt(chain: Chain, raw: unknown, rpc: Rpc, opti
   await Promise.all([...candidates.values()].slice(0, cap).map(async c => {
     try {
       let listing;
-      if (c.family === "erc4626") {
+      const named = provenance.namedVaults.some(v => v.chain === chain && same(v.address, c.contract));
+      if (c.family === "erc4626" && !named) {
         try { listing = await (options.listing ?? morphoListing)(c.contract, chain); }
         catch { failures.push(`Morpho listing and warnings are unavailable for ${c.contract}; no empty warning list is claimed.`); }
       }
       const identity = await recipe(c.family).identify(c.contract, chain, rpc, { block: receipt.blockNumber as Hex, wallet: receipt.from, ...(c.asset ? { asset: c.asset } : {}), ...(listing ? { listing } : {}) });
       if (identity) {
-        if (c.family === "erc4626") { identity.details.warningStatus = listing ? "observed" : "unavailable"; identity.details.pauseStatus = "ERC-4626 has no standard pause getter; deposit and exit must be simulated."; }
+        if (c.family === "erc4626") { const isMorpho = chain !== "ethereum" && provenance.morpho[chain].some(factory => identity.provenance.registry && same(identity.provenance.registry, factory.address)); identity.details.warningStatus = named || (!isMorpho && identity.provenance.verified) ? "not-morpho" : listing ? "observed" : "unavailable"; identity.details.pauseStatus = "ERC-4626 has no standard pause getter; deposit and exit must be simulated."; }
         if (listing?.warnings) identity.details.warnings = listing.warnings;
         identities.push(identity);
       }
@@ -59,13 +61,20 @@ export async function discoverReceipt(chain: Chain, raw: unknown, rpc: Rpc, opti
       for (const id of ids.slice(0, cap)) {
         try {
           const uniswap = same(registry.npm, provenance.lp.uniswap.npm), npm = addr(registry.npm);
-          const p = await read(rpc, npm, positionFragment(uniswap), [BigInt(id)], receipt.blockNumber as Hex) as readonly unknown[];
+          const previous = BigInt(receipt.blockNumber) > 0n ? `0x${(BigInt(receipt.blockNumber) - 1n).toString(16)}` as Hex : receipt.blockNumber as Hex;
+          const burned = parseTokenTransfers(receipt.logs).some(t => t.kind === "erc721" && same(t.token, npm) && t.tokenId === BigInt(id).toString() && /^0x0{40}$/i.test(t.to));
+          let p: readonly unknown[];
+          if (burned) p = await read(rpc, npm, positionFragment(uniswap), [BigInt(id)], previous) as readonly unknown[];
+          else {
+            try { p = await read(rpc, npm, positionFragment(uniswap), [BigInt(id)], receipt.blockNumber as Hex) as readonly unknown[]; }
+            catch { p = await read(rpc, npm, positionFragment(uniswap), [BigInt(id)], previous) as readonly unknown[]; }
+          }
           const pool = await read(rpc, addr(registry.factory), `function getPool(address,address,${uniswap ? "uint24" : "int24"}) view returns (address)`, [p[2], p[3], p[4]], receipt.blockNumber as Hex) as Address;
           let identity = identities.find(i => i.family === "lp-v3" && same(i.contract, pool));
           if (!identity) { identity = await recipes["lp-v3"]!.identify(pool, chain, rpc, { block: receipt.blockNumber as Hex }) ?? undefined; if (identity) identities.push(identity); }
           if (!identity) continue;
           lpPositions[`${npm.toLowerCase()}:${BigInt(id)}`] = { pool: identity.contract, token0: p[2] as Address, token1: p[3] as Address, tickLower: Number(p[5]), tickUpper: Number(p[6]) };
-        } catch { incomplete = true; failures.push(`Position ${BigInt(id)} could not be resolved at its receipt block; no range width was guessed.`); }
+        } catch { incomplete = true; failures.push(`Position ${BigInt(id)} could not be resolved at the receipt or previous block; no range width was guessed.`); }
       }
     }
   }

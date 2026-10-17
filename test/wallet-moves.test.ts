@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { toHex } from "viem";
 import { walletMoves, windowStart } from "../core/recognise/wallet.js";
@@ -9,8 +9,9 @@ const f = JSON.parse(readFileSync(new URL("./fixtures/receipts/aave-base-direct.
 const originalBlock = f.receipt.blockNumber; f.tx.blockNumber = "0x64"; f.receipt.blockNumber = "0x64";
 const now = Date.parse("2026-10-17T20:00:00Z"), epoch = BigInt(now / 1000) - 200000n;
 const row = { hash: f.tx.hash, blockNum: "0x64", from: f.tx.from, to: f.expected[0].actor };
-function history(options: { paged?: boolean; failReceipt?: boolean; irrelevant?: boolean; repeat?: boolean } = {}) {
+function history(options: { paged?: boolean; failReceipt?: boolean; irrelevant?: boolean; repeat?: boolean; twoTx?: boolean } = {}) {
   const pages: unknown[] = [], calls: string[] = [];
+  let active = 0, maxActive = 0;
   const call = async (method: string, params: readonly any[]) => {
     calls.push(method);
     if (method === "eth_getBlockByNumber") {
@@ -19,10 +20,10 @@ function history(options: { paged?: boolean; failReceipt?: boolean; irrelevant?:
     }
     if (method === "alchemy_getAssetTransfers") {
       pages.push(params[0]);
-      return { transfers: [options.irrelevant ? { ...row, hash: `0x${"12".repeat(32)}` } : row], ...(options.paged && (!params[0].pageKey || options.repeat) ? { pageKey: "next" } : {}) };
+      return { transfers: [options.irrelevant ? { ...row, hash: `0x${"12".repeat(32)}` } : row, ...(options.twoTx ? [{ ...row, hash: `0x${"34".repeat(32)}` }] : [])], ...(options.paged && (!params[0].pageKey || options.repeat) ? { pageKey: "next" } : {}) };
     }
-    if (method === "eth_getTransactionByHash") { if (options.failReceipt) throw new Error("timeout"); return options.irrelevant ? { ...f.tx, hash: `0x${"12".repeat(32)}` } : f.tx; }
-    if (method === "eth_getTransactionReceipt") return options.irrelevant ? { ...f.receipt, transactionHash: `0x${"12".repeat(32)}`, logs: [] } : f.receipt;
+    if (method === "eth_getTransactionByHash") { if (options.failReceipt) throw new Error("timeout"); active++; maxActive = Math.max(active, maxActive); await new Promise(resolve => setTimeout(resolve, 5)); active--; return { ...f.tx, hash: params[0] }; }
+    if (method === "eth_getTransactionReceipt") return { ...f.receipt, transactionHash: params[0], ...(options.irrelevant ? { logs: [] } : {}) };
     if (method === "eth_call") {
       const records = JSON.parse(readFileSync(new URL("./fixtures/recognition/aave-base-direct.json", import.meta.url), "utf8")).rpc;
       const r = records.find((r: any) => r.method === method && JSON.stringify(r.params) === JSON.stringify(params.map(p => p === "0x64" ? originalBlock : p)));
@@ -30,11 +31,11 @@ function history(options: { paged?: boolean; failReceipt?: boolean; irrelevant?:
     }
     throw new Error("Unexpected method");
   };
-  return { rpc: { call, batch: async inputs => Promise.all(inputs.map(c => call(c.method, c.params))) } as Rpc, pages, calls };
+  return { rpc: { call, batch: async inputs => Promise.all(inputs.map(c => call(c.method, c.params))) } as Rpc, pages, calls, maxActive: () => maxActive };
 }
 describe("bounded wallet history", () => {
-  it("finds the exact first block at or after the time boundary", async () => {
-    const h = history(); expect(await windowStart(h.rpc, "0x64", epoch + 50000n)).toBe("0x19");
+  it("uses at most four timestamp reads to find the seeded boundary", async () => {
+    const h = history(); expect(await windowStart(h.rpc, "0x64", epoch + 50000n)).toBe("0x19"); expect(h.calls.filter(c => c === "eth_getBlockByNumber").length).toBeLessThanOrEqual(4);
   });
   it("scans both directions, deduplicates hashes, and credits the event actor", async () => {
     const h = history(), actor = f.expected[0].actor;
@@ -87,20 +88,43 @@ describe("Morpho warnings as untrusted data", () => {
   });
 });
 
-describe("recorded test-wallet history", () => {
-  const f = JSON.parse(readFileSync(new URL("./fixtures/history/test-wallet-base.json", import.meta.url), "utf8"));
-  it("reproduces the real enter and exit, without counting approvals as deposits", async () => {
-    const lookup = (method: string, params: readonly unknown[]) => {
-      const r = f.rpc.find((c: any) => c.method === method && JSON.stringify(c.params) === JSON.stringify(params));
-      if (!r) throw new Error("Missing recorded history call");
-      if (r.error) throw new Error(r.error); return structuredClone(r.result);
-    };
-    const rpc = { call: async (method, params) => lookup(method, params), batch: async inputs => inputs.map(c => lookup(c.method, c.params)) } as Rpc;
-    const result = await walletMoves(f.input, rpc, { now: Date.parse(f.generatedAt) });
-    result.ditto.timingsMs = {}; const expected = structuredClone(f.expected); expected.ditto.timingsMs = {};
-    expect(result).toEqual(expected);
-    expect(result.moves.some(m => m.kind === "enter" && m.family === "aave-v3")).toBe(true);
-    expect(result.moves.some(m => m.kind === "exit" && m.family === "aave-v3")).toBe(true);
-    expect(result.moves.every(m => m.actor.toLowerCase() === f.input.wallet.toLowerCase())).toBe(true);
+describe("recorded wallet histories", () => {
+  const dir = new URL("./fixtures/history/", import.meta.url);
+  for (const name of readdirSync(dir)) {
+    const f = JSON.parse(readFileSync(new URL(name, dir), "utf8"));
+    it(`${name}: reproduces real supported activity with the bounded parallel scan`, async () => {
+      const lookup = (method: string, params: readonly unknown[]) => {
+        const r = f.rpc.find((c: any) => c.method === method && JSON.stringify(c.params) === JSON.stringify(params));
+        if (!r) throw new Error("Missing recorded history call");
+        if (r.error) throw new Error(r.error); return structuredClone(r.result);
+      };
+      const rpc = { call: async (method, params) => lookup(method, params), batch: async inputs => inputs.map(c => lookup(c.method, c.params)) } as Rpc;
+      const result = await walletMoves(f.input, rpc, { now: Date.parse(f.generatedAt) });
+      result.ditto.timingsMs = {}; const expected = structuredClone(f.expected); expected.ditto.timingsMs = {};
+      expect(result).toEqual(expected);
+      expect(result.moves.some(m => m.family === "aave-v3")).toBe(true);
+      if (f.input.chain === "base") {
+        expect(result.moves.some(m => m.kind === "enter")).toBe(true);
+        expect(result.moves.some(m => m.kind === "exit")).toBe(true);
+      }
+      expect(result.moves.every(m => m.actor.toLowerCase() === f.input.wallet.toLowerCase())).toBe(true);
+      expect(f.rpc.filter((c: any) => c.method === "eth_getBlockByNumber").length).toBeLessThanOrEqual(4);
+      if (f.input.chain === "arbitrum") for (const c of f.rpc.filter((c: any) => c.method === "alchemy_getAssetTransfers")) expect(c.params[0].category).not.toContain("internal");
+    });
+  }
+});
+
+
+describe("history concurrency and network categories", () => {
+  it("runs independent transaction explanations concurrently and reuses getters", async () => {
+    const h = history({ twoTx: true });
+    const r = await walletMoves({ chain: "base", wallet: f.expected[0].actor, limit: 5 }, h.rpc, { now });
+    expect(r.moves).toHaveLength(2); expect(h.maxActive()).toBe(2);
+    expect(h.calls.filter(c => c === "eth_call").length).toBe(7);
+  });
+  it.each(["base", "arbitrum", "optimism", "ethereum"])("%s includes internal transfers only on Ethereum", async chain => {
+    const h = history(); await walletMoves({ chain, wallet: f.expected[0].actor }, h.rpc, { now });
+    expect(h.pages.length).toBe(2);
+    for (const page of h.pages as { category: string[] }[]) expect(page.category.includes("internal")).toBe(chain === "ethereum");
   });
 });

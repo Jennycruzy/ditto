@@ -1,4 +1,5 @@
 import { readFile, writeFile, readdir, mkdir } from "node:fs/promises";
+import { setTimeout } from "node:timers/promises";
 import { homedir } from "node:os";
 import { resolve } from "node:path";
 import assert from "node:assert/strict";
@@ -12,6 +13,7 @@ let failures = 0; const report = [], samples = [];
 const selected = process.argv.slice(2);
 for (const name of (await readdir(new URL("../test/fixtures/receipts/", import.meta.url))).sort()) {
   if (selected.length && !selected.some(s => name.startsWith(s))) continue;
+  await setTimeout(400);
   const f = JSON.parse(await readFile(new URL(`../test/fixtures/receipts/${name}`, import.meta.url), "utf8"));
   const now = Date.now(), calls = [], listings = [], client = new JsonRpc(f.chain, { headers, maxRequests: recognitionRpcBudgets.explain });
   const record = async (method, params) => {

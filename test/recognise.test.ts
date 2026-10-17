@@ -1,6 +1,6 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { decodeReceipt, transactionHash, medianPositionWidth, explainTransaction, parseMorphoListing } from "../core/browser.js";
+import { decodeReceipt, transactionHash, medianPositionWidth, explainTransaction, parseMorphoListing, discoverReceipt } from "../core/browser.js";
 import type { Rpc, RpcCall } from "../core/rpc.js";
 import { RpcError } from "../core/rpc.js";
 import { canonicalJson } from "../core/plan.js";
@@ -38,7 +38,7 @@ describe("receipt explanations", () => {
     const result = decodeReceipt(f.chain, f.tx, f.receipt, f.context, { now });
     expect(result.actions[0]!.warnings[0]!.untrusted).toBe(true);
     expect(result.actions[0]!.warnings[0]!.text).not.toMatch(/[\n\u202e]/);
-    expect(result.text).toContain("Untrusted vault warnings"); expect(result.text).toContain("Pause status needs");
+    expect(result.text).toContain("Third-party vault warnings (untrusted)"); expect(result.actions[0]!.notes.join()).toContain("fresh simulation");
   });
   it("does not call a reverted or pending transaction copyable", () => {
     const f = cases[0]!;
@@ -115,5 +115,60 @@ describe("multi-action receipts", () => {
     const actions = f.expected.actions.filter((a: any) => a.family === "lp-v3");
     for (const a of actions) { expect(a.lpPosition).toBeDefined(); expect(a.halfWidthTicks).toBe(Math.ceil((a.lpPosition.tickUpper - a.lpPosition.tickLower) / 2)); }
     expect(new Set(actions.map((a: any) => a.tokenId)).size).toBe(actions.length);
+  });
+});
+
+
+describe("reviewed receipt presentation and burned positions", () => {
+  const fixture = (name: string) => JSON.parse(readFileSync(new URL(`./fixtures/recognition/${name}.json`, import.meta.url), "utf8"));
+  it.each([["lp-uniswap-recent-1", "6225704"], ["lp-uniswap-recent-3", "6291853"]])("%s resolves the burned NFT at block minus one", (name, burned) => {
+    const f = fixture(name), receipt = f.rpc.find((c: any) => c.method === "eth_getTransactionReceipt").result;
+    const previous = `0x${(BigInt(receipt.blockNumber) - 1n).toString(16)}`;
+    const idWord = BigInt(burned).toString(16).padStart(64, "0");
+    expect(f.rpc.some((c: any) => c.method === "eth_call" && c.params[1] === previous && c.params[0].data.endsWith(idWord))).toBe(true);
+    expect(f.expected.ditto.incomplete).toBe(false);
+    expect(f.expected.copyable).toBe("yes");
+    expect(f.expected.actions.some((a: any) => a.kind === "exit" && a.tokenId === burned)).toBe(true);
+    expect(f.expected.actions.some((a: any) => a.kind === "enter" && a.copyable === "yes")).toBe(true);
+  });
+  it("shows readable USDC, receipt shares, a vault name, and the copy next step", () => {
+    const f = fixture("vault-base-indirect");
+    expect(f.expected.text).toMatch(/[0-9]+(?:\.[0-9]+)? USDC/);
+    expect(f.expected.text).toContain("received");
+    expect(f.expected.text).toMatch(/Steakhouse/i);
+    expect(f.expected.text).toContain('copy it with 1 USDC');
+    expect(f.expected.text).not.toContain("atomic units");
+    expect(f.expected.actions[0].amount).toMatch(/^[0-9]+$/);
+  });
+  it("describes the smart-wallet route in words", () => expect(fixture("moonwell-base-indirect").expected.text).toContain("from a smart wallet via a bundler"));
+  it.each(["fluid-base-direct", "spark-base-direct"])("%s separates Ditto's notes and does not claim missing Morpho warnings", name => {
+    const f = fixture(name);
+    expect(f.expected.text).toContain("Not a Morpho vault, so no Morpho warnings.");
+    expect(f.expected.actions[0].notes.join()).toContain("fresh simulation");
+    expect(f.expected.actions[0].warnings).toEqual([]);
+    expect(f.expected.text).not.toContain("Morpho warnings unavailable");
+  });
+});
+
+
+describe("LP metadata fallback without a burn hint", () => {
+  it("tries the previous block after positions reverts at the receipt block", async () => {
+    const f = JSON.parse(readFileSync(new URL("./fixtures/recognition/lp-uniswap-recent-1.json", import.meta.url), "utf8"));
+    const raw = structuredClone(f.rpc.find((c: any) => c.method === "eth_getTransactionReceipt").result);
+    const burned = "6225704", word = BigInt(burned).toString(16).padStart(64, "0"), attempts: string[] = [];
+    raw.logs = raw.logs.filter((l: any) => !(l.topics.length === 4 && l.topics[2] === `0x${"0".repeat(64)}` && l.topics[3]?.endsWith(word)));
+    const lookup = (method: string, params: readonly any[]) => {
+      if (method === "eth_call" && params[0].data.endsWith(word)) {
+        attempts.push(params[1]); if (params[1] === raw.blockNumber) throw new Error("Invalid token ID");
+      }
+      const r = f.rpc.find((c: any) => c.method === method && canonicalJson(c.params) === canonicalJson(params));
+      if (!r || r.error) throw new Error("read failed"); return structuredClone(r.result);
+    };
+    const rpc = { call: async (method, params) => lookup(method, params), batch: async inputs => inputs.map(c => lookup(c.method, c.params)) } as Rpc;
+    const d = await discoverReceipt("base", raw, rpc, { listing: async () => undefined });
+    expect(attempts).toContain(raw.blockNumber);
+    expect(attempts).toContain(`0x${(BigInt(raw.blockNumber) - 1n).toString(16)}`);
+    expect(Object.keys(d.context.lpPositions).some(k => k.endsWith(`:${burned}`))).toBe(true);
+    expect(d.incomplete).toBe(false);
   });
 });

@@ -6,7 +6,8 @@ import { JsonRpc, walletMoves, recognitionRpcBudgets } from "../dist/core.mjs";
 const env = await readFile(resolve(homedir(), "ditto-private/.env"), "utf8");
 const key = env.match(/^ALCHEMY_API_KEY=(.+)$/m)?.[1]?.trim().replace(/^(['"])(.*)\1$/, "$2");
 if (!key) throw new Error("Local credential missing");
-const input = { chain: "base", wallet: "0x62cd77f1b851a1df9aaadcdcf49e107f887d4dd4", window: "30d", limit: 5 };
+const chain = process.argv.includes("arbitrum") ? "arbitrum" : "base";
+const input = { chain, wallet: chain === "base" ? "0x62cd77f1b851a1df9aaadcdcf49e107f887d4dd4" : "0x4F7ed211FcEF5555B0EC309E3bFfcCfE27750C89", window: "30d", limit: 5 };
 const client = new JsonRpc(input.chain, { headers: { authorization: `Bearer ${key}` }, maxRequests: recognitionRpcBudgets.walletMoves }), calls = [];
 const call = async (method, params) => {
   try { const result = await client.call(method, params); calls.push({ method, params, result }); return result; }
@@ -17,5 +18,10 @@ const now = Date.now(), output = await walletMoves(input, rpc, { now, maxPages: 
 assert(output.scannedTransactions > 0, "No historical wallet transactions inspected");
 assert(output.moves.some(m => m.family === "aave-v3"), "Expected completed Aave activity missing");
 await mkdir(new URL("../test/fixtures/history/", import.meta.url), { recursive: true });
-await writeFile(new URL("../test/fixtures/history/test-wallet-base.json", import.meta.url), JSON.stringify({ generatedAt: new Date(now).toISOString(), labels: ["OBSERVED"], input, rpc: calls, expected: output }, null, 2) + "\n");
+await writeFile(new URL(`../test/fixtures/history/${input.chain === "base" ? "test-wallet-base" : "aave-wallet-arbitrum"}.json`, import.meta.url), JSON.stringify({ generatedAt: new Date(now).toISOString(), labels: ["OBSERVED"], input, rpc: calls, expected: output }, null, 2) + "\n");
 console.log(JSON.stringify({ status: "passed", requests: client.usage.requests, pages: output.pages, moves: output.moves.length, incomplete: output.ditto.incomplete, durationMs: output.ditto.timingsMs.total, moneySpent: "0" }));
+
+const evidencePath = new URL("../evidence/history-timings.json", import.meta.url);
+let prior = {}; try { prior = JSON.parse(await readFile(evidencePath, "utf8")); } catch {}
+prior[input.chain] = { generatedAt: new Date(now).toISOString(), labels: ["OBSERVED"], requests: client.usage.requests, logicalRequests: output.requests, blockTimestampReads: calls.filter(c => c.method === "eth_getBlockByNumber").length, pages: output.pages, moves: output.moves.length, durationMs: output.ditto.timingsMs.total, incomplete: output.ditto.incomplete, moneySpent: "0" };
+await writeFile(evidencePath, JSON.stringify(prior, null, 2) + "\n");
